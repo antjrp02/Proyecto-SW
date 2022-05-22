@@ -5,7 +5,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import excepciones.ContraseñaIncorrectaException;
+import excepciones.NivelVacioException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.ContraseñaVaciaException;
 import superClases.EntidadConNombre;
 import utilsDB.UtilsDB;
 
@@ -17,8 +19,16 @@ public class Usuario extends EntidadConNombre{
 	private Entrenamiento entrenamiento;
 	
 	public Usuario(String nombre, String contraseña, byte nivel, String ubicacionEntrenamiento,
-			Entrenamiento entrenamiento) throws SQLException {
+			Entrenamiento entrenamiento) throws SQLException, ContraseñaVaciaException, NivelVacioException {
 		super(nombre);
+		if (contraseña.isBlank()) {
+			throw new ContraseñaVaciaException("La contraseña no puede estar vacia.");
+		}
+
+		if (nivel==0) {
+			throw new NivelVacioException("El nivel no puede estar vacio");
+		}
+
 		   Statement query=UtilsDB.conectarBD();
 		   if (query.executeUpdate("insert into usuario values('" + nombre + "','" + contraseña + "'," + nivel + ",'"
 					+ UbicacionEntrenamiento + "','"+entrenamiento+"')")> 0) {
