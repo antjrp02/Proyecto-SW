@@ -1,5 +1,6 @@
 package clases;
 
+import Enums.Dificultad;
 import Enums.GruposMusculares;
 import Enums.TipoEjercicio;
 
@@ -9,7 +10,7 @@ public class EjercicioDinamico extends Ejercicio{
 
 	
 
-	public EjercicioDinamico(String nombre, String dificultad, GruposMusculares gruposMusculares,
+	public EjercicioDinamico(String nombre, Dificultad dificultad, GruposMusculares gruposMusculares,
 			TipoEjercicio tipoEjercicio, boolean usaGoma, boolean realizado, byte repeticiones) {
 		super(nombre, dificultad, gruposMusculares, tipoEjercicio, usaGoma, realizado);
 		this.repeticiones = repeticiones;

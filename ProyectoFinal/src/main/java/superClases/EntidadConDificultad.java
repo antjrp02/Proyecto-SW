@@ -1,19 +1,21 @@
 package superClases;
 
+import Enums.Dificultad;
+
 public class EntidadConDificultad extends EntidadConNombre{
-	private String dificultad;
+	private Dificultad dificultad;
 
 	
-	public EntidadConDificultad(String nombre, String dificultad) {
+	public EntidadConDificultad(String nombre, Dificultad dificultad) {
 		super(nombre);
 		this.dificultad = dificultad;
 	}
 
-	public String getDificultad() {
+	public Dificultad getDificultad() {
 		return dificultad;
 	}
 
-	public void setDificultad(String dificultad) {
+	public void setDificultad(Dificultad dificultad) {
 		this.dificultad = dificultad;
 	}
 	

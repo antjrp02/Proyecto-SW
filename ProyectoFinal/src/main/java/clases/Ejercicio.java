@@ -1,5 +1,6 @@
 package clases;
 
+import Enums.Dificultad;
 import Enums.GruposMusculares;
 import Enums.TipoEjercicio;
 import superClases.EntidadConDificultad;
@@ -12,7 +13,7 @@ public class Ejercicio extends EntidadConDificultad {
 	
 	
 	
-	public Ejercicio(String nombre, String dificultad, GruposMusculares gruposMusculares, TipoEjercicio tipoEjercicio,
+	public Ejercicio(String nombre, Dificultad dificultad, GruposMusculares gruposMusculares, TipoEjercicio tipoEjercicio,
 			boolean usaGoma, boolean realizado) {
 		super(nombre, dificultad);
 		this.gruposMusculares = gruposMusculares;

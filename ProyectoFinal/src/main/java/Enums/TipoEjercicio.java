@@ -1,12 +1,12 @@
 package Enums;
 
 public enum TipoEjercicio {
-	FRONTLEVER,
+	FRON_TLEVER,
 	PLANCHA,
 	FREESTYLE,
 	TIRON,
 	EMPUJE,
 	MOVILIDAD,
-	PINO,
-	BANDERA
+	HANDSTAND,
+	FLAGS
 }
