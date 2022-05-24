@@ -105,7 +105,7 @@ public class PantallaRegistro extends JPanel {
 		borde.add(campoUsuario);
 		campoUsuario.setColumns(10);
 		
-		JComboBox listaUbicacion = new JComboBox();
+		final JComboBox listaUbicacion = new JComboBox();
 		listaUbicacion.setModel(new DefaultComboBoxModel(new String[] {"...", "Madrid\t", "Barcelona\t", "Valencia\t", "Sevilla\t", "Alicante\t", "M\u00E1laga\t", "Murcia\t", "C\u00E1diz\t", "Vizcaya\t", "La Coru\u00F1a\t", "Las Palmas\t", "Baleares\t", "Asturias\t", "Tenerife", "Zaragoza\t", "Pontevedra\t", "Granada\t", "Tarragona\t", "C\u00F3rdoba\t", "Gerona\t", "Guip\u00FAzcoa\t", "Almer\u00EDa\t", "Toledo\t", "Badajoz\t", "Ja\u00E9n\t", "Navarra\t", "Cantabria\t", "Castell\u00F3n\t", "Valladolid\t", "Ciudad Real\t", "Huelva\t", "Le\u00F3n\t", "L\u00E9rida\t", "C\u00E1ceres\t", "Albacete\t", "Burgos\t", "Lugo\t", "Salamanca\t", "Orense\t", "\u00C1lava\t", "La Rioja\t", "Guadalajara\t", "Huesca\t", "Cuenca\t", "Zamora", "Palencia\t", "\u00C1vila\t", "Segovia\t", "Teruel\t", "Soria\t", "Ceuta\t", "Melilla"}));
 		
 		
@@ -130,7 +130,8 @@ public class PantallaRegistro extends JPanel {
 					
 					String nombre = new String(campoUsuario.getText());
 					String contraseña = new String(campoContraseña.getPassword());
-					String ubicacion = listaUbicacion.getSelectedItem();
+					String ubicacion = (String) listaUbicacion.getSelectedItem();
+					System.out.println(ubicacion);
 
 					try {
 						Usuario u = new Usuario(nombre, contraseña, ubicacion);

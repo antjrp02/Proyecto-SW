@@ -32,14 +32,15 @@ public class Usuario extends EntidadConNombre{
 			throw new UbicacionVaciaException("Porfavor, selecciona una Ubicacion");
 		}
 
-
+		   
+			this.contraseña = contraseña;
+			this.UbicacionEntrenamiento = ubicacionEntrenamiento;
+			
 		   Statement query=UtilsDB.conectarBD();
 		   if (query.executeUpdate("insert into usuario values('" + nombre + "','" + contraseña + "',0,'"
-					+ UbicacionEntrenamiento + "',null)")> 0) {
+					+ UbicacionEntrenamiento + "','Front lever')")> 0) {
 			   
-			   
-		this.contraseña = contraseña;
-		this.UbicacionEntrenamiento = ubicacionEntrenamiento;
+		
 		
 		   }else {
 				throw new SQLException("No se ha podido insertar el usuario");
