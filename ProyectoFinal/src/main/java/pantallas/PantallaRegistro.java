@@ -23,6 +23,10 @@ import javax.swing.SwingConstants;
 
 import elementosvisuales.boton1;
 import elementosvisuales.boton2;
+import excepciones.ContraseñaVaciaException;
+import excepciones.UbicacionVaciaException;
+import excepciones.UsuarioVacioException;
+
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
@@ -31,11 +35,12 @@ import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 
 import clases.Usuario;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
 
 public class PantallaRegistro extends JPanel {
-	private JTextField campoUsario;
+	private JTextField campoUsuario;
 	private JPasswordField campoContraseña;
-	private JTextField campoUbicacion;
 	private Ventana ventana;
 	public PantallaRegistro(Ventana v) {
 		setBackground(new Color(37, 42, 52));
@@ -49,67 +54,6 @@ public class PantallaRegistro extends JPanel {
 		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 40));
 		add(lblNewLabel_2);
 		
-		JLabel lbUsuario = new JLabel("Usuario: ");
-		lbUsuario.setBounds(60, 186, 69, 19);
-		lbUsuario.setVerticalAlignment(SwingConstants.TOP);
-		lbUsuario.setHorizontalAlignment(SwingConstants.LEFT);
-		lbUsuario.setForeground(new Color(255, 46, 99));
-		lbUsuario.setFont(new Font("Arial", Font.BOLD, 16));
-		add(lbUsuario);
-		
-		campoUsario = new JTextField();
-		campoUsario.setBounds(202, 186, 285, 19);
-		add(campoUsario);
-		campoUsario.setColumns(10);
-		
-		JLabel lbContraseña = new JLabel("Contrase\u00F1a:");
-		lbContraseña.setBounds(60, 214, 93, 19);
-		lbContraseña.setForeground(new Color(255, 46, 99));
-		lbContraseña.setFont(new Font("Arial", Font.BOLD, 16));
-		add(lbContraseña);
-		
-		campoContraseña = new JPasswordField();
-		campoContraseña.setBounds(202, 214, 285, 19);
-		add(campoContraseña);
-		
-		JLabel lblNivel = new JLabel("Nivel: ");
-		lblNivel.setBounds(60, 238, 47, 19);
-		lblNivel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNivel.setForeground(new Color(255, 46, 99));
-		lblNivel.setFont(new Font("Arial", Font.BOLD, 16));
-		add(lblNivel);
-		
-		JComboBox nivelBox = new JComboBox();
-		nivelBox.setBounds(202, 238, 52, 19);
-		nivelBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
-		add(nivelBox);
-		
-		JLabel lblUbicacion = new JLabel("Ubicacion: ");
-		lblUbicacion.setBounds(60, 262, 85, 19);
-		lblUbicacion.setHorizontalAlignment(SwingConstants.LEFT);
-		lblUbicacion.setForeground(new Color(255, 46, 99));
-		lblUbicacion.setFont(new Font("Arial", Font.BOLD, 16));
-		add(lblUbicacion);
-		
-		campoUbicacion = new JTextField();
-		campoUbicacion.setBounds(202, 262, 285, 19);
-		add(campoUbicacion);
-		campoUbicacion.setColumns(10);
-		
-		JLabel yerayPinito = new JLabel("");
-		yerayPinito.setBounds(0, 0, 0, 0);
-		add(yerayPinito);
-		
-		JLabel lbAyuda = new JLabel("No se que nivel escoger");
-		lbAyuda.setBounds(60, 301, 182, 19);
-		lbAyuda.setHorizontalAlignment(SwingConstants.LEFT);
-		lbAyuda.setForeground(new Color(255, 46, 99));
-		lbAyuda.setFont(new Font("Arial", Font.BOLD, 16));
-		add(lbAyuda);
-		
-		JButton btnNewButton = new JButton("Ayuda");
-		btnNewButton.setBounds(259, 300, 61, 21);
-		add(btnNewButton);
 		
 		JButton botonRegistro = new boton2("Registrarme");
 		botonRegistro.setBounds(60, 372, 130, 21);
@@ -121,14 +65,52 @@ public class PantallaRegistro extends JPanel {
 		
 		JPanel borde = new JPanel();
 		borde.setBounds(38, 135, 503, 290);
-		borde.setLayout(null);
 		borde.setBorder(new LineBorder(new Color(255, 46, 99), 4, true));
 		borde.setBackground(new Color(37, 42, 52));
 		add(borde);
+		borde.setLayout(null);
 		
 		JButton botonAtras = new boton1("Atrás");
 		botonAtras.setBounds(416, 259, 77, 21);
 		borde.add(botonAtras);
+		
+		
+		JLabel lblUbicacion = new JLabel("Ubicacion: ");
+		lblUbicacion.setBounds(23, 109, 85, 19);
+		borde.add(lblUbicacion);
+		lblUbicacion.setHorizontalAlignment(SwingConstants.LEFT);
+		lblUbicacion.setForeground(new Color(255, 46, 99));
+		lblUbicacion.setFont(new Font("Arial", Font.BOLD, 16));
+		
+		JLabel lbContraseña = new JLabel("Contrase\u00F1a:");
+		lbContraseña.setBounds(23, 80, 93, 19);
+		borde.add(lbContraseña);
+		lbContraseña.setForeground(new Color(255, 46, 99));
+		lbContraseña.setFont(new Font("Arial", Font.BOLD, 16));
+		
+		JLabel lbUsuario = new JLabel("Usuario: ");
+		lbUsuario.setBounds(23, 51, 69, 19);
+		borde.add(lbUsuario);
+		lbUsuario.setVerticalAlignment(SwingConstants.TOP);
+		lbUsuario.setHorizontalAlignment(SwingConstants.LEFT);
+		lbUsuario.setForeground(new Color(255, 46, 99));
+		lbUsuario.setFont(new Font("Arial", Font.BOLD, 16));
+		
+		campoContraseña = new JPasswordField();
+		campoContraseña.setBounds(167, 82, 285, 19);
+		borde.add(campoContraseña);
+		
+		campoUsuario = new JTextField();
+		campoUsuario.setBounds(167, 53, 285, 19);
+		borde.add(campoUsuario);
+		campoUsuario.setColumns(10);
+		
+		JComboBox listaUbicacion = new JComboBox();
+		listaUbicacion.setModel(new DefaultComboBoxModel(new String[] {"...", "Madrid\t", "Barcelona\t", "Valencia\t", "Sevilla\t", "Alicante\t", "M\u00E1laga\t", "Murcia\t", "C\u00E1diz\t", "Vizcaya\t", "La Coru\u00F1a\t", "Las Palmas\t", "Baleares\t", "Asturias\t", "Tenerife", "Zaragoza\t", "Pontevedra\t", "Granada\t", "Tarragona\t", "C\u00F3rdoba\t", "Gerona\t", "Guip\u00FAzcoa\t", "Almer\u00EDa\t", "Toledo\t", "Badajoz\t", "Ja\u00E9n\t", "Navarra\t", "Cantabria\t", "Castell\u00F3n\t", "Valladolid\t", "Ciudad Real\t", "Huelva\t", "Le\u00F3n\t", "L\u00E9rida\t", "C\u00E1ceres\t", "Albacete\t", "Burgos\t", "Lugo\t", "Salamanca\t", "Orense\t", "\u00C1lava\t", "La Rioja\t", "Guadalajara\t", "Huesca\t", "Cuenca\t", "Zamora", "Palencia\t", "\u00C1vila\t", "Segovia\t", "Teruel\t", "Soria\t", "Ceuta\t", "Melilla"}));
+		
+		
+		listaUbicacion.setBounds(167, 113, 285, 21);
+		borde.add(listaUbicacion);
 		botonAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -144,23 +126,26 @@ public class PantallaRegistro extends JPanel {
 		botonRegistro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
+				
 					
-					String nombre = campoUsuario.getText();
+					String nombre = new String(campoUsuario.getText());
 					String contraseña = new String(campoContraseña.getPassword());
-					Byte nivel = (Byte) nivelBox.getSelectedItem();
+					String ubicacion = listaUbicacion.getSelectedItem();
 
-					new Usuario(nombre, contraseña, (short) fechaNacimiento.getYear(), fechaNacimiento,
-							LocalDateTime.now(), LocalTime.now());
-				} catch (DateTimeException | SQLException
-						| ContraseñaVaciaException|
-						EmailValidoException | AñoInvalidoException e1) {
-					JOptionPane.showMessageDialog(
-					ventana,e1.getMessage(),"Error",
-					JOptionPane.ERROR_MESSAGE);
-					
-					//TODO METER EL ERROR DEL SPLIT DE LA CONTRASEÑA
-				} 
+					try {
+						Usuario u = new Usuario(nombre, contraseña, ubicacion);
+						JOptionPane.showMessageDialog(
+								ventana,"Usuario "+nombre+" registrado con exito","Registrado con exito",
+								JOptionPane.INFORMATION_MESSAGE);
+							ventana.cambiarAPantalla("login");
+						
+					} catch (SQLException|ContraseñaVaciaException | UsuarioVacioException | UbicacionVaciaException e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(
+								ventana,e1.getMessage(),"Error",
+								JOptionPane.ERROR_MESSAGE);
+					}
+				
 			}
 		});
 		

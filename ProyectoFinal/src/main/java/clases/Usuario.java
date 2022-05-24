@@ -6,7 +6,9 @@ import java.sql.Statement;
 
 import excepciones.ContraseñaIncorrectaException;
 import excepciones.NivelVacioException;
+import excepciones.UbicacionVaciaException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioVacioException;
 import excepciones.ContraseñaVaciaException;
 import superClases.EntidadConNombre;
 import utilsDB.UtilsDB;
@@ -18,24 +20,27 @@ public class Usuario extends EntidadConNombre{
 	private String UbicacionEntrenamiento;
 	private Entrenamiento entrenamiento;
 	
-	public Usuario(String nombre, String contraseña, byte nivel, String ubicacionEntrenamiento,
-			Entrenamiento entrenamiento) throws SQLException, ContraseñaVaciaException, NivelVacioException {
+	public Usuario(String nombre, String contraseña, String ubicacionEntrenamiento) throws SQLException, ContraseñaVaciaException, UsuarioVacioException, UbicacionVaciaException {
 		super(nombre);
 		if (contraseña.isBlank()) {
 			throw new ContraseñaVaciaException("La contraseña no puede estar vacia.");
 		}
-
-		if (nivel==0) {
-			throw new NivelVacioException("El nivel no puede estar vacio");
+		if(nombre.isBlank()) {
+			throw new UsuarioVacioException("El usuario no puede estar vacio");
+		}
+		if(ubicacionEntrenamiento.equals("...")) {
+			throw new UbicacionVaciaException("Porfavor, selecciona una Ubicacion");
 		}
 
+
 		   Statement query=UtilsDB.conectarBD();
-		   if (query.executeUpdate("insert into usuario values('" + nombre + "','" + contraseña + "'," + nivel + ",'"
-					+ UbicacionEntrenamiento + "','"+entrenamiento+"')")> 0) {
+		   if (query.executeUpdate("insert into usuario values('" + nombre + "','" + contraseña + "',0,'"
+					+ UbicacionEntrenamiento + "',null)")> 0) {
+			   
+			   
 		this.contraseña = contraseña;
-		this.nivel = nivel;
 		this.UbicacionEntrenamiento = ubicacionEntrenamiento;
-		this.entrenamiento = entrenamiento;
+		
 		   }else {
 				throw new SQLException("No se ha podido insertar el usuario");
 			}
@@ -44,17 +49,22 @@ public class Usuario extends EntidadConNombre{
 		   
 	
 	
-	public Usuario(String nombre,String contraseña) throws SQLException, ContraseñaIncorrectaException, UsuarioNoExisteException{
+	public Usuario(String nombre,String contraseña) throws SQLException, ContraseñaIncorrectaException, UsuarioNoExisteException, UsuarioVacioException, ContraseñaVaciaException{
 		super(nombre);
         Statement smt=UtilsDB.conectarBD();
 
         ResultSet cursor=smt.executeQuery("select * from usuario where nombre='"+
 
         nombre+"'");
-
+        if(nombre.isBlank()) {
+        	throw new UsuarioVacioException("El usuario no puede estar vacio");
+        }
+        if (contraseña.isBlank()) {
+			throw new ContraseñaVaciaException("La contraseña no puede estar vacia.");
+		}
         if(cursor.next()) {
 
-                this.contraseña=cursor.getString("contrasena");
+                this.contraseña=cursor.getString("contraseña");
 
                 if(!this.contraseña.equals(contraseña)) {
 
@@ -63,7 +73,10 @@ public class Usuario extends EntidadConNombre{
                         throw new ContraseñaIncorrectaException("La contraseña no es correcta");
 
                 }
-
+                
+                if(!this.getNombre().equals(nombre)) {
+                	 throw new UsuarioNoExisteException("No existe ese nombre de usuario en la BD");
+                }
                 nombre = cursor.getString("nombre");
                 this.nivel=cursor.getByte("nivel");
                 this.UbicacionEntrenamiento=cursor.getString("UbicacionEntrenamiento");
