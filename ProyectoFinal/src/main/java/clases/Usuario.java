@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Enums.TipoEntrenamiento;
 import excepciones.ContraseñaIncorrectaException;
 import excepciones.NivelVacioException;
 import excepciones.UbicacionVaciaException;
@@ -18,7 +19,7 @@ public class Usuario extends EntidadConNombre{
 	private byte nivel;//Del 1 al 10, 1 mas novato, 10 mas avanzado. 
 	//1 principiante,2 y 3 principiante-intermedio, 4,5 intermedio 6-7 intermedio-avanzado  8 y 9 avanzado y nivel 10 Kamenov
 	private String UbicacionEntrenamiento;
-	private Entrenamiento entrenamiento;
+	private TipoEntrenamiento entrenamiento;
 	
 	public Usuario(String nombre, String contraseña, String ubicacionEntrenamiento) throws SQLException, ContraseñaVaciaException, UsuarioVacioException, UbicacionVaciaException {
 		super(nombre);
@@ -81,7 +82,7 @@ public class Usuario extends EntidadConNombre{
                 nombre = cursor.getString("nombre");
                 this.nivel=cursor.getByte("nivel");
                 this.UbicacionEntrenamiento=cursor.getString("UbicacionEntrenamiento");
-                this.entrenamiento=(Entrenamiento) cursor.getClob("Entrenamiento");
+                this.entrenamiento=(TipoEntrenamiento) cursor.getString("Entrenamiento");
                 
 
         }else {
@@ -96,6 +97,25 @@ public class Usuario extends EntidadConNombre{
 
 }
 	
+	public Usuario(String nombre, byte nivel) throws SQLException {
+		super(nombre);
+		Statement smt=UtilsDB.conectarBD();
+
+		smt.executeUpdate("Update usuario set nivel = "+nivel+" where nombre = '"+nombre+"';");
+		 UtilsDB.desconectarBD();
+		this.nivel = nivel;
+	}
+	public Usuario(String nombre, TipoEntrenamiento entrenamiento) throws SQLException {
+		super(nombre);
+		Statement smt=UtilsDB.conectarBD();
+
+		smt.executeUpdate("Update usuario set entrenamiento = '"+entrenamiento+"' where nombre = '"+nombre+"';");
+		 UtilsDB.desconectarBD();
+		this.entrenamiento = entrenamiento;
+	}
+
+
+
 	public String getContraseña() {
 		return contraseña;
 	}
@@ -114,10 +134,10 @@ public class Usuario extends EntidadConNombre{
 	public void setUbicacionEntrenamiento(String ubicacionEntrenamiento) {
 		UbicacionEntrenamiento = ubicacionEntrenamiento;
 	}
-	public Entrenamiento getEntrenamiento() {
+	public TipoEntrenamiento getEntrenamiento() {
 		return entrenamiento;
 	}
-	public void setEntrenamiento(Entrenamiento entrenamiento) {
+	public void setEntrenamiento(TipoEntrenamiento entrenamiento) {
 		this.entrenamiento = entrenamiento;
 	}
 	

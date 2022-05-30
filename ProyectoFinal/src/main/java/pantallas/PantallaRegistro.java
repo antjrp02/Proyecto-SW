@@ -59,8 +59,8 @@ public class PantallaRegistro extends JPanel {
 		botonRegistro.setBounds(60, 372, 130, 21);
 		add(botonRegistro);
 		JLabel yerayPinito_1 = new JLabel("");
-		yerayPinito_1.setBounds(452, 10, 338, 565);
-		yerayPinito_1.setIcon(new ImageIcon("C:\\Users\\antjr\\Downloads\\yerai_pino-removebg-preview.png"));
+		yerayPinito_1.setBounds(480, -46, 338, 565);
+		yerayPinito_1.setIcon(new ImageIcon("C:\\Users\\antjr\\eclipse-workspace\\Proyecto-SW\\ProyectoFinal\\yerai_pino-removebg-preview.png"));
 		add(yerayPinito_1);
 		
 		JPanel borde = new JPanel();
