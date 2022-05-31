@@ -18,7 +18,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		Ventana v = new Ventana();
-		/**
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Buenas, selecciona 1 para iniciar sesion o 2 para registrarte:");
@@ -176,7 +175,7 @@ public class Main {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}*/
+		}
 }
 
 }

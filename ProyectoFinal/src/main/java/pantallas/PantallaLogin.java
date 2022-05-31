@@ -39,7 +39,6 @@ public class PantallaLogin extends JPanel {
 		this.ventana = v;
 		setLayout(null);
 		setSize(802, 501);
-		 
 
 		JLabel labelContraseña = new JLabel("Contrase\u00F1a:");
 		labelContraseña.setFont(new Font("Arial", Font.BOLD, 16));
@@ -69,38 +68,33 @@ public class PantallaLogin extends JPanel {
 		botonLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-					String nombre=campoUsuario.getText();
-					String contraseña= new String (campoContraseña.getPassword());
-					
-						
-							try {
-								Usuario u=new Usuario(nombre,contraseña);
-							
-							JOptionPane.showMessageDialog(
-									ventana,"Bienvenido "+nombre,"Inicio de sesion correcto",
-									JOptionPane.INFORMATION_MESSAGE);
-						} catch (SQLException | ContraseñaIncorrectaException | UsuarioNoExisteException | UsuarioVacioException | ContraseñaVaciaException e1) {
-							// TODO Auto-generated catch block
-							JOptionPane.showMessageDialog(
-									ventana,e1.getMessage(),"Error",
-									JOptionPane.ERROR_MESSAGE);
-						}
-						
-					
-				
+
+				String nombre = campoUsuario.getText();
+				String contraseña = new String(campoContraseña.getPassword());
+
+				try {
+					Usuario u = new Usuario(nombre, contraseña);
+
+					JOptionPane.showMessageDialog(ventana, "Bienvenido " + nombre, "Inicio de sesion correcto",
+							JOptionPane.INFORMATION_MESSAGE);
+				} catch (SQLException | ContraseñaIncorrectaException | UsuarioNoExisteException | UsuarioVacioException
+						| ContraseñaVaciaException e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
+
 			}
 		});
-		
-		botonLogin.setBounds(88, 392, 130, 21); 
+
+		botonLogin.setBounds(88, 392, 130, 21);
 		add(botonLogin);
-		
+
 		campoUsuario = new JTextField();
 		campoUsuario.setBackground(new Color(234, 234, 234));
 		campoUsuario.setBounds(88, 207, 398, 20);
 		add(campoUsuario);
 		campoUsuario.setColumns(10);
-		
+
 		campoContraseña = new JPasswordField();
 		campoContraseña.setBackground(new Color(234, 234, 234));
 		campoContraseña.setBounds(88, 287, 398, 20);
@@ -114,15 +108,13 @@ public class PantallaLogin extends JPanel {
 		});
 		botonRegistro.setBounds(275, 392, 130, 21);
 		add(botonRegistro);
-		
+
 		JPanel borde = new JPanel();
 		borde.setBorder(new LineBorder(new Color(255, 46, 99), 4, true));
 		borde.setBackground(new Color(37, 42, 52));
 		borde.setBounds(54, 145, 503, 290);
 		add(borde);
 		borde.setLayout(null);
-		
-				
 
 	}
 }

@@ -14,136 +14,135 @@ import excepciones.ContraseñaVaciaException;
 import superClases.EntidadConNombre;
 import utilsDB.UtilsDB;
 
-public class Usuario extends EntidadConNombre{
+public class Usuario extends EntidadConNombre {
 	private String contraseña;
-	private byte nivel;//Del 1 al 10, 1 mas novato, 10 mas avanzado. 
-	//1 principiante,2 y 3 principiante-intermedio, 4,5 intermedio 6-7 intermedio-avanzado  8 y 9 avanzado y nivel 10 Kamenov
+	private byte nivel;// Del 1 al 10, 1 mas novato, 10 mas avanzado.
+	// 1 principiante,2 y 3 principiante-intermedio, 4,5 intermedio 6-7
+	// intermedio-avanzado 8 y 9 avanzado y nivel 10 Kamenov
 	private String UbicacionEntrenamiento;
 	private TipoEntrenamiento entrenamiento;
-	
-	public Usuario(String nombre, String contraseña, String ubicacionEntrenamiento) throws SQLException, ContraseñaVaciaException, UsuarioVacioException, UbicacionVaciaException {
+
+	public Usuario(String nombre, String contraseña, String ubicacionEntrenamiento)
+			throws SQLException, ContraseñaVaciaException, UsuarioVacioException, UbicacionVaciaException {
 		super(nombre);
 		if (contraseña.isBlank()) {
 			throw new ContraseñaVaciaException("La contraseña no puede estar vacia.");
 		}
-		if(nombre.isBlank()) {
+		if (nombre.isBlank()) {
 			throw new UsuarioVacioException("El usuario no puede estar vacio");
 		}
-		if(ubicacionEntrenamiento.equals("...")) {
+		if (ubicacionEntrenamiento.equals("...")) {
 			throw new UbicacionVaciaException("Porfavor, selecciona una Ubicacion");
 		}
 
-		   
-			this.contraseña = contraseña;
-			this.UbicacionEntrenamiento = ubicacionEntrenamiento;
-			
-		   Statement query=UtilsDB.conectarBD();
-		   if (query.executeUpdate("insert into usuario values('" + nombre + "','" + contraseña + "',0,'"
-					+ UbicacionEntrenamiento + "','Front lever')")> 0) {
-			   
-		
-		
-		   }else {
-				throw new SQLException("No se ha podido insertar el usuario");
-			}
-			UtilsDB.desconectarBD();
+		this.contraseña = contraseña;
+		this.UbicacionEntrenamiento = ubicacionEntrenamiento;
+		this.nivel = 0;
+		this.entrenamiento = null;
+		Statement query = UtilsDB.conectarBD();
+		if (query.executeUpdate("insert into usuario values('" + nombre + "','" + contraseña + "',"+nivel+",'"
+				+ UbicacionEntrenamiento + "','" + entrenamiento + "')") > 0) {
+
+		} else {
+			throw new SQLException("No se ha podido insertar el usuario");
 		}
-		   
-	
-	
-	public Usuario(String nombre,String contraseña) throws SQLException, ContraseñaIncorrectaException, UsuarioNoExisteException, UsuarioVacioException, ContraseñaVaciaException{
+		UtilsDB.desconectarBD();
+	}
+
+	public Usuario(String nombre, String contraseña) throws SQLException, ContraseñaIncorrectaException,
+			UsuarioNoExisteException, UsuarioVacioException, ContraseñaVaciaException {
 		super(nombre);
-        Statement smt=UtilsDB.conectarBD();
+		Statement smt = UtilsDB.conectarBD();
 
-        ResultSet cursor=smt.executeQuery("select * from usuario where nombre='"+
+		ResultSet cursor = smt.executeQuery("select * from usuario where nombre='" +
 
-        nombre+"'");
-        if(nombre.isBlank()) {
-        	throw new UsuarioVacioException("El usuario no puede estar vacio");
-        }
-        if (contraseña.isBlank()) {
+				nombre + "'");
+		if (nombre.isBlank()) {
+			throw new UsuarioVacioException("El usuario no puede estar vacio");
+		}
+		if (contraseña.isBlank()) {
 			throw new ContraseñaVaciaException("La contraseña no puede estar vacia.");
 		}
-        if(cursor.next()) {
+		if (cursor.next()) {
 
-                this.contraseña=cursor.getString("contraseña");
+			this.contraseña = cursor.getString("contraseña");
 
-                if(!this.contraseña.equals(contraseña)) {
+			if (!this.contraseña.equals(contraseña)) {
 
-                        UtilsDB.desconectarBD();
+				UtilsDB.desconectarBD();
 
-                        throw new ContraseñaIncorrectaException("La contraseña no es correcta");
+				throw new ContraseñaIncorrectaException("La contraseña no es correcta");
 
-                }
-                
-                if(!this.getNombre().equals(nombre)) {
-                	 throw new UsuarioNoExisteException("No existe ese nombre de usuario en la BD");
-                }
-                nombre = cursor.getString("nombre");
-                this.nivel=cursor.getByte("nivel");
-                this.UbicacionEntrenamiento=cursor.getString("UbicacionEntrenamiento");
-                this.entrenamiento=(TipoEntrenamiento) cursor.getString("Entrenamiento");
-                
+			}
 
-        }else {
+			if (!this.getNombre().equals(nombre)) {
+				throw new UsuarioNoExisteException("No existe ese nombre de usuario en la BD");
+			}
+			nombre = cursor.getString("Nombre");
+			this.nivel = cursor.getByte("Nivel");
+			this.UbicacionEntrenamiento = cursor.getString("UbicacionEntrenamiento");
 
-                UtilsDB.desconectarBD();
+		} else {
 
-                throw new UsuarioNoExisteException("No existe ese nombre de usuario en la BD");
+			UtilsDB.desconectarBD();
 
-        }
+			throw new UsuarioNoExisteException("No existe ese nombre de usuario en la BD");
 
-        UtilsDB.desconectarBD();
+		}
 
-}
-	
+		UtilsDB.desconectarBD();
+
+	}
+
 	public Usuario(String nombre, byte nivel) throws SQLException {
 		super(nombre);
-		Statement smt=UtilsDB.conectarBD();
+		Statement smt = UtilsDB.conectarBD();
 
-		smt.executeUpdate("Update usuario set nivel = "+nivel+" where nombre = '"+nombre+"';");
-		 UtilsDB.desconectarBD();
+		smt.executeUpdate("Update usuario set nivel = " + nivel + " where nombre = '" + nombre + "';");
+		UtilsDB.desconectarBD();
 		this.nivel = nivel;
 	}
+
 	public Usuario(String nombre, TipoEntrenamiento entrenamiento) throws SQLException {
 		super(nombre);
-		Statement smt=UtilsDB.conectarBD();
+		Statement smt = UtilsDB.conectarBD();
 
-		smt.executeUpdate("Update usuario set entrenamiento = '"+entrenamiento+"' where nombre = '"+nombre+"';");
-		 UtilsDB.desconectarBD();
+		smt.executeUpdate(
+				"Update usuario set entrenamiento = '" + entrenamiento + "' where nombre = '" + nombre + "';");
+		UtilsDB.desconectarBD();
 		this.entrenamiento = entrenamiento;
 	}
-
-
 
 	public String getContraseña() {
 		return contraseña;
 	}
+
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
 	}
+
 	public byte getNivel() {
 		return nivel;
 	}
+
 	public void setNivel(byte nivel) {
 		this.nivel = nivel;
 	}
+
 	public String getUbicacionEntrenamiento() {
 		return UbicacionEntrenamiento;
 	}
+
 	public void setUbicacionEntrenamiento(String ubicacionEntrenamiento) {
 		UbicacionEntrenamiento = ubicacionEntrenamiento;
 	}
+
 	public TipoEntrenamiento getEntrenamiento() {
 		return entrenamiento;
 	}
+
 	public void setEntrenamiento(TipoEntrenamiento entrenamiento) {
 		this.entrenamiento = entrenamiento;
 	}
-	
-	
-	
-	
-	
-	
+
 }
