@@ -8,8 +8,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 
-public class boton1 extends JButton {
-	public boton1(String m) {
+public class BotonMenu extends JButton {
+	public BotonMenu(String m) {
 		super(m);
 		estiloPorDefecto();
 
@@ -17,8 +17,8 @@ public class boton1 extends JButton {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 
-				setBackground(new Color(255, 46, 99));
-				setSize(190, 21);
+				setBackground(new Color(150, 10, 30));
+				
 
 			}
 
@@ -30,10 +30,11 @@ public class boton1 extends JButton {
 	}
 
 	private void estiloPorDefecto() {
-		this.setBackground(new Color(204, 255, 204));
-		this.setForeground(new Color(37, 42, 52));
+		this.setBackground(new Color(255, 46, 99));
+		this.setForeground(new Color(255,255,255));
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.setFont(new Font("Source Sans Pro", Font.PLAIN, 19));
-		this.setSize(130, 21);
+		
 	}
 }
+

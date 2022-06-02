@@ -8,8 +8,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 
-public class boton2 extends boton1 {
-	public boton2(String m) {
+public class Boton2 extends Boton1 {
+	public Boton2(String m) {
 		super(m);
 		estiloPorDefecto();
 

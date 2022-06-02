@@ -21,8 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 
-import elementosvisuales.boton1;
-import elementosvisuales.boton2;
+import elementosvisuales.Boton1;
+import elementosvisuales.Boton2;
 import excepciones.ContraseñaVaciaException;
 import excepciones.UbicacionVaciaException;
 import excepciones.UsuarioVacioException;
@@ -55,7 +55,7 @@ public class PantallaRegistro extends JPanel {
 		add(lblNewLabel_2);
 		
 		
-		JButton botonRegistro = new boton2("Registrarme");
+		JButton botonRegistro = new Boton2("Registrarme");
 		botonRegistro.setBounds(60, 372, 130, 21);
 		add(botonRegistro);
 		JLabel yerayPinito_1 = new JLabel("");
@@ -70,7 +70,7 @@ public class PantallaRegistro extends JPanel {
 		add(borde);
 		borde.setLayout(null);
 		
-		JButton botonAtras = new boton1("Atrás");
+		JButton botonAtras = new Boton1("Atrás");
 		botonAtras.setBounds(416, 259, 77, 21);
 		borde.add(botonAtras);
 		

@@ -90,8 +90,9 @@ public class Main {
 						}
 						break;
 					case 2:
-						if(u.getEntrenamiento()!=null) {
-							System.out.println("Tu entrenamiento seleccionado es de: "+u.getEntrenamiento()+" deseas cambiarlo?");
+						if (u.getEntrenamiento() != null) {
+							System.out.println("Tu entrenamiento seleccionado es de: " + u.getEntrenamiento()
+									+ " deseas cambiarlo?");
 							char respuesta = sc.nextLine().toLowerCase().charAt(0);
 							while (respuesta != ('s') && (respuesta != ('n'))) {
 								System.out.println("Respuesta incorrecta, vuelve a seleccionar");
@@ -99,17 +100,16 @@ public class Main {
 							}
 
 							if (respuesta == 's') {
-								System.out.println("Selecciona entrenamiento\n" + "1- TENSION,\r\n" + "2- HIPERTROFIA,\r\n"
-										+ "3- RESISTENCIA,\r\n" + "4- AUMENTOREPETICIONES,\r\n" + "5- FREESTYLE,\r\n"
-										+ "6- MIXTO,//(Mixto entre Resistencia y Tension).\r\n" + "7- MOVILIDAD,\r\n"
-										+ "8- LASTRE");
+								System.out.println("Selecciona entrenamiento\n" + "1- TENSION,\r\n"
+										+ "2- HIPERTROFIA,\r\n" + "3- RESISTENCIA,\r\n" + "4- AUMENTOREPETICIONES,\r\n"
+										+ "5- FREESTYLE,\r\n" + "6- MIXTO,//(Mixto entre Resistencia y Tension).\r\n"
+										+ "7- MOVILIDAD,\r\n" + "8- LASTRE");
 								byte nEntrenamiento = Byte.parseByte(sc.nextLine());
 								while (nEntrenamiento < 0 || nEntrenamiento > 8) {
 									System.out.println("Nivel no valido, vuelve a seleccionar");
 									nEntrenamiento = Byte.parseByte(sc.nextLine());
 								}
-							}
-							else {
+							} else {
 								System.out.println("Elige una opcion\n" + "-1 Seleccionar nivel\n"
 										+ "-2 Seleccionar Entrenamiento\n" + "-3 Hazme una rutina\n "
 										+ "-4 Hacer mi propia rutina\n" + "-5 Modificar datos de usuario\n"
@@ -117,13 +117,13 @@ public class Main {
 								opcion = Byte.parseByte(sc.nextLine());
 							}
 						}
-						
+
 						System.out.println("Selecciona entrenamiento\n" + "1- TENSION,\r\n" + "2- HIPERTROFIA,\r\n"
 								+ "3- RESISTENCIA,\r\n" + "4- AUMENTOREPETICIONES,\r\n" + "5- FREESTYLE,\r\n"
 								+ "6- MIXTO,//(Mixto entre Resistencia y Tension).\r\n" + "7- MOVILIDAD,\r\n"
-								+ "8- LASTRE");
+								+ "8- LASTRE\r\n" + "9- Salir");
 						byte nEntrenamiento = Byte.parseByte(sc.nextLine());
-						while (nEntrenamiento < 0 || nEntrenamiento > 8) {
+						while (nEntrenamiento < 0 || nEntrenamiento > 9) {
 							System.out.println("Nivel no valido, vuelve a seleccionar");
 							nEntrenamiento = Byte.parseByte(sc.nextLine());
 						}
@@ -132,34 +132,67 @@ public class Main {
 							Usuario uT = new Usuario(nombre, TipoEntrenamiento.TENSION);
 							System.out.println("Elige una opcion\n" + "-1 Seleccionar nivel\n"
 									+ "-2 Seleccionar Entrenamiento\n" + "-3 Hazme una rutina\n "
-									+ "-4 Hacer mi propia rutina\n" + "-5 Modificar datos de usuario\n"
-									+ "-6 Salir");
+									+ "-4 Hacer mi propia rutina\n" + "-5 Modificar datos de usuario\n" + "-6 Salir");
 							opcion = Byte.parseByte(sc.nextLine());
 							break;
 						case 2:
-							Usuario uH = new Usuario(nombre,TipoEntrenamiento.HIPERTROFIA);
-							
+							Usuario uH = new Usuario(nombre, TipoEntrenamiento.HIPERTROFIA);
+							System.out.println("Elige una opcion\n" + "-1 Seleccionar nivel\n"
+									+ "-2 Seleccionar Entrenamiento\n" + "-3 Hazme una rutina\n "
+									+ "-4 Hacer mi propia rutina\n" + "-5 Modificar datos de usuario\n" + "-6 Salir");
+							opcion = Byte.parseByte(sc.nextLine());
 							break;
 						case 3:
-							Usuario uR = new Usuario(nombre,TipoEntrenamiento.RESISTENCIA);
+							Usuario uR = new Usuario(nombre, TipoEntrenamiento.RESISTENCIA);
+							System.out.println("Elige una opcion\n" + "-1 Seleccionar nivel\n"
+									+ "-2 Seleccionar Entrenamiento\n" + "-3 Hazme una rutina\n "
+									+ "-4 Hacer mi propia rutina\n" + "-5 Modificar datos de usuario\n" + "-6 Salir");
+							opcion = Byte.parseByte(sc.nextLine());
 							break;
 						case 4:
-							Usuario uAR = new Usuario(nombre,TipoEntrenamiento.AUMENTOREPETICIONES);
+							Usuario uAR = new Usuario(nombre, TipoEntrenamiento.AUMENTOREPETICIONES);
+							System.out.println("Elige una opcion\n" + "-1 Seleccionar nivel\n"
+									+ "-2 Seleccionar Entrenamiento\n" + "-3 Hazme una rutina\n "
+									+ "-4 Hacer mi propia rutina\n" + "-5 Modificar datos de usuario\n" + "-6 Salir");
+							opcion = Byte.parseByte(sc.nextLine());
 							break;
 						case 5:
-							Usuario uF = new Usuario(nombre,TipoEntrenamiento.FREESTYLE);
+							Usuario uF = new Usuario(nombre, TipoEntrenamiento.FREESTYLE);
+							System.out.println("Elige una opcion\n" + "-1 Seleccionar nivel\n"
+									+ "-2 Seleccionar Entrenamiento\n" + "-3 Hazme una rutina\n "
+									+ "-4 Hacer mi propia rutina\n" + "-5 Modificar datos de usuario\n" + "-6 Salir");
+							opcion = Byte.parseByte(sc.nextLine());
 							break;
 						case 6:
-							Usuario uMi = new Usuario(nombre,TipoEntrenamiento.MIXTO);
+							Usuario uMi = new Usuario(nombre, TipoEntrenamiento.MIXTO);
+							System.out.println("Elige una opcion\n" + "-1 Seleccionar nivel\n"
+									+ "-2 Seleccionar Entrenamiento\n" + "-3 Hazme una rutina\n "
+									+ "-4 Hacer mi propia rutina\n" + "-5 Modificar datos de usuario\n" + "-6 Salir");
+							opcion = Byte.parseByte(sc.nextLine());
 							break;
 						case 7:
-							Usuario uMo = new Usuario(nombre,TipoEntrenamiento.MOVILIDAD);
+							Usuario uMo = new Usuario(nombre, TipoEntrenamiento.MOVILIDAD);
+							System.out.println("Elige una opcion\n" + "-1 Seleccionar nivel\n"
+									+ "-2 Seleccionar Entrenamiento\n" + "-3 Hazme una rutina\n "
+									+ "-4 Hacer mi propia rutina\n" + "-5 Modificar datos de usuario\n" + "-6 Salir");
+							opcion = Byte.parseByte(sc.nextLine());
 							break;
 						case 8:
-							Usuario uL = new Usuario(nombre,TipoEntrenamiento.LASTRE);
+							Usuario uL = new Usuario(nombre, TipoEntrenamiento.LASTRE);
+							System.out.println("Elige una opcion\n" + "-1 Seleccionar nivel\n"
+									+ "-2 Seleccionar Entrenamiento\n" + "-3 Hazme una rutina\n "
+									+ "-4 Hacer mi propia rutina\n" + "-5 Modificar datos de usuario\n" + "-6 Salir");
+							opcion = Byte.parseByte(sc.nextLine());
 							break;
+						case 9:
+							System.out.println("Elige una opcion\n" + "-1 Seleccionar nivel\n"
+									+ "-2 Seleccionar Entrenamiento\n" + "-3 Hazme una rutina\n "
+									+ "-4 Hacer mi propia rutina\n" + "-5 Modificar datos de usuario\n" + "-6 Salir");
+							opcion = Byte.parseByte(sc.nextLine());
+							break;
+
 						}
-						
+
 						break;
 					case 3:
 						break;
@@ -176,6 +209,6 @@ public class Main {
 				e.printStackTrace();
 			}
 		}
-}
+	}
 
 }

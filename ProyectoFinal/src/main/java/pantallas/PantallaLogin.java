@@ -14,12 +14,12 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 
 import clases.Usuario;
-import elementosvisuales.boton2;
+import elementosvisuales.Boton2;
 import excepciones.ContraseñaIncorrectaException;
 import excepciones.ContraseñaVaciaException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioVacioException;
-import elementosvisuales.boton1;
+import elementosvisuales.Boton1;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -38,7 +38,7 @@ public class PantallaLogin extends JPanel {
 		setBackground(new Color(37, 42, 52));
 		this.ventana = v;
 		setLayout(null);
-		setSize(802, 501);
+		setSize(800, 500);
 
 		JLabel labelContraseña = new JLabel("Contrase\u00F1a:");
 		labelContraseña.setFont(new Font("Arial", Font.BOLD, 16));
@@ -64,7 +64,7 @@ public class PantallaLogin extends JPanel {
 		yerayPinito.setBounds(483, -23, 365, 539);
 		add(yerayPinito);
 
-		JButton botonLogin = new boton2("Iniciar Sesion");
+		JButton botonLogin = new Boton2("Iniciar Sesion");
 		botonLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -82,7 +82,7 @@ public class PantallaLogin extends JPanel {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
-
+				ventana.cambiarAPantalla("menu");
 			}
 		});
 
@@ -99,7 +99,7 @@ public class PantallaLogin extends JPanel {
 		campoContraseña.setBackground(new Color(234, 234, 234));
 		campoContraseña.setBounds(88, 287, 398, 20);
 		add(campoContraseña);
-		JButton botonRegistro = new boton1("Registrarme");
+		JButton botonRegistro = new Boton1("Registrarme");
 		botonRegistro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
