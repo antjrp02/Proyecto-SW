@@ -23,6 +23,7 @@ import javax.swing.SwingConstants;
 
 import elementosvisuales.Boton1;
 import elementosvisuales.Boton2;
+import elementosvisuales.Boton3;
 import excepciones.ContraseñaVaciaException;
 import excepciones.UbicacionVaciaException;
 import excepciones.UsuarioVacioException;
@@ -48,7 +49,7 @@ public class PantallaRegistro extends JPanel {
 		setLayout(null);
 		
 		JLabel lblNewLabel_2 = new JLabel("HARD WORKOUT");
-		lblNewLabel_2.setBounds(203, 50, 338, 47);
+		lblNewLabel_2.setBounds(38, 77, 503, 47);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setForeground(new Color(8, 217, 214));
 		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 40));
@@ -58,11 +59,11 @@ public class PantallaRegistro extends JPanel {
 		JButton botonRegistro = new Boton2("Registrarme");
 		botonRegistro.setBounds(60, 372, 130, 21);
 		add(botonRegistro);
-		JLabel yerayPinito_1 = new JLabel("");
-		yerayPinito_1.setBounds(480, -46, 338, 565);
-		yerayPinito_1.setIcon(new ImageIcon("C:\\Users\\antjr\\eclipse-workspace\\Proyecto-SW\\ProyectoFinal\\yerai_pino-removebg-preview.png"));
-		add(yerayPinito_1);
-		
+		JLabel yerayPinito = new JLabel("New label");
+		yerayPinito.setIcon(new ImageIcon("./yerai.png"));
+		yerayPinito.setBounds(483, -23, 365, 539);
+		add(yerayPinito);
+
 		JPanel borde = new JPanel();
 		borde.setBounds(38, 135, 503, 290);
 		borde.setBorder(new LineBorder(new Color(255, 46, 99), 4, true));
@@ -70,7 +71,7 @@ public class PantallaRegistro extends JPanel {
 		add(borde);
 		borde.setLayout(null);
 		
-		JButton botonAtras = new Boton1("Atrás");
+		JButton botonAtras = new Boton3("Atrás");
 		botonAtras.setBounds(416, 259, 77, 21);
 		borde.add(botonAtras);
 		

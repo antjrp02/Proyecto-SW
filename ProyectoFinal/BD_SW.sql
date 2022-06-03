@@ -16,15 +16,6 @@ Delete FROM USUARIO where UbicacionEntrenamiento = 'Malaga';
 create table TipoEjercicio(
 Nombre varchar(40)PRIMARY KEY);
 
-INSERT into TipoEjercicio values('FRONT_LEVER');
-INSERT into TipoEjercicio values('PLANCHA');
-INSERT into TIpoEjercicio values('FREESTYLE');
-INSERT into TipoEjercicio values('TIRON');
-INSERT into TipoEjercicio values('EMPUJE');
-INSERT into TipoEjercicio values('MOVILIDAD');
-INSERT into TipoEjercicio values('HANDSTAND');
-INSERT into TipoEjercicio values('FLAG');
-
 create table ejercicios(
 nombre varchar(40)PRIMARY KEY,
 tipo varchar(40),
@@ -36,7 +27,7 @@ dificultad Varchar(40)not null,
 gruposMusculares VARCHAR(40)not null,
 tipoEjercicio VARCHAR(40)not null,
 usaGoma boolean not null,
-realizado boolean default(false)not null,
+realizado boolean not null,
 descripcion VARCHAR(200)not null
 );
 create table rutina(

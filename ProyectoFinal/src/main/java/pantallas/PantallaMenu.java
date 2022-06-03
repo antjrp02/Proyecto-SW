@@ -60,9 +60,7 @@ public class PantallaMenu extends JPanel{
 			}
 		});
 		
-		JButton botonSEntrenamiento = new BotonMenu("New button");
-		botonSEntrenamiento.setFont(new Font("Dialog", Font.PLAIN, 21));
-		botonSEntrenamiento.setText("Entrenamientos");
+		JButton botonSEntrenamiento = new BotonMenu("Entrenamientos");
 		botonSEntrenamiento.setSize(180,29);
 		botonSEntrenamiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -70,10 +68,9 @@ public class PantallaMenu extends JPanel{
 		});
 		
 		JButton botonOp4 = new BotonMenu("Crear Rutinas");
-		botonOp4.setSize(180,29);;
+		botonOp4.setSize(180,29);
 		
-		JButton botonOp3 = new BotonMenu("New button");
-		botonOp3.setText("Mis rutinas");
+		JButton botonOp3 = new BotonMenu("Mis rutinas");
 		GroupLayout gl_panelDerecha = new GroupLayout(panelDerecha);
 		gl_panelDerecha.setHorizontalGroup(
 			gl_panelDerecha.createParallelGroup(Alignment.LEADING)

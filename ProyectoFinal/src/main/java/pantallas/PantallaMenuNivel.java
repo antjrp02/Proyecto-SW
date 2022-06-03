@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -32,6 +34,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextPane;
 
 public class PantallaMenuNivel extends JPanel{
 	private Ventana ventana;
@@ -55,9 +60,7 @@ public class PantallaMenuNivel extends JPanel{
 		
 		JButton botonSNivel = new BotonMenu("Seleccionar Nivel");
 		
-		JButton botonSEntrenamiento = new BotonMenu("New button");
-		botonSEntrenamiento.setFont(new Font("Dialog", Font.PLAIN, 21));
-		botonSEntrenamiento.setText("Entrenamientos");
+		JButton botonSEntrenamiento = new BotonMenu("Entrenamientos");
 		botonSEntrenamiento.setSize(180,29);
 		botonSEntrenamiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -165,14 +168,48 @@ public class PantallaMenuNivel extends JPanel{
 		add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\antjr\\Downloads\\fondoNivel.jpg"));
-		lblNewLabel.setBounds(-178, 0, 760, 431);
-		panel_1.add(lblNewLabel);
+		JButton botonNivel = new JButton("Seleccionar Nivel");
+		botonNivel.setBounds(94, 148, 126, 23);
+		panel_1.add(botonNivel);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(135, 102, 447, 150);
-		panel_1.add(btnNewButton);
+		JComboBox comboBox = new JComboBox();
+		comboBox.setEditable(true);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"...", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
+		comboBox.setBounds(324, 148, 59, 23);
+		panel_1.add(comboBox);
+		
+		JLabel labelNivel = new JLabel("Selecciona tu Nivel");
+		labelNivel.setForeground(Color.WHITE);
+		labelNivel.setBackground(Color.BLUE);
+		labelNivel.setHorizontalAlignment(SwingConstants.CENTER);
+		labelNivel.setFont(new Font("Tahoma", Font.BOLD, 19));
+		labelNivel.setBounds(0, 33, 517, 32);
+		panel_1.add(labelNivel);
+		
+		JButton botonAyuda = new JButton("Ayuda:");
+		botonAyuda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(
+						ventana,"Nivel 1: >3 dominadas,>3 fondos. > 5 flexiones\r\n"
+								+ "Nivel 2: 3 dominadas, 3 fondos, 5 flexiones\r\n"
+								+ "Nivel 3: 7 dominadas, 7 fondos, 13 flexiones,tuck de front/plancha\r\n"
+								+ "Nivel 4: 1 muscle up, 10 dominadas, 12 fondos, 20 flexiones, tuck advance front/plancha\r\n"
+								+ "Nivel 5: 3 muscle up, 14 dominadas, 18 fondos, 30 flexiones, 5 reps en tuck advance \r\n"
+								+ "Nivel 6: 7 muscle up, 17 dominadas, 23 fondos, 40 flexiones, >3sg de front/plancha\r\n"
+								+ "Nivel 7: 12 muscle up,23 dominadas, 30 fondos, 5 sg de front/plancha\r\n"
+								+ "Nivel 8: 17 muscle ups, 30 dominadas, 40 fondos,10sg front/plancha\r\n"
+								+ "Nivel 9: 25 muscle ups, 20sg front/plancha, press front/plancha\r\n"
+								+ "Nivel 10: 30sg front/plancha, >10 reps front plancha","Informacion sobre los niveles",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		botonAyuda.setBounds(94, 355, 67, 23);
+		panel_1.add(botonAyuda);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\2DAM\\Proyecto-SW\\ProyectoFinal\\fondo (1).jpg"));
+		lblNewLabel.setBounds(0, 0, 536, 441);
+		panel_1.add(lblNewLabel);
 		
 		
 		
