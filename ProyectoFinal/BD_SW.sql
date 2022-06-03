@@ -10,9 +10,6 @@ create table Usuario(
     UbicacionEntrenamiento varchar(100),
     entrenamiento varchar(40)
 );
-SELECT * FROM Usuario;
- update usuario set nivel = 5 where nombre = 'admin2';
-Delete FROM USUARIO where UbicacionEntrenamiento = 'Malaga';
 create table TipoEjercicio(
 Nombre varchar(40)PRIMARY KEY);
 
@@ -31,16 +28,19 @@ realizado boolean not null,
 descripcion VARCHAR(200)not null
 );
 create table rutina(
-id_rutina numeric(3)primary key,
 descansoSg numeric(3),
-fecha date
+fecha date,
+USUARIO varchar(40),
+foreign key (usuario) references usuario(nombre),
+primary key(usuario,fecha)
 );
-drop table ejercicio;
 
 create table ejercicios_rutina(
-id_rutina numeric(3)primary key,
-nombre varchar(60),
-CONSTRAINT rutina_ejercicio_fk   FOREIGN key  (id_rutina)references rutina(id_rutina)ON DELETE CASCADE,
-CONSTRAINT nombre_ejercicio_fk   FOREIGN key  (nombre)references ejercicio(nombre)ON DELETE CASCADE
+
+fechaRutina date,
+usuario varchar(40),
+nombreEjercicio varchar(40),
+foreign key (usuario) references usuario(nombre),
+foreign key (nombreEjercicio) references ejercicios(nombre)
+
 );
-DROP TABLE ejercicio;

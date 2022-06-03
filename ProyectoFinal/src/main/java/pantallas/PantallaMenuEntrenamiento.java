@@ -33,15 +33,15 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
 
-public class PantallaMenu extends JPanel{
+public class PantallaMenuEntrenamiento extends JPanel{
 	private Ventana ventana;
 	
 	
-	public PantallaMenu(Ventana v) {
+	public PantallaMenuEntrenamiento(Ventana v) {
 		setBorder(null);
 		setBackground(new Color(37, 42, 52));
 		this.ventana = v;
-		setSize(800, 500);
+		setSize(800, 464);
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -64,7 +64,6 @@ public class PantallaMenu extends JPanel{
 		botonSEntrenamiento.setSize(180,29);
 		botonSEntrenamiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ventana.cambiarAPantalla("entrenamiento");
 			}
 		});
 		
@@ -110,18 +109,34 @@ public class PantallaMenu extends JPanel{
 		BotonMenu botonPerfil = new BotonMenu("Perfil");
 		
 		botonPerfil.setVerticalAlignment(SwingConstants.TOP);
+		
+		BotonMenu botonSalir = new BotonMenu("Salir");
+		botonSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("menu");
+			}
+		});
+		botonSalir.setVerticalAlignment(SwingConstants.TOP);
+		botonSalir.setText("Salir");
+		
 		GroupLayout gl_panelIzquierda = new GroupLayout(panelIzquierda);
 		gl_panelIzquierda.setHorizontalGroup(
 			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
-				.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+				.addGroup(gl_panelIzquierda.createSequentialGroup()
+					.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+					.addGap(20))
 		);
 		gl_panelIzquierda.setVerticalGroup(
 			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
 					.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(325))
+					.addPreferredGap(ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
+					.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addGap(37))
 		);
 		panelIzquierda.setLayout(gl_panelIzquierda);
 		
@@ -158,8 +173,8 @@ public class PantallaMenu extends JPanel{
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\antjr\\eclipse-workspace\\Proyecto-SW\\ProyectoFinal\\fondo.jpg"));
-		lblNewLabel.setBounds(0, -40, 600, 520);
+		lblNewLabel.setIcon(new ImageIcon("./sw (1).jpg"));
+		lblNewLabel.setBounds(-28, -58, 638, 536);
 		panel_1.add(lblNewLabel);
 		
 		

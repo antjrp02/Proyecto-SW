@@ -64,6 +64,7 @@ public class PantallaMenuNivel extends JPanel{
 		botonSEntrenamiento.setSize(180,29);
 		botonSEntrenamiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("entrenamiento");
 			}
 		});
 		
@@ -107,7 +108,7 @@ public class PantallaMenuNivel extends JPanel{
 		JButton botonEditar = new BotonMenu("Editar");
 		botonEditar.setVerticalAlignment(SwingConstants.TOP);
 		
-		BotonMenu botonSalir = new BotonMenu("Editar");
+		BotonMenu botonSalir = new BotonMenu("Salir");
 		botonSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("menu");
@@ -207,7 +208,7 @@ public class PantallaMenuNivel extends JPanel{
 		panel_1.add(botonAyuda);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\2DAM\\Proyecto-SW\\ProyectoFinal\\fondo (1).jpg"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\CENEC\\Documents\\GitHub\\Proyecto-SW\\ProyectoFinal\\fondo (1).jpg"));
 		lblNewLabel.setBounds(0, 0, 536, 441);
 		panel_1.add(lblNewLabel);
 		

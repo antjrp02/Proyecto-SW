@@ -42,6 +42,9 @@ public class Ventana extends JFrame {
 		case "nivel":
 			this.pantallaActual=new PantallaMenuNivel(this);
 			break;
+		case "entrenamiento":
+			this.pantallaActual=new PantallaMenuEntrenamiento(this);
+			break;
 		}
 		this.pantallaActual.setVisible(true);
 		this.setContentPane(pantallaActual);
