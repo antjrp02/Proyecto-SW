@@ -10,16 +10,18 @@ public class Ejercicio extends EntidadConDificultad {
 	private TipoEjercicio tipoEjercicio;
 	private boolean usaGoma;
 	private boolean realizado;
+	private byte series;
 	
 	
 	
 	public Ejercicio(String nombre, Dificultad dificultad, GruposMusculares gruposMusculares, TipoEjercicio tipoEjercicio,
-			boolean usaGoma, boolean realizado) {
+			boolean usaGoma, boolean realizado,byte series) {
 		super(nombre, dificultad);
 		this.gruposMusculares = gruposMusculares;
 		this.tipoEjercicio = tipoEjercicio;
 		this.usaGoma = usaGoma;
 		this.realizado = realizado;
+		this.series = series;
 	}
 	
 	public GruposMusculares getGruposMusculares() {

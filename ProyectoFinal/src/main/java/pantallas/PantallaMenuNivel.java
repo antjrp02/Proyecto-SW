@@ -208,7 +208,7 @@ public class PantallaMenuNivel extends JPanel{
 		panel_1.add(botonAyuda);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\CENEC\\Documents\\GitHub\\Proyecto-SW\\ProyectoFinal\\fondo (1).jpg"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\antjr\\eclipse-workspace\\Proyecto-SW\\ProyectoFinal\\fondo (1).jpg"));
 		lblNewLabel.setBounds(0, 0, 536, 441);
 		panel_1.add(lblNewLabel);
 		

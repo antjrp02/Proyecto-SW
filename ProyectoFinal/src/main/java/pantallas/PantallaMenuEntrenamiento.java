@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 import elementosvisuales.Boton1;
 import elementosvisuales.Boton2;
+import elementosvisuales.BotonConSonido;
 import elementosvisuales.BotonMenu;
 
 import javax.swing.JScrollPane;
@@ -32,6 +33,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import Enums.TipoEntrenamiento;
 
 public class PantallaMenuEntrenamiento extends JPanel{
 	private Ventana ventana;
@@ -172,10 +176,27 @@ public class PantallaMenuEntrenamiento extends JPanel{
 		add(panel_1);
 		panel_1.setLayout(null);
 		
+		
+		JButton botonMusica = new BotonConSonido("");
+		botonMusica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		botonMusica.setBounds(447, 365, 60, 29);
+		panel_1.add(botonMusica);
+		
+		JLabel lblNewLabel_1 = new JLabel("Pulsa para motivacion");
+		lblNewLabel_1.setBounds(327, 365, 108, 29);
+		panel_1.add(lblNewLabel_1);
+		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("./sw (1).jpg"));
-		lblNewLabel.setBounds(-28, -58, 638, 536);
+		lblNewLabel.setBounds(0, 0, 638, 536);
 		panel_1.add(lblNewLabel);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(TipoEntrenamiento.values()));
+		comboBox.setBounds(302, 119, 159, 29);
+		panel_1.add(comboBox);
 		
 		
 		

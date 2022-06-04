@@ -1,6 +1,7 @@
 package Enums;
 
 public enum TipoEntrenamiento {
+		
 	TENSION,
 	HIPERTROFIA,
 	RESISTENCIA,
@@ -8,5 +9,6 @@ public enum TipoEntrenamiento {
 	FREESTYLE,
 	MIXTO,//(Mixto entre Resistencia y Tension).
 	MOVILIDAD,
-	LASTRE
+	LASTRE,
+	
 }

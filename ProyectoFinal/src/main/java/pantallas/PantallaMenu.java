@@ -158,8 +158,8 @@ public class PantallaMenu extends JPanel{
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\antjr\\eclipse-workspace\\Proyecto-SW\\ProyectoFinal\\fondo.jpg"));
-		lblNewLabel.setBounds(0, -40, 600, 520);
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\antjr\\Downloads\\fondoMenu (1).jpg"));
+		lblNewLabel.setBounds(-45, 0, 587, 490);
 		panel_1.add(lblNewLabel);
 		
 		
