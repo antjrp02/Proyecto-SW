@@ -9,6 +9,6 @@ public enum GruposMusculares {
 	ABDOMINALES,
 	ANTEBRAZO,
 	PIERNA,
-	FULLBODY
+	
 	
 }

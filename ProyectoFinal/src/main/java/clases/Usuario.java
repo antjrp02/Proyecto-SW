@@ -22,7 +22,6 @@ public class Usuario extends EntidadConNombre {
 	// intermedio-avanzado 8 y 9 avanzado y nivel 10 Kamenov
 	private String UbicacionEntrenamiento;
 	private TipoEntrenamiento entrenamiento;
-	private ArrayList<Rutina> rutinas;
 
 	public Usuario(String nombre, String contraseña, String ubicacionEntrenamiento)
 			throws SQLException, ContraseñaVaciaException, UsuarioVacioException, UbicacionVaciaException {
