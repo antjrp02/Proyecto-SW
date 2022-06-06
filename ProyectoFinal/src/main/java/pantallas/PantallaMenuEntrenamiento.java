@@ -18,8 +18,11 @@ import elementosvisuales.BotonMenu;
 
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -36,6 +39,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import Enums.TipoEntrenamiento;
+import clases.Entrenamiento;
+import clases.Usuario;
 
 public class PantallaMenuEntrenamiento extends JPanel {
 	private Ventana ventana;
@@ -179,15 +184,35 @@ public class PantallaMenuEntrenamiento extends JPanel {
 		lblNewLabel_1.setBounds(282, 365, 155, 29);
 		panel_1.add(lblNewLabel_1);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(TipoEntrenamiento.values()));
-		comboBox.setBounds(302, 119, 159, 29);
-		panel_1.add(comboBox);
+		final JComboBox listaEntrenamientos = new JComboBox();
+		listaEntrenamientos.setModel(new DefaultComboBoxModel(TipoEntrenamiento.values()));
+		listaEntrenamientos.setBounds(302, 119, 159, 29);
+		panel_1.add(listaEntrenamientos);
+
+		JButton botonSeleccionar = new JButton("Seleccionar");
+		botonSeleccionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+					String nombre = ventana.usuarioLogeado.getNombre();
+					TipoEntrenamiento entrenamiento = (TipoEntrenamiento) listaEntrenamientos.getSelectedItem();
+					Usuario u = new Usuario(nombre, entrenamiento);
+					JOptionPane.showMessageDialog(
+							ventana,entrenamiento+" ","Entrenamiento seleccionado",
+							JOptionPane.INFORMATION_MESSAGE);
+					ventana.cambiarAPantalla("menu");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		botonSeleccionar.setBounds(124, 122, 89, 23);
+		panel_1.add(botonSeleccionar);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(
-				new ImageIcon("C:\\Users\\antjr\\eclipse-workspace\\Proyecto-SW\\ProyectoFinal\\fondo (1).jpg"));
-		lblNewLabel.setBounds(0, -53, 655, 536);
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\2DAM\\Documents\\Nueva carpeta (2)\\Proyecto-SW\\ProyectoFinal\\fondo (1).jpg"));
+		lblNewLabel.setBounds(0, -48, 655, 536);
 		panel_1.add(lblNewLabel);
 
 	}

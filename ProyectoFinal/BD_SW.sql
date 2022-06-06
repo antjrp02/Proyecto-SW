@@ -10,7 +10,7 @@ create table Usuario(
     UbicacionEntrenamiento varchar(100),
     entrenamiento varchar(40)
 );
-
+select * from usuario where nombre = 1;
 create table ejercicio_dinamico(
 nombre VARCHAR(60)primary key,
 dificultad Varchar(40)not null,

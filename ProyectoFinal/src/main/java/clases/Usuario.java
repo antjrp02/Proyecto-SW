@@ -95,10 +95,12 @@ public class Usuario extends EntidadConNombre {
 
 	}
 
-	public Usuario(String nombre, byte nivel) throws SQLException {
+	public Usuario(String nombre, byte nivel) throws SQLException,NivelVacioException{
 		super(nombre);
 		Statement smt = UtilsDB.conectarBD();
-
+		if(nivel==0) {
+			throw new NivelVacioException("Nivel no valido");
+		}
 		smt.executeUpdate("Update usuario set nivel = " + nivel + " where nombre = '" + nombre + "';");
 		UtilsDB.desconectarBD();
 		this.nivel = nivel;
@@ -113,7 +115,7 @@ public class Usuario extends EntidadConNombre {
 		UtilsDB.desconectarBD();
 		this.entrenamiento = entrenamiento;
 	}
-
+	
 	public String getContraseña() {
 		return contraseña;
 	}

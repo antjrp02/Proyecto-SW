@@ -20,6 +20,8 @@ import excepciones.ContraseñaVaciaException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioVacioException;
 import elementosvisuales.Boton1;
+
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -68,21 +70,24 @@ public class PantallaLogin extends JPanel {
 		botonLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
-				String nombre = campoUsuario.getText();
-				String contraseña = new String(campoContraseña.getPassword());
-
-				try {
-					Usuario u = new Usuario(nombre, contraseña);
-
-					JOptionPane.showMessageDialog(ventana, "Bienvenido " + nombre, "Inicio de sesion correcto",
-							JOptionPane.INFORMATION_MESSAGE);
-				} catch (SQLException | ContraseñaIncorrectaException | UsuarioNoExisteException | UsuarioVacioException
-						| ContraseñaVaciaException e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-				}
-				ventana.cambiarAPantalla("menu");
+				
+					String nombre = campoUsuario.getText();
+					String contraseña = new String (campoContraseña.getPassword());
+					try {
+						ventana.usuarioLogeado = new Usuario(nombre,contraseña);
+						JOptionPane.showMessageDialog(ventana, "Bienvenido, "+ventana.usuarioLogeado.getNombre(), "Logeado Correctamente", JOptionPane.PLAIN_MESSAGE);
+						ventana.cambiarAPantalla("menu");
+					} catch (SQLException | ContraseñaIncorrectaException | UsuarioNoExisteException
+							| UsuarioVacioException | ContraseñaVaciaException e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(ventana,e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+					}
+					
+					
+					
+					
+					
+					
 			}
 		});
 

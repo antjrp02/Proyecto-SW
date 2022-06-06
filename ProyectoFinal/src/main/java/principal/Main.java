@@ -9,6 +9,7 @@ import clases.Entrenamiento;
 import clases.Usuario;
 import excepciones.ContraseñaIncorrectaException;
 import excepciones.ContraseñaVaciaException;
+import excepciones.NivelVacioException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioVacioException;
 import pantallas.Ventana;
@@ -204,7 +205,7 @@ public class Main {
 					}
 				} while (opcion != 6);
 			} catch (SQLException | ContraseñaIncorrectaException | UsuarioNoExisteException | UsuarioVacioException
-					| ContraseñaVaciaException e) {
+					| ContraseñaVaciaException | NivelVacioException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
