@@ -207,11 +207,18 @@ public class PantallaMenuEntrenamiento extends JPanel {
 				}
 			}
 		});
-		botonSeleccionar.setBounds(124, 122, 89, 23);
+		botonSeleccionar.setBounds(124, 122, 104, 23);
 		panel_1.add(botonSeleccionar);
+		
+		JLabel lbSeleccionarEntrenamiento = new JLabel("Selecciona Entrenamiento");
+		lbSeleccionarEntrenamiento.setForeground(Color.WHITE);
+		lbSeleccionarEntrenamiento.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lbSeleccionarEntrenamiento.setHorizontalAlignment(SwingConstants.CENTER);
+		lbSeleccionarEntrenamiento.setBounds(0, 10, 517, 52);
+		panel_1.add(lbSeleccionarEntrenamiento);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\2DAM\\Documents\\Nueva carpeta (2)\\Proyecto-SW\\ProyectoFinal\\fondo (1).jpg"));
+		lblNewLabel.setIcon(new ImageIcon("./fondo (1).jpg"));
 		lblNewLabel.setBounds(0, -48, 655, 536);
 		panel_1.add(lblNewLabel);
 

@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -33,17 +35,20 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
 
-public class PantallaMenu extends JPanel{
+public class PantallaMenuCrearRutina extends JPanel{
 	private Ventana ventana;
 	
 	
-	public PantallaMenu(Ventana v) {
+	public PantallaMenuCrearRutina(Ventana v) {
 		setBorder(null);
 		setBackground(new Color(37, 42, 52));
 		this.ventana = v;
 		setSize(800, 500);
 		setLayout(null);
-		
+		if(ventana.usuarioLogeado.getNivel()==0) {
+			JOptionPane.showMessageDialog(ventana,"Nivel no seleccionado, porfavor seleccionalo antes de continuar.","Error",JOptionPane.ERROR_MESSAGE);
+			ventana.cambiarAPantalla("nivel");
+		}
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(611, 59, 189, 441);
 		add(scrollPane);
@@ -69,11 +74,6 @@ public class PantallaMenu extends JPanel{
 		});
 		
 		JButton botonOp4 = new BotonMenu("Crear Rutinas");
-		botonOp4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ventana.cambiarAPantalla("crearRutina");
-			}
-		});
 		botonOp4.setSize(180,29);
 		
 		JButton botonOp3 = new BotonMenu("Mis rutinas");

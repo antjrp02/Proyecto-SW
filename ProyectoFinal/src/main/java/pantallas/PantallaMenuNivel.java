@@ -231,8 +231,8 @@ public class PantallaMenuNivel extends JPanel {
 		labelNivel.setForeground(Color.WHITE);
 		labelNivel.setBackground(Color.BLUE);
 		labelNivel.setHorizontalAlignment(SwingConstants.CENTER);
-		labelNivel.setFont(new Font("Tahoma", Font.BOLD, 19));
-		labelNivel.setBounds(0, 33, 517, 32);
+		labelNivel.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		labelNivel.setBounds(0, 0, 517, 65);
 		panel_1.add(labelNivel);
 
 		JButton botonAyuda = new JButton("Ayuda:");
