@@ -251,7 +251,7 @@ public class PantallaMenuNivel extends JPanel {
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		botonAyuda.setBounds(94, 355, 67, 23);
+		botonAyuda.setBounds(94, 349, 80, 23);
 		panel_1.add(botonAyuda);
 
 		JLabel lblNewLabel = new JLabel("");

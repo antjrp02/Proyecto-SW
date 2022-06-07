@@ -113,6 +113,11 @@ public class PantallaMenu extends JPanel{
 		botonEditar.setVerticalAlignment(SwingConstants.TOP);
 		
 		BotonMenu botonPerfil = new BotonMenu("Perfil");
+		botonPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("perfil");
+			}
+		});
 		
 		botonPerfil.setVerticalAlignment(SwingConstants.TOP);
 		GroupLayout gl_panelIzquierda = new GroupLayout(panelIzquierda);
