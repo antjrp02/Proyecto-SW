@@ -141,7 +141,11 @@ public class PantallaRegistro extends JPanel {
 								JOptionPane.INFORMATION_MESSAGE);
 							ventana.cambiarAPantalla("login");
 						
-					} catch (SQLException|ContraseñaVaciaException | UsuarioVacioException | UbicacionVaciaException e1) {
+					} catch (SQLException e1) {
+						JOptionPane.showMessageDialog(
+								ventana,"Usuario ya existente","Error",
+								JOptionPane.ERROR_MESSAGE);
+					}catch(ContraseñaVaciaException | UsuarioVacioException | UbicacionVaciaException e1) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(
 								ventana,e1.getMessage(),"Error",

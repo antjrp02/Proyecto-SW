@@ -29,7 +29,7 @@ public class Usuario extends EntidadConNombre {
 		if (contraseña.isBlank()) {
 			throw new ContraseñaVaciaException("La contraseña no puede estar vacia.");
 		}
-		if (nombre.isBlank()) {
+		if (!this.UsuarioValido(nombre)) {
 			throw new UsuarioVacioException("El usuario no puede estar vacio");
 		}
 		if (ubicacionEntrenamiento.equals("...")) {
@@ -87,7 +87,7 @@ public class Usuario extends EntidadConNombre {
 
 			UtilsDB.desconectarBD();
 
-			throw new UsuarioNoExisteException("No existe ese nombre de usuario en la BD");
+			throw new UsuarioNoExisteException("El nombre de usuario no existe");
 
 		}
 
@@ -115,6 +115,8 @@ public class Usuario extends EntidadConNombre {
 		UtilsDB.desconectarBD();
 		this.entrenamiento = entrenamiento;
 	}
+	
+	
 	
 	public String getContraseña() {
 		return contraseña;

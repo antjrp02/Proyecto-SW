@@ -1,5 +1,7 @@
 package superClases;
 
+import excepciones.UsuarioVacioException;
+
 public class EntidadConNombre {
 	private String nombre;
 
@@ -14,9 +16,14 @@ public class EntidadConNombre {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
+	public void setNombre(String nombre) throws UsuarioVacioException {
+		if (!this.UsuarioValido(nombre)) {
+			throw new UsuarioVacioException("La contraseña no puede estar vacia.");
+		}
 		this.nombre = nombre;
 	}
-	
+	protected boolean UsuarioValido(String usuario) {
+		return !usuario.isBlank();
+	}
 	
 }
