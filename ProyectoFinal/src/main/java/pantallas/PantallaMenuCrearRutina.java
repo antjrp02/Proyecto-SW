@@ -34,6 +34,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 
 public class PantallaMenuCrearRutina extends JPanel{
 	private Ventana ventana;
@@ -115,18 +116,35 @@ public class PantallaMenuCrearRutina extends JPanel{
 		BotonMenu botonPerfil = new BotonMenu("Perfil");
 		
 		botonPerfil.setVerticalAlignment(SwingConstants.TOP);
+		
+
+		BotonMenu botonSalir = new BotonMenu("Salir");
+		botonSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("menu");
+			}
+		});
+		botonSalir.setVerticalAlignment(SwingConstants.TOP);
+		botonSalir.setText("Salir");
+
 		GroupLayout gl_panelIzquierda = new GroupLayout(panelIzquierda);
 		gl_panelIzquierda.setHorizontalGroup(
 			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
-				.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+				.addGroup(gl_panelIzquierda.createSequentialGroup()
+					.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+					.addGap(20))
 		);
 		gl_panelIzquierda.setVerticalGroup(
 			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
 					.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(325))
+					.addGap(294)
+					.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addGap(38))
 		);
 		panelIzquierda.setLayout(gl_panelIzquierda);
 		
@@ -162,9 +180,13 @@ public class PantallaMenuCrearRutina extends JPanel{
 		add(panel_1);
 		panel_1.setLayout(null);
 		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(47, 122, 172, 22);
+		panel_1.add(comboBox);
+		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("./PinoFront.jpg"));
-		lblNewLabel.setBounds(-13, -90, 587, 615);
+		lblNewLabel.setIcon(new ImageIcon("./calistenia.jpg"));
+		lblNewLabel.setBounds(0, -92, 597, 615);
 		panel_1.add(lblNewLabel);
 		
 		

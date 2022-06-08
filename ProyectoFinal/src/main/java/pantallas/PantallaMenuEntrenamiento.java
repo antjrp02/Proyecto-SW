@@ -72,7 +72,7 @@ public class PantallaMenuEntrenamiento extends JPanel {
 		botonSEntrenamiento.setSize(180, 29);
 		botonSEntrenamiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				ventana.cambiarAPantalla("entrenamiento");
 			}
 		});
 

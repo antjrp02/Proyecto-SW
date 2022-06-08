@@ -4,12 +4,19 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import elementosvisuales.BotonMenu;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
+import javax.swing.JButton;
 
 public class PantallaPerfil extends JPanel{
 	
@@ -52,39 +59,73 @@ public class PantallaPerfil extends JPanel{
 		JPanel borde = new JPanel();
 		borde.setBorder(new LineBorder(new Color(255, 46, 99), 4, true));
 		borde.setBackground(new Color(37, 42, 52));
-		borde.setBounds(54, 104, 725, 331);
+		borde.setBounds(54, 83, 680, 323);
 		add(borde);
 		borde.setLayout(null);
 		
 		JLabel lbUsuario = new JLabel("Usuario:");
-		lbUsuario.setForeground(new Color(255, 46, 99));
+		lbUsuario.setForeground(new Color(234, 234, 234));
 		lbUsuario.setFont(new Font("Arial", Font.BOLD, 15));
 		
 		lbUsuario.setBounds(46, 27, 117, 33);
 		borde.add(lbUsuario);
 		
 		JLabel lbUbicacion = new JLabel("Ubicacion: ");
-		lbUbicacion.setForeground(new Color(255, 46, 99));
+		lbUbicacion.setForeground(new Color(234, 234, 234));
 		lbUbicacion.setFont(new Font("Arial", Font.BOLD, 15));
 		lbUbicacion.setBounds(46, 71, 117, 43);
 		borde.add(lbUbicacion);
 		
 		JLabel lbNivel = new JLabel("Nivel: ");
-		lbNivel.setForeground(new Color(255, 46, 99));
+		lbNivel.setForeground(new Color(234, 234, 234));
 		lbNivel.setFont(new Font("Arial", Font.BOLD, 15));
 		lbNivel.setBounds(46, 125, 117, 43);
 		borde.add(lbNivel);
 		
 		JLabel lbEntrenamiento = new JLabel("Entrenamiento: ");
-		lbEntrenamiento.setForeground(new Color(255, 46, 99));
+		lbEntrenamiento.setForeground(new Color(234, 234, 234));
 		lbEntrenamiento.setFont(new Font("Arial", Font.BOLD, 15));
 		lbEntrenamiento.setBounds(46, 187, 117, 33);
 		borde.add(lbEntrenamiento);
 		
 		JLabel lbRutinas = new JLabel("N\u00BA rutinas: ");
-		lbRutinas.setForeground(new Color(255, 46, 99));
+		lbRutinas.setForeground(new Color(234, 234, 234));
 		lbRutinas.setFont(new Font("Arial", Font.BOLD, 15));
-		lbRutinas.setBounds(46, 253, 117, 41);
+		lbRutinas.setBounds(46, 231, 117, 41);
 		borde.add(lbRutinas);
+		
+		JLabel lbUsuarioBD = new JLabel(ventana.usuarioLogeado.getNombre());
+		lbUsuarioBD.setForeground(Color.WHITE);
+		lbUsuarioBD.setBounds(283, 37, 151, 14);
+		borde.add(lbUsuarioBD);
+		
+		JLabel lbUbicacionBD = new JLabel(ventana.usuarioLogeado.getUbicacionEntrenamiento());
+		lbUbicacionBD.setFont(new Font("Arial", Font.BOLD, 15));
+		lbUbicacionBD.setForeground(Color.WHITE);
+		lbUbicacionBD.setBounds(283, 86, 151, 14);
+		borde.add(lbUbicacionBD);
+		
+		JLabel lbNivelBD = new JLabel(ventana.usuarioLogeado.getNivel()+"");
+		lbNivelBD.setForeground(Color.WHITE);
+		lbNivelBD.setFont(new Font("Arial", Font.BOLD, 15));
+		lbNivelBD.setBounds(283, 139, 151, 14);
+		borde.add(lbNivelBD);
+		
+		JLabel lbEntrenamientoBD = new JLabel(ventana.usuarioLogeado.getEntrenamiento()+"");
+		lbEntrenamientoBD.setForeground(Color.WHITE);
+		lbEntrenamientoBD.setFont(new Font("Arial", Font.BOLD, 15));
+		lbEntrenamientoBD.setBounds(283, 197, 151, 14);
+		borde.add(lbEntrenamientoBD);
+		
+		JButton botonSalir = new BotonMenu("Salir");
+		botonSalir.setBounds(54, 429, 89, 23);
+		add(botonSalir);
+		
+		botonSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("menu");
+			}
+		});
+		botonSalir.setText("Salir");
 	}
 }

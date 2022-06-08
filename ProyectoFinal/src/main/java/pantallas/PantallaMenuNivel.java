@@ -64,6 +64,11 @@ public class PantallaMenuNivel extends JPanel {
 		scrollPane.setViewportView(panelDerecha);
 
 		JButton botonSNivel = new BotonMenu("Seleccionar Nivel");
+		botonSNivel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("nivel");
+			}
+		});
 
 		JButton botonSEntrenamiento = new BotonMenu("Entrenamientos");
 		botonSEntrenamiento.setSize(180, 29);

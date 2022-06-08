@@ -39,7 +39,7 @@ public class Usuario extends EntidadConNombre {
 		this.contraseña = contraseña;
 		this.UbicacionEntrenamiento = ubicacionEntrenamiento;
 		this.nivel = 0;
-		this.entrenamiento = null;
+		this.entrenamiento = entrenamiento;
 		Statement query = UtilsDB.conectarBD();
 		if (query.executeUpdate("insert into usuario values('" + nombre + "','" + contraseña + "',"+nivel+",'"
 				+ UbicacionEntrenamiento + "','" + entrenamiento + "')") > 0) {

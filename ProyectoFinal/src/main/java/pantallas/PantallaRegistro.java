@@ -77,20 +77,20 @@ public class PantallaRegistro extends JPanel {
 		
 		
 		JLabel lblUbicacion = new JLabel("Ubicacion: ");
-		lblUbicacion.setBounds(23, 109, 85, 19);
+		lblUbicacion.setBounds(23, 109, 108, 19);
 		borde.add(lblUbicacion);
 		lblUbicacion.setHorizontalAlignment(SwingConstants.LEFT);
 		lblUbicacion.setForeground(new Color(255, 46, 99));
 		lblUbicacion.setFont(new Font("Arial", Font.BOLD, 16));
 		
 		JLabel lbContraseña = new JLabel("Contrase\u00F1a:");
-		lbContraseña.setBounds(23, 80, 93, 19);
+		lbContraseña.setBounds(23, 80, 108, 19);
 		borde.add(lbContraseña);
 		lbContraseña.setForeground(new Color(255, 46, 99));
 		lbContraseña.setFont(new Font("Arial", Font.BOLD, 16));
 		
 		JLabel lbUsuario = new JLabel("Usuario: ");
-		lbUsuario.setBounds(23, 51, 69, 19);
+		lbUsuario.setBounds(23, 51, 108, 19);
 		borde.add(lbUsuario);
 		lbUsuario.setVerticalAlignment(SwingConstants.TOP);
 		lbUsuario.setHorizontalAlignment(SwingConstants.LEFT);
