@@ -44,6 +44,7 @@ public class PantallaMenu extends JPanel{
 		setSize(800, 500);
 		setLayout(null);
 		
+		System.out.println(ventana.usuarioLogeado.getEntrenamiento());
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(611, 59, 189, 441);
 		add(scrollPane);
@@ -168,8 +169,8 @@ public class PantallaMenu extends JPanel{
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("./PinoFront.jpg"));
-		lblNewLabel.setBounds(-13, -90, 587, 615);
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\antjr\\Downloads\\images (1).jpg"));
+		lblNewLabel.setBounds(-17, -84, 587, 615);
 		panel_1.add(lblNewLabel);
 		
 		

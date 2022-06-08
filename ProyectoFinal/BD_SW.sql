@@ -10,7 +10,8 @@ create table Usuario(
     UbicacionEntrenamiento varchar(100),
     entrenamiento varchar(40)
 );
-select * from usuario;
+select * from usuario;	
+
 create table ejercicio_dinamico(
 nombre VARCHAR(60)primary key,
 dificultad Varchar(40)not null,
@@ -86,11 +87,6 @@ insert into Ejercicio_dinamico values("Fondo a codos","intermedio","triceps","em
 insert into Ejercicio_dinamico values("Fondo explosivo","intermedio","pecho","empuje",false,false,"fondo libre en paralelas despegando las manos de las paralelas al ifnal de la subida",0,0);
 insert into Ejercicio_dinamico values("Fondo con palmada","intermedio","pecho","empuje",false,false,"fondo libre en paralelas haciendo una palmada al final de la subida",0,0);
 insert into Ejercicio_dinamico values("Flexion a una mano","intermedio","pecho","empuje",false,false,"flexion libre a una mano",0,0);
-
-
-
-
-
 
 
 

@@ -219,6 +219,7 @@ public class PantallaMenuNivel extends JPanel {
 
 					}
 					Usuario u = new Usuario(nombre, nivel);
+					ventana.usuarioLogeado.setNivel(nivel);
 					JOptionPane.showMessageDialog(ventana, nivel + " ", "Nivel Seleccionado: ",
 							JOptionPane.INFORMATION_MESSAGE);
 					ventana.cambiarAPantalla("menu");
