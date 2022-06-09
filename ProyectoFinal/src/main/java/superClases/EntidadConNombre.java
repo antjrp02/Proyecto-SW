@@ -18,7 +18,7 @@ public class EntidadConNombre {
 
 	public void setNombre(String nombre) throws UsuarioVacioException {
 		if (!this.UsuarioValido(nombre)) {
-			throw new UsuarioVacioException("La contraseña no puede estar vacia.");
+			throw new UsuarioVacioException("El usuario no es valido.");
 		}
 		this.nombre = nombre;
 	}

@@ -240,17 +240,20 @@ public class PantallaMenuCrearRutina extends JPanel{
 		btGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Statement smt = UtilsDB.conectarBD();
-
+				
 				try {
 					smt.executeUpdate(
-							"Update Ejercicio_Dinamico set repeticiones = '" + comboRepeticiones.getSelectedIndex() + ",series ="+comboSeries.getSelectedItem()+"' where nombre = '" + comboEjercicios.getSelectedItem() + "';");
+							"Update Ejercicio_Dinamico set repeticiones = " + comboRepeticiones.getSelectedItem() + ",series ="+comboSeries.getSelectedItem()+" where nombre = '" + comboEjercicios.getSelectedItem() + "';");
+					
+					EjercicioDinamico ejD = new EjercicioDinamico((String) comboEjercicios.getSelectedItem(), (Byte)comboSeries.getSelectedItem(), (Byte)comboRepeticiones.getSelectedItem());
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				UtilsDB.desconectarBD();
-			
+				JOptionPane.showMessageDialog(ventana,comboSeries.getSelectedItem()+" series de "+comboRepeticiones.getSelectedItem()+" repeticiones"+" de " +comboEjercicios.getSelectedItem(), "Ejercicio Seleccionado: ",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btGuardar.setBounds(388, 354, 94, 21);

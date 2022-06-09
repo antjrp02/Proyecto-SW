@@ -23,6 +23,11 @@ public class EjercicioDinamico extends Ejercicio {
 		
 	}
 	
+	public EjercicioDinamico(String nombre,  byte series, byte repeticiones) {
+		super(nombre,series);
+		this.repeticiones = repeticiones;
+	}
+
 	public byte getRepeticiones() {
 		return repeticiones;
 	}

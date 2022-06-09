@@ -25,7 +25,8 @@ series numeric(2)
 
 );
 drop table ejercicio_dinamico;
-select * from ejercicio_dinamico;
+update Ejercicio_Dinamico set repeticiones = 1 ,series = 2 where nombre = "dominada prona con goma" ;
+select * from ejercicio_dinamico where nombre = "dominada prona con goma" ;
 -- Ejercicios dinamicos con dificultad principiante de tiron:
 insert into Ejercicio_Dinamico values("dominada prona con goma","principiante","dorsal","tiron",true,false," dominada con las palmas de las manos hacia delante,haciendo un recorrido completo,usando una goma",0,0);
 insert into Ejercicio_Dinamico values("dominada neutra con goma","principiante","dorsal","tiron",true,false,"dominada usando dos barras paralelas a la altura de los hombros, las palmas de las manos estan una frente a la otra,haciendo un recorrido completo,usando una goma",0,0);
@@ -112,7 +113,9 @@ series numeric(2)
 create table rutina(
 usuario varchar(40)primary key,
 descansoSg numeric(3),
-foreign key (usuario) references usuario(nombre)
+fecha date,
+foreign key (usuario) references usuario(nombre),
+primary key(usuario,fecha)
 );
 
 create table ejercicios_rutina(
@@ -125,8 +128,10 @@ foreign key (nombreEjercicio) references ejercicios(nombre)
 create table entrenamiento(
 Usuario varchar(40)primary key,
 tipoEntrenamiento Varchar(40),
-foreign key (usuario) references usuario(nombre)
+foreign key (usuario) references usuario(nombre),
+primary key(usuario,tipoEntrenamiento)
 );
+
 create table entrenamiento_rutina(
 Usuariorutina varchar(40)
 );

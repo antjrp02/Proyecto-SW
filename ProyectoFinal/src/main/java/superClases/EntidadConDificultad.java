@@ -3,9 +3,13 @@ package superClases;
 import Enums.Dificultad;
 
 public class EntidadConDificultad extends EntidadConNombre{
-	protected static Dificultad dificultad;
+	private Dificultad dificultad;
 
 	
+	public EntidadConDificultad(String nombre) {
+		super(nombre);
+	}
+
 	public EntidadConDificultad(String nombre, Dificultad dificultad) {
 		super(nombre);
 		this.dificultad = dificultad;
