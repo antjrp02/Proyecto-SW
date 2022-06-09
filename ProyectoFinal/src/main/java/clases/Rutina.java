@@ -16,6 +16,11 @@ public class Rutina {
 		this.fecha = fecha;
 	}
 	
+	public void añadirEjercicio(ArrayList<Ejercicio> ejercicios) {
+		
+	
+		
+	}
 	public ArrayList<Ejercicio> getEjercicios() {
 		return ejercicios;
 	}

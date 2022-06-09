@@ -17,10 +17,12 @@ import elementosvisuales.Boton1;
 import elementosvisuales.Boton2;
 import elementosvisuales.BotonConSonido;
 import elementosvisuales.BotonMenu;
+import utilsDB.UtilsDB;
 
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -182,22 +184,22 @@ public class PantallaMenuCrearRutina extends JPanel{
 		lblNewLabel_1.setBounds(0, 0, 517, 37);
 		panel_1.add(lblNewLabel_1);
 		
-		JComboBox comboRepeticiones = new JComboBox();
+		final JComboBox comboRepeticiones = new JComboBox();
 		comboRepeticiones.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
 		comboRepeticiones.setBounds(303, 226, 46, 21);
 		panel_1.add(comboRepeticiones);
 		
-		JComboBox comboSeries = new JComboBox();
+		final JComboBox comboSeries = new JComboBox();
 		comboSeries.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
 		comboSeries.setBounds(441, 226, 41, 21);
 		panel_1.add(comboSeries);
-		JComboBox comboEjercicios = new JComboBox();
+		final JComboBox comboEjercicios = new JComboBox();
 		comboEjercicios.setModel(new DefaultComboBoxModel(new String[] {""}));
 		comboEjercicios.setBounds(26, 226, 211, 21);
 		panel_1.add(comboEjercicios);
-		if((ventana.usuarioLogeado.getEntrenamiento()).equals(TipoEntrenamiento.RESISTENCIA)) {
+		if((ventana.usuarioLogeado.getEntrenamiento()+"").equals(TipoEntrenamiento.RESISTENCIA+"")) {
 		
-		comboEjercicios.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4"}));
+		comboEjercicios.setModel(new DefaultComboBoxModel(new String[] {"dominada prona con goma", "2", "3", "4"}));
 		
 		panel_1.add(comboEjercicios);
 		}
@@ -220,6 +222,7 @@ public class PantallaMenuCrearRutina extends JPanel{
 		panel_1.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Repeticiones");
+		 
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblNewLabel_4.setForeground(Color.WHITE);
@@ -236,7 +239,18 @@ public class PantallaMenuCrearRutina extends JPanel{
 		JButton btGuardar = new JButton("Guardar");
 		btGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EjercicioDinamico.
+				Statement smt = UtilsDB.conectarBD();
+
+				try {
+					smt.executeUpdate(
+							"Update Ejercicio_Dinamico set repeticiones = '" + comboRepeticiones.getSelectedIndex() + ",series ="+comboSeries.getSelectedItem()+"' where nombre = '" + comboEjercicios.getSelectedItem() + "';");
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				UtilsDB.desconectarBD();
+			
 			}
 		});
 		btGuardar.setBounds(388, 354, 94, 21);
@@ -245,8 +259,8 @@ public class PantallaMenuCrearRutina extends JPanel{
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\antjr\\Downloads\\calistenia (3).jpg"));
-		lblNewLabel.setBounds(-59, -66, 878, 525);
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\2DAM\\Downloads\\calistenia (1).jpg"));
+		lblNewLabel.setBounds(0, -65, 878, 525);
 		panel_1.add(lblNewLabel);
 
 	}

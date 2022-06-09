@@ -196,8 +196,8 @@ public class PantallaMenuEntrenamiento extends JPanel {
 				try {
 					String nombre = ventana.usuarioLogeado.getNombre();
 					TipoEntrenamiento entrenamiento = (TipoEntrenamiento) listaEntrenamientos.getSelectedItem();
-					ventana.usuarioLogeado.setEntrenamiento(entrenamiento);
 					Usuario u = new Usuario(nombre, entrenamiento);
+					ventana.usuarioLogeado.setEntrenamiento(entrenamiento);
 					JOptionPane.showMessageDialog(
 							ventana,entrenamiento+" ","Entrenamiento seleccionado",
 							JOptionPane.INFORMATION_MESSAGE);

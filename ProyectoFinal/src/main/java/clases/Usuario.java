@@ -116,6 +116,16 @@ public class Usuario extends EntidadConNombre {
 		this.entrenamiento = entrenamiento;
 	}
 	
+	public String entrenamiento(String nombre, TipoEntrenamiento entrenamiento) throws SQLException {
+		
+		Statement smt = UtilsDB.conectarBD();
+
+		smt.executeUpdate(
+				"Select entrenamiento From usuario where nombre = '" + nombre + "';");
+		UtilsDB.desconectarBD();
+		return entrenamiento+"";
+		
+	}
 	
 	
 	public String getContraseña() {
