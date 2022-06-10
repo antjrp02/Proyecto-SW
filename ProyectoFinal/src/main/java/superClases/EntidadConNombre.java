@@ -22,6 +22,10 @@ public class EntidadConNombre {
 		}
 		this.nombre = nombre;
 	}
+	public EntidadConNombre() {
+		super();
+	}
+
 	protected boolean UsuarioValido(String usuario) {
 		return !usuario.isBlank();
 	}

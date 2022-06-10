@@ -6,6 +6,10 @@ public class EntidadConDificultad extends EntidadConNombre{
 	private Dificultad dificultad;
 
 	
+	public EntidadConDificultad() {
+		super();
+	}
+
 	public EntidadConDificultad(String nombre) {
 		super(nombre);
 	}

@@ -40,6 +40,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import Enums.TipoEntrenamiento;
 import clases.Entrenamiento;
+import clases.Rutina;
 import clases.Usuario;
 
 public class PantallaMenuEntrenamiento extends JPanel {
@@ -193,19 +194,18 @@ public class PantallaMenuEntrenamiento extends JPanel {
 		botonSeleccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				try {
+				
 					String nombre = ventana.usuarioLogeado.getNombre();
 					TipoEntrenamiento entrenamiento = (TipoEntrenamiento) listaEntrenamientos.getSelectedItem();
-					Usuario u = new Usuario(nombre, entrenamiento);
 					ventana.usuarioLogeado.setEntrenamiento(entrenamiento);
 					JOptionPane.showMessageDialog(
 							ventana,entrenamiento+" ","Entrenamiento seleccionado",
 							JOptionPane.INFORMATION_MESSAGE);
 					ventana.cambiarAPantalla("menu");
-				} catch (SQLException e1) {
+				
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+					
+				
 			}
 		});
 		botonSeleccionar.setBounds(124, 122, 104, 23);

@@ -15,6 +15,10 @@ public class Rutina {
 		this.descansoSg = descansoSg;
 		this.fecha = fecha;
 	}
+	
+	public Rutina() {
+		//Genera rutina vacía OJO: INICIALIZAR ARRAYLIST
+	}
 
 	public boolean añadirEjercicio(Ejercicio e) {
 		return this.ejercicios.add(e);

@@ -29,6 +29,9 @@ public class Ejercicio extends EntidadConDificultad {
 		this.series = series;
 	}
 
+	public Ejercicio() {
+		super();
+	}
 	public GruposMusculares getGruposMusculares() {
 		return gruposMusculares;
 	}

@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import Enums.TipoEntrenamiento;
 import excepciones.ContraseñaIncorrectaException;
@@ -22,6 +23,7 @@ public class Usuario extends EntidadConNombre {
 	// intermedio-avanzado 8 y 9 avanzado y nivel 10 Kamenov
 	private String UbicacionEntrenamiento;
 	private TipoEntrenamiento entrenamiento;
+	private HashMap<TipoEntrenamiento,Rutina> rutinas;
 
 	public Usuario(String nombre, String contraseña, String ubicacionEntrenamiento)
 			throws SQLException, ContraseñaVaciaException, UsuarioVacioException, UbicacionVaciaException {
@@ -39,6 +41,7 @@ public class Usuario extends EntidadConNombre {
 		this.contraseña = contraseña;
 		this.UbicacionEntrenamiento = ubicacionEntrenamiento;
 		this.nivel = 0;
+		this.rutinas=new HashMap<TipoEntrenamiento,Rutina>();
 		this.entrenamiento = entrenamiento;
 		Statement query = UtilsDB.conectarBD();
 		if (query.executeUpdate("insert into usuario values('" + nombre + "','" + contraseña + "',"+nivel+",'"
@@ -151,7 +154,7 @@ public class Usuario extends EntidadConNombre {
 	public void setUbicacionEntrenamiento(String ubicacionEntrenamiento) {
 		UbicacionEntrenamiento = ubicacionEntrenamiento;
 	}
-
+	
 	public TipoEntrenamiento getEntrenamiento() {
 		return entrenamiento;
 	}
@@ -159,5 +162,10 @@ public class Usuario extends EntidadConNombre {
 	public void setEntrenamiento(TipoEntrenamiento entrenamiento) {
 		this.entrenamiento = entrenamiento;
 	}
+	
+	public void getRutina() {
+		
+	}
+	
 
 }

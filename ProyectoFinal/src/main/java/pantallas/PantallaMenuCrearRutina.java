@@ -17,6 +17,7 @@ import elementosvisuales.Boton1;
 import elementosvisuales.Boton2;
 import elementosvisuales.BotonConSonido;
 import elementosvisuales.BotonMenu;
+import elementosvisuales.FormularioAñadirEjercicio;
 import utilsDB.UtilsDB;
 
 import javax.swing.JScrollPane;
@@ -47,6 +48,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import java.awt.event.HierarchyListener;
+import java.awt.event.HierarchyEvent;
 
 public class PantallaMenuCrearRutina extends JPanel{
 	private Ventana ventana;
@@ -177,36 +180,52 @@ public class PantallaMenuCrearRutina extends JPanel{
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Crear Rutinas");
-		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 26));
 		lblNewLabel_1.setBackground(Color.WHITE);
 		lblNewLabel_1.setBounds(0, 0, 517, 37);
 		panel_1.add(lblNewLabel_1);
 		
-		JComboBox comboNumeroEjercicios = new JComboBox();
+		final JComboBox comboNumeroEjercicios = new JComboBox();
+		
 		comboNumeroEjercicios.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"}));
-		comboNumeroEjercicios.setBounds(410, 99, 41, 21);
+		comboNumeroEjercicios.setBounds(231, 85, 41, 21);
 		panel_1.add(comboNumeroEjercicios);
 		
-		JLabel lblNewLabel_2 = new JLabel("Cantidad de ejercicios");
-		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblNewLabel_2.setBounds(155, 99, 211, 17);
-		panel_1.add(lblNewLabel_2);
+		comboNumeroEjercicios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				byte numeroEjercicio=Byte.parseByte((String) comboNumeroEjercicios.getSelectedItem());
+				for(int i=0;i<numeroEjercicio;i++) {
+				//ventana.usuarioLogeado.getRutinas().add(new Ejercicio());
+				
+				}
+			
+			}
+		});
+		
+		JLabel lbCantidad = new JLabel("Cantidad de ejercicios");
+		lbCantidad.setBackground(Color.WHITE);
+		lbCantidad.setForeground(Color.WHITE);
+		lbCantidad.setFont(new Font("Arial", Font.PLAIN, 18));
+		lbCantidad.setBounds(10, 85, 211, 17);
+		panel_1.add(lbCantidad);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(0, 152, 517, 227);
+		panel_1.add(scrollPane_1);
+		
+		JPanel panel_2 = new FormularioAñadirEjercicio(ventana);
+		setOpaque(false);
+		panel_2.setSize(500,300); 
+		scrollPane_1.setViewportView(panel_2);
 		
 		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\2DAM\\Documents\\Nueva carpeta (2)\\Proyecto-SW\\ProyectoFinal\\calistenia (1).jpg"));
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setBounds(0, 0, 517, 405);
 		panel_1.add(lblNewLabel);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(75, 172, 311, 144);
-		panel_1.add(scrollPane_1);
-		
-		JPanel panel_2 = new JPanel();
-		scrollPane_1.setViewportView(panel_2);
 		
 		
 		
