@@ -50,7 +50,7 @@ public class PantallaMenuEntrenamiento extends JPanel {
 		setBorder(null);
 		setBackground(new Color(37, 42, 52));
 		this.ventana = v;
-		setSize(800, 464);
+		setSize(800, 500);
 		setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -78,6 +78,11 @@ public class PantallaMenuEntrenamiento extends JPanel {
 		});
 
 		JButton botonOp4 = new BotonMenu("Crear Rutinas");
+		botonOp4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("crearRutina");
+			}
+		});
 		botonOp4.setSize(180, 29);
 
 		JButton botonOp3 = new BotonMenu("Mis rutinas");

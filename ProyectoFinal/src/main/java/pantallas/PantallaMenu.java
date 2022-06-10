@@ -127,18 +127,33 @@ public class PantallaMenu extends JPanel{
 		});
 		
 		botonPerfil.setVerticalAlignment(SwingConstants.TOP);
+		
+		BotonMenu botonCerrar = new BotonMenu("Salir");
+		botonCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("login");
+			}
+		});
+		botonCerrar.setVerticalAlignment(SwingConstants.TOP);
+		botonCerrar.setText("Cerrar");
 		GroupLayout gl_panelIzquierda = new GroupLayout(panelIzquierda);
 		gl_panelIzquierda.setHorizontalGroup(
 			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
-				.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+				.addGroup(gl_panelIzquierda.createSequentialGroup()
+					.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonCerrar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
 		);
 		gl_panelIzquierda.setVerticalGroup(
 			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
 					.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(325))
+					.addGap(292)
+					.addComponent(botonCerrar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addGap(40))
 		);
 		panelIzquierda.setLayout(gl_panelIzquierda);
 		

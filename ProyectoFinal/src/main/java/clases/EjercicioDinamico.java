@@ -28,9 +28,11 @@ public class EjercicioDinamico extends Ejercicio {
 	
 	public EjercicioDinamico(String nombre,  byte series, byte repeticiones) {
 		super(nombre,series);
+		this.nombreEjercicio=nombre;
 		this.repeticiones = repeticiones;
 	}
 
+	
 	public EjercicioDinamico() {
 		super();
 	}
@@ -54,4 +56,9 @@ public class EjercicioDinamico extends Ejercicio {
 		UtilsDB.desconectarBD();
 		return nombreEjercicio;
 	}
+	@Override
+	public String toString() {
+		return "EjercicioDinamico [repeticiones=" + repeticiones + ", nombreEjercicio=" + nombreEjercicio + "]";
+	}
+
 }

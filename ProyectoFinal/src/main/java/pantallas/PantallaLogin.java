@@ -61,7 +61,7 @@ public class PantallaLogin extends JPanel {
 		lblNewLabel_2.setBounds(53, 77, 520, 66);
 		add(lblNewLabel_2);
 
-		JLabel yerayPinito = new JLabel("New label");
+		JLabel yerayPinito = new JLabel("");
 		yerayPinito.setIcon(new ImageIcon("./yerai.png"));
 		yerayPinito.setBounds(483, -23, 365, 539);
 		add(yerayPinito);

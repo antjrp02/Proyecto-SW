@@ -81,11 +81,9 @@ insert into Ejercicio_dinamico values("Fondo en barra","principiante_intermedio"
 select * from ejercicio_dinamico;
 insert into Ejercicio_dinamico values("Flexion explosiva","intermedio","pecho","empuje",false,false,"flexion libres en suelo levantando las manos al final de la subida",0,0);
 insert into Ejercicio_dinamico values("Flexion con palmada","intermedio","pecho","empuje",false,false,"flexionelibres en suelo dando una palmada con las manos al final de la subida",0,0);
-insert into Ejercicio_dinamico values("Flexion explosiva","intermedio","pecho","empuje",false,false,"flexionelibres en suelo levantando las manos al final de la subida",0,0);
 insert into Ejercicio_dinamico values("Fondo explosivo","intermedio","pecho","empuje",false,false,"fondo libre en paralelas despegando las manos de las paralelas al ifnal de la subida",0,0);
 insert into Ejercicio_dinamico values("Fondo en barra explosivo","intermedio","pecho","empuje",false,false,"fondo libre en barra despegando las manos de las barra al ifnal de la subida",0,0);
 insert into Ejercicio_dinamico values("Fondo a codos","intermedio","triceps","empuje",false,false,"fondo en paralelas, apoyando los codos en la paralela una vez ba",0,0);
-insert into Ejercicio_dinamico values("Fondo explosivo","intermedio","pecho","empuje",false,false,"fondo libre en paralelas despegando las manos de las paralelas al ifnal de la subida",0,0);
 insert into Ejercicio_dinamico values("Fondo con palmada","intermedio","pecho","empuje",false,false,"fondo libre en paralelas haciendo una palmada al final de la subida",0,0);
 insert into Ejercicio_dinamico values("Flexion a una mano","intermedio","pecho","empuje",false,false,"flexion libre a una mano",0,0);
 

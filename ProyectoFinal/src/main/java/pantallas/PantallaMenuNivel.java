@@ -79,6 +79,11 @@ public class PantallaMenuNivel extends JPanel {
 		});
 
 		JButton botonOp4 = new BotonMenu("Crear Rutinas");
+		botonOp4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					ventana.cambiarAPantalla("crearRutina");
+			}
+		});
 		botonOp4.setSize(180, 29);
 		;
 
@@ -170,8 +175,8 @@ public class PantallaMenuNivel extends JPanel {
 
 		final JComboBox comboNivel = new JComboBox();
 		comboNivel.setEditable(true);
-		comboNivel
-				.setModel(new DefaultComboBoxModel(new String[] {"...","1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+		comboNivel.setModel(
+				new DefaultComboBoxModel(new String[] { "...", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
 		comboNivel.setBounds(324, 148, 59, 23);
 		panel_1.add(comboNivel);
 
@@ -224,9 +229,7 @@ public class PantallaMenuNivel extends JPanel {
 							JOptionPane.INFORMATION_MESSAGE);
 					ventana.cambiarAPantalla("menu");
 				} catch (SQLException | NivelVacioException e1) {
-					JOptionPane.showMessageDialog(
-							ventana,e1.getMessage(),"Error",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
