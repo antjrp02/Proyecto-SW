@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -72,8 +74,12 @@ public class PantallaMenu extends JPanel{
 		JButton botonOp4 = new BotonMenu("Crear Rutinas");
 		botonOp4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(ventana.usuarioLogeado.getEntrenamiento()==null||ventana.usuarioLogeado.getNivel()==0) {
+					JOptionPane.showMessageDialog(ventana,"Nivel o entrenamiento no seleccionados","Error",JOptionPane.ERROR_MESSAGE);
+				}else {
 				ventana.cambiarAPantalla("crearRutina");
-			}
+				}
+				}
 		});
 		botonOp4.setSize(180,29);
 		

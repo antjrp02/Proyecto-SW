@@ -12,7 +12,7 @@ import clases.Usuario;
 
 public class Ventana extends JFrame {
 	private JPanel pantallaActual;
-	protected Usuario usuarioLogeado;
+	public Usuario usuarioLogeado;
 
 	public Ventana() {
 

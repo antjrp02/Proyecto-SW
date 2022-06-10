@@ -170,7 +170,7 @@ public class PantallaMenuCrearRutina extends JPanel{
 		panel.setLayout(gl_panel);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(94, 59, 517, 441);
+		panel_1.setBounds(93, 59, 517, 405);
 		panel_1.setBorder(new LineBorder(Color.WHITE, 2));
 		panel_1.setBackground(Color.WHITE);
 		add(panel_1);
@@ -184,25 +184,6 @@ public class PantallaMenuCrearRutina extends JPanel{
 		lblNewLabel_1.setBounds(0, 0, 517, 37);
 		panel_1.add(lblNewLabel_1);
 		
-		final JComboBox comboRepeticiones = new JComboBox();
-		comboRepeticiones.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
-		comboRepeticiones.setBounds(303, 226, 46, 21);
-		panel_1.add(comboRepeticiones);
-		
-		final JComboBox comboSeries = new JComboBox();
-		comboSeries.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
-		comboSeries.setBounds(441, 226, 41, 21);
-		panel_1.add(comboSeries);
-		final JComboBox comboEjercicios = new JComboBox();
-		comboEjercicios.setModel(new DefaultComboBoxModel(new String[] {""}));
-		comboEjercicios.setBounds(26, 226, 211, 21);
-		panel_1.add(comboEjercicios);
-		if((ventana.usuarioLogeado.getEntrenamiento()+"").equals(TipoEntrenamiento.RESISTENCIA+"")) {
-		
-		comboEjercicios.setModel(new DefaultComboBoxModel(new String[] {"dominada prona con goma", "2", "3", "4"}));
-		
-		panel_1.add(comboEjercicios);
-		}
 		JComboBox comboNumeroEjercicios = new JComboBox();
 		comboNumeroEjercicios.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"}));
 		comboNumeroEjercicios.setBounds(410, 99, 41, 21);
@@ -214,57 +195,22 @@ public class PantallaMenuCrearRutina extends JPanel{
 		lblNewLabel_2.setBounds(155, 99, 211, 17);
 		panel_1.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Ejercicios");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblNewLabel_3.setForeground(Color.WHITE);
-		lblNewLabel_3.setBounds(26, 203, 211, 13);
-		panel_1.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("Repeticiones");
-		 
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblNewLabel_4.setForeground(Color.WHITE);
-		lblNewLabel_4.setBounds(247, 191, 147, 37);
-		panel_1.add(lblNewLabel_4);
-		
-		JLabel lblSeries = new JLabel("Series");
-		lblSeries.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSeries.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblSeries.setForeground(Color.WHITE);
-		lblSeries.setBounds(410, 203, 107, 15);
-		panel_1.add(lblSeries);
-		
-		JButton btGuardar = new JButton("Guardar");
-		btGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Statement smt = UtilsDB.conectarBD();
-				
-				try {
-					smt.executeUpdate(
-							"Update Ejercicio_Dinamico set repeticiones = " + comboRepeticiones.getSelectedItem() + ",series ="+comboSeries.getSelectedItem()+" where nombre = '" + comboEjercicios.getSelectedItem() + "';");
-					
-					EjercicioDinamico ejD = new EjercicioDinamico((String) comboEjercicios.getSelectedItem(), (Byte)comboSeries.getSelectedItem(), (Byte)comboRepeticiones.getSelectedItem());
-					
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				UtilsDB.desconectarBD();
-				JOptionPane.showMessageDialog(ventana,comboSeries.getSelectedItem()+" series de "+comboRepeticiones.getSelectedItem()+" repeticiones"+" de " +comboEjercicios.getSelectedItem(), "Ejercicio Seleccionado: ",
-						JOptionPane.INFORMATION_MESSAGE);
-			}
-		});
-		btGuardar.setBounds(388, 354, 94, 21);
-		panel_1.add(btGuardar);
-		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\2DAM\\Downloads\\calistenia (1).jpg"));
-		lblNewLabel.setBounds(0, -65, 878, 525);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel.setBounds(0, 0, 517, 405);
 		panel_1.add(lblNewLabel);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(75, 172, 311, 144);
+		panel_1.add(scrollPane_1);
+		
+		JPanel panel_2 = new JPanel();
+		scrollPane_1.setViewportView(panel_2);
+		
+		
+		
+	
 
 	}
 }

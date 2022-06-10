@@ -15,11 +15,13 @@ public class Rutina {
 		this.descansoSg = descansoSg;
 		this.fecha = fecha;
 	}
+
+	public boolean añadirEjercicio(Ejercicio e) {
+		return this.ejercicios.add(e);
+	}
 	
-	public void añadirEjercicio(ArrayList<Ejercicio> ejercicios) {
-		
-	
-		
+	public boolean borrarEjercicio(Ejercicio e) {
+		return this.ejercicios.remove(e);
 	}
 	public ArrayList<Ejercicio> getEjercicios() {
 		return ejercicios;
