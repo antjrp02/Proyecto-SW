@@ -183,110 +183,11 @@ public class Usuario extends EntidadConNombre {
 
 		ArrayList<Rutina> rutinas = new ArrayList<Rutina>();
 		rutinas.add(r);
-		System.out.println(rutinas);
+		
 		return rutinas;
 
 	}
 	
-	/**
-	public String mostrarRutinas(Usuario usu) throws SQLException {
-		String ret = "";
-		
-		Statement smt = UtilsDB.conectarBD();
-		ResultSet rutinasUsuario = smt.executeQuery("Select fecha from rutina where usuario ='"+usu.getNombre()+"' ;");
-		LocalDateTime fecha = null;
-		while (rutinasUsuario.next()) {
-			
-			fecha = rutinasUsuario.getTimestamp("fecha").toLocalDateTime();
-			System.out.println(fecha);
-			ret+="------------------------------------";
-			ResultSet ejerciciosRutina = smt.executeQuery("Select usuario from rutina ;");
-			
-			while (ejerciciosRutina.next()) {	
-				/**this.nombre = ejerciciosRutina.getString("nombre");
-				this.repeticiones = ejerciciosRutina.getByte("repeticiones");
-				this. series = ejerciciosRutina.getByte("series");
-				this.eod = ejerciciosRutina.getString("estatico_o_dinamico");
-				
-				this.nombre=ejerciciosRutina.getString("usuario");
-				ret+=nombre;
-				//ret+= series+" series de "+repeticiones+" repeticiones de "+nombre+"\n";
-			
-		}
-		}
-		
-		UtilsDB.desconectarBD();
-		return fecha+"";
-
 	
-	}
-	
-	
-		System.out.println("fuera");
-		System.out.println(rutinas);
-			for(byte i=0;i<rutinas.size();i++) {
-				Rutina rutina = rutinas.get(i);
-				System.out.println("Medio");
-			for (byte j = 0; j < rutina.getEjercicios().size(); j++) {
-				System.out.println("Dentro");
-				Ejercicio ej = rutina.getEjercicios().get(j);
-
-				ResultSet cursor = smt.executeQuery("select tipo from " + ej.getNombre());
-				while (cursor.next()) {
-					if (cursor.equals("dinamico")) {
-						ret = "dinamico";
-					}
-				}
-			}
-			
-		}
-		*/
-		/**
-		for (TipoEntrenamiento clave : rutinas.keySet()) {
-			System.out.println("Medio");
-			Rutina valor = rutinas.get(clave);
-			for (byte i = 0; i < valor.getEjercicios().size(); i++) {
-				System.out.println("Dentro");
-				Ejercicio ej = valor.getEjercicios().get(i);
-
-				ResultSet cursor = smt.executeQuery("select tipo from " + ej.getNombre());
-				while (cursor.next()) {
-					if (cursor.equals("dinamico")) {
-						ret = "dinamico";
-					}
-				}
-			}
-		}
-		
-		
-		
-		 * 
-		 * } try { ResultSet cursor = smt.executeQuery("select tipo from ejercicio");
-		 * while (cursor.next()) { if (cursor.equals("dinamico")) {
-		 * rutinas.getRutinas();
-		 * 
-		 * } else {
-		 * 
-		 * } Rutina rut = new Rutina();
-		 * 
-		 * actual.nombre = cursor.getString("nombre"); actual.contraseña =
-		 * cursor.getString("contrasena"); actual.email = cursor.getString("email");
-		 * actual.añoNacimiento = cursor.getShort("anioNacimiento");
-		 * actual.fechaNacimiento = cursor.getDate("fechaNacimiento").toLocalDate();
-		 * actual.momentoRegistro =
-		 * cursor.getTimestamp("momentoRegistro").toLocalDateTime();
-		 * actual.horaAcostarse = cursor.getTime("horaAcostarse").toLocalTime();
-		 * 
-		 * ret.add(actual); } } catch (SQLException e) { // Si la conuslta falla no hay
-		 * nada que devolver. e.printStackTrace(); return null; } // Si no hay usuarios
-		 * en la tabla, va a devolver un arraylist vacio. // Si la consulta fue erronea
-		 * se devuelve un arraylist null, que son cosas // distintas.
-		 * UtilsDB.desconectarBD(); return ret;
-		 
-		return ret;
-		
-	}
-	
-*/
 	
 }

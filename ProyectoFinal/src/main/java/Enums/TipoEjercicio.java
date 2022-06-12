@@ -1,7 +1,7 @@
 package Enums;
 
 public enum TipoEjercicio {
-	FRON_TLEVER,
+	FRONTLEVER,
 	PLANCHA,
 	FREESTYLE,
 	TIRON,

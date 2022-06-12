@@ -31,13 +31,17 @@ public class EjercicioDinamico extends Ejercicio {
 		
 		UtilsDB.desconectarBD();
 		this.nombre=nombre;
-		
+		this.series=series;
 		this.repeticiones = repeticiones;
 	}
 
 	
 	public EjercicioDinamico() {
 		super();
+	}
+
+	public EjercicioDinamico(String nombreEjercicio) {
+		// TODO Auto-generated constructor stub
 	}
 
 	public byte getRepeticiones() {

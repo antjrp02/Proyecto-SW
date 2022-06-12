@@ -85,7 +85,7 @@ public class PantallaPerfil extends JPanel{
 		JLabel lbEntrenamiento = new JLabel("Entrenamiento: ");
 		lbEntrenamiento.setForeground(new Color(234, 234, 234));
 		lbEntrenamiento.setFont(new Font("Arial", Font.BOLD, 15));
-		lbEntrenamiento.setBounds(46, 187, 117, 33);
+		lbEntrenamiento.setBounds(46, 187, 151, 33);
 		borde.add(lbEntrenamiento);
 		
 		JLabel lbRutinas = new JLabel("N\u00BA rutinas: ");
@@ -95,11 +95,12 @@ public class PantallaPerfil extends JPanel{
 		borde.add(lbRutinas);
 		
 		JLabel lbUsuarioBD = new JLabel(ventana.usuarioLogeado.getNombre());
+		lbUsuarioBD.setFont(new Font("Arial", Font.BOLD, 15));
 		lbUsuarioBD.setForeground(Color.WHITE);
 		lbUsuarioBD.setBounds(283, 37, 151, 14);
 		borde.add(lbUsuarioBD);
 		
-		JLabel lbUbicacionBD = new JLabel(ventana.usuarioLogeado.getUbicacionEntrenamiento());
+		JLabel lbUbicacionBD = new JLabel(ventana.usuarioLogeado.getUbicacionEntrenamiento()+"");
 		lbUbicacionBD.setFont(new Font("Arial", Font.BOLD, 15));
 		lbUbicacionBD.setForeground(Color.WHITE);
 		lbUbicacionBD.setBounds(283, 86, 151, 14);

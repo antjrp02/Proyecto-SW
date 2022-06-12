@@ -13,7 +13,11 @@ import Enums.TipoEntrenamiento;
 import excepciones.NivelVacioException;
 import superClases.EntidadConDificultad;
 import utilsDB.UtilsDB;
-
+/**
+ * 
+ * @author Antonio Jesus Rodriguez
+ *
+ */
 public class Ejercicio extends EntidadConDificultad {
 	private GruposMusculares gruposMusculares;
 	private TipoEjercicio tipoEjercicio;
@@ -141,7 +145,7 @@ public class Ejercicio extends EntidadConDificultad {
 			this.nombre = devuelveDatos.getString("nombre");
 			nombreEjercicio.add(this.nombre);
 			if(nombreEjercicio.size()==127) {
-				System.out.println(nombreEjercicio.size());
+				
 				UtilsDB.desconectarBD();
 				return nombreEjercicio;
 			}
@@ -164,10 +168,35 @@ public class Ejercicio extends EntidadConDificultad {
 		UtilsDB.desconectarBD();
 		return nombreEjercicio;
 	}
+	public ArrayList<Ejercicio> todos() throws SQLException{
+		Statement smt = UtilsDB.conectarBD();
+		ArrayList<Ejercicio>ejercicios=new ArrayList<Ejercicio>();
+		ResultSet devuelveDatos = smt.executeQuery("Select nombre,dificultad,gruposMusculares,tipoEjercicio,usaGoma,descripcion from ejercicios  ;");
+		while (devuelveDatos.next()) {
+			Ejercicio ej = new Ejercicio();
+			ej.nombre = devuelveDatos.getString("nombre");
+			ej.dificultad = Dificultad.valueOf(devuelveDatos.getString("dificultad"));
+			ej.gruposMusculares = GruposMusculares.valueOf(devuelveDatos.getString("gruposMusculares"));
+			ej.tipoEjercicio = TipoEjercicio.valueOf(devuelveDatos.getString("tipoEjercicio"));
+			ej.usaGoma=devuelveDatos.getBoolean("usaGoma");
+			ej.descripcion=devuelveDatos.getString("descripcion");
+			ejercicios.add(ej);
+				if(ejercicios.size()==127) {
+				
+				UtilsDB.desconectarBD();
+				return ejercicios;
+			}
+		}
+		
+		UtilsDB.desconectarBD();
+		return ejercicios;
+		
+		
+	}
 
 	@Override
 	public String toString() {
-		return "Ejercicio: "+nombre+" dificultad: "+dificultad+" musculo mas ejercitado: " + gruposMusculares + "tipo de ejercicio: " + tipoEjercicio + "usa goma: "
+		return "Ejercicio: "+nombre+" dificultad: "+dificultad+" musculo mas ejercitado: " +this. gruposMusculares + "\ntipo de ejercicio: " + this.tipoEjercicio + "usa goma: "
 				+ usaGoma+ "\n descripcion: "+descripcion+"\n";
 	}
 }

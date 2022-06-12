@@ -134,9 +134,6 @@ public class PantallaMenuCrearRutina extends JPanel {
 		panelIzquierda.setBorder(new LineBorder(Color.WHITE, 2));
 		panelIzquierda.setBackground(new Color(37, 42, 52));
 
-		JButton botonEditar = new BotonMenu("Editar");
-		botonEditar.setVerticalAlignment(SwingConstants.TOP);
-
 		BotonMenu botonPerfil = new BotonMenu("Perfil");
 
 		botonPerfil.setVerticalAlignment(SwingConstants.TOP);
@@ -151,21 +148,22 @@ public class PantallaMenuCrearRutina extends JPanel {
 		botonSalir.setText("Salir");
 
 		GroupLayout gl_panelIzquierda = new GroupLayout(panelIzquierda);
-		gl_panelIzquierda.setHorizontalGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+		gl_panelIzquierda.setHorizontalGroup(
+			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
-						.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
-								.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-								.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-								.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-						.addGap(20)));
-		gl_panelIzquierda.setVerticalGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+					.addGap(20))
+		);
+		gl_panelIzquierda.setVerticalGroup(
+			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
-						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
-						.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-						.addGap(37)));
+					.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
+					.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addGap(37))
+		);
 		panelIzquierda.setLayout(gl_panelIzquierda);
 
 		JPanel panel = new JPanel();
@@ -240,8 +238,7 @@ public class PantallaMenuCrearRutina extends JPanel {
 				try {
 					Rutina rutina = new Rutina(ejercicios, segundos, LocalDateTime.now(), ventana.usuarioLogeado);
 					ventana.usuarioLogeado.rutinas(rutina);
-					// rutinas.put(ventana.usuarioLogeado.getEntrenamiento(), rutina);
-					// ventana.usuarioLogeado.getRutinas();
+					
 
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -250,7 +247,7 @@ public class PantallaMenuCrearRutina extends JPanel {
 				JOptionPane.showMessageDialog(ventana, "Rutina creada ", "Rutina creada con exito",
 						JOptionPane.PLAIN_MESSAGE);
 				ventana.cambiarAPantalla("menu");
-				// rutina.imprimirEjercicios(ejercicios);
+				
 
 			}
 
@@ -304,7 +301,7 @@ public class PantallaMenuCrearRutina extends JPanel {
 				|| (ventana.usuarioLogeado.getEntrenamiento()).equals(TipoEntrenamiento.HIPERTROFIA)) {
 
 			comboEjercicios.setModel(new DefaultComboBoxModel(new String[] {}));
-			EjercicioDinamico ejercicio = new EjercicioDinamico();
+			Ejercicio ejercicio = new Ejercicio();
 			try {
 				ArrayList<String> nombreEjercicio = ejercicio.nombreEjercicioTironOEmpuje();
 				for (byte i = 0; i < nombreEjercicio.size(); i++) {
@@ -321,7 +318,7 @@ public class PantallaMenuCrearRutina extends JPanel {
 		if ((ventana.usuarioLogeado.getEntrenamiento()).equals(TipoEntrenamiento.FRONTLEVER)) {
 
 			comboEjercicios.setModel(new DefaultComboBoxModel(new String[] {}));
-			EjercicioDinamico ejercicio = new EjercicioDinamico();
+			Ejercicio ejercicio = new Ejercicio();
 			try {
 				ArrayList<String> nombreEjercicio = ejercicio.nombreEjercicioFront();
 				for (byte i = 0; i < nombreEjercicio.size(); i++) {
@@ -338,7 +335,7 @@ public class PantallaMenuCrearRutina extends JPanel {
 		if ((ventana.usuarioLogeado.getEntrenamiento()).equals(TipoEntrenamiento.MIXTO)) {
 
 			comboEjercicios.setModel(new DefaultComboBoxModel(new String[] {}));
-			EjercicioDinamico ejercicio = new EjercicioDinamico();
+			Ejercicio ejercicio = new Ejercicio();
 			try {
 				ArrayList<String> nombreEjercicio = ejercicio.nombreEjercicio();
 				for (byte i = 0; i < nombreEjercicio.size(); i++) {
@@ -355,7 +352,7 @@ public class PantallaMenuCrearRutina extends JPanel {
 		if ((ventana.usuarioLogeado.getEntrenamiento()).equals(TipoEntrenamiento.PLANCHA)) {
 
 			comboEjercicios.setModel(new DefaultComboBoxModel(new String[] {}));
-			EjercicioDinamico ejercicio = new EjercicioDinamico();
+			Ejercicio ejercicio = new Ejercicio();
 			try {
 				ArrayList<String> nombreEjercicio = ejercicio.nombreEjercicioPlancha();
 				for (byte i = 0; i < nombreEjercicio.size(); i++) {
@@ -392,6 +389,7 @@ public class PantallaMenuCrearRutina extends JPanel {
 					if (estaticoOdinamico.equals("dinamico")) {
 						EjercicioDinamico ejDi = new EjercicioDinamico((String) comboEjercicios.getSelectedItem(),
 								(Byte) comboSeries.getSelectedItem(), (Byte) comboRepeticiones.getSelectedItem());
+						ejD.toString();
 					}
 					if (estaticoOdinamico.equals("estatico")) {
 						EjercicioEstatico ejEs = new EjercicioEstatico((String) comboEjercicios.getSelectedItem(),
@@ -409,6 +407,15 @@ public class PantallaMenuCrearRutina extends JPanel {
 		});
 		btnGuardar.setBounds(401, 159, 85, 21);
 		panelSeleccionarEjercicios.add(btnGuardar);
+		
+		JButton botonEjercicios = new JButton("Info Ejercicios");
+		botonEjercicios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("infoEj");
+			}
+		});
+		botonEjercicios.setBounds(44, 160, 125, 21);
+		panelSeleccionarEjercicios.add(botonEjercicios);
 
 	}
 }

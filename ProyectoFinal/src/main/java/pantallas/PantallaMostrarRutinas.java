@@ -1,6 +1,7 @@
 package pantallas;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
@@ -13,11 +14,15 @@ import javax.swing.SwingConstants;
 
 import elementosvisuales.Boton1;
 import elementosvisuales.Boton2;
+import elementosvisuales.Boton3;
 import elementosvisuales.BotonMenu;
 import elementosvisuales.ElementoListaRutinas;
 
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,7 +63,7 @@ public class PantallaMostrarRutinas extends JPanel{
 		setSize(800, 500);
 		setLayout(null);
 		
-		System.out.println(ventana.usuarioLogeado.getEntrenamiento());
+		
 		JScrollPane scrollPane;
 		scrollPaneDerecha = new JScrollPane();
 		scrollPaneDerecha.setBounds(611, 59, 189, 441);
@@ -129,9 +134,6 @@ public class PantallaMostrarRutinas extends JPanel{
 		panelIzquierda.setBorder(new LineBorder(Color.WHITE, 2));
 		panelIzquierda.setBackground(new Color(37, 42, 52));
 		
-		JButton botonEditar = new BotonMenu("Editar");
-		botonEditar.setVerticalAlignment(SwingConstants.TOP);
-		
 		BotonMenu botonPerfil = new BotonMenu("Perfil");
 		botonPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -155,7 +157,6 @@ public class PantallaMostrarRutinas extends JPanel{
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
 					.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-						.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
 						.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
@@ -163,8 +164,7 @@ public class PantallaMostrarRutinas extends JPanel{
 			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
 					.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(292)
+					.addGap(325)
 					.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 					.addGap(40))
 		);
@@ -203,26 +203,53 @@ public class PantallaMostrarRutinas extends JPanel{
 		
 		JPanel listaRutinas = new JPanel();
 		ScrollPaneRutinas.setViewportView(listaRutinas);
-		listaRutinas.setForeground(Color.PINK);
-		listaRutinas.setBackground(new Color(0, 0, 255));
+		listaRutinas.setForeground(Color.WHITE);
+		listaRutinas.setBackground(new Color(37, 42, 52));
 		ScrollPaneRutinas.setViewportView(listaRutinas);
-		listaRutinas.setLayout(new BoxLayout(listaRutinas, BoxLayout.Y_AXIS));
 		
 		
 		
 			
-		String rutinas="";
-		Rutina rut = new Rutina();
+		
+		final Rutina rut = new Rutina();
 		try {
-			 rutinas=rut.pruebaQuery(ventana.usuarioLogeado);
+			String rutinas=rut.pruebaQuery(ventana.usuarioLogeado);
+			ElementoListaRutinas elementoListaRutinas = new ElementoListaRutinas(ventana,rutinas);
+			elementoListaRutinas.setBounds(0, 0, 530, 70);
+			GridBagLayout gridBagLayout = (GridBagLayout) elementoListaRutinas.getLayout();
+			gridBagLayout.columnWidths = new int[]{0, 0, 0, 432};
+			System.out.println(rutinas);
+			listaRutinas.setLayout(null);
+			listaRutinas.add(elementoListaRutinas);
+			listaRutinas.setPreferredSize(new Dimension(900,200));
+			JButton btnImprimirRutina = new BotonMenu("Imprimir");
+			btnImprimirRutina.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					File archivo = new File("./rutinas.txt");
+					try {
+						FileWriter fW = new FileWriter("./rutinas.txt");
+						archivo.createNewFile();
+						fW.write(rut.pruebaQuery(ventana.usuarioLogeado));
+						fW.flush();
+						fW.close();
+						JOptionPane.showMessageDialog(ventana, "En el archivo rutinas.txt", "Rutinas impresas", JOptionPane.PLAIN_MESSAGE);
+						ventana.cambiarAPantalla("menu");
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
+			btnImprimirRutina.setBounds(368, 373, 143, 25);
+			btnImprimirRutina.setAlignmentX(-40.0f);
+			btnImprimirRutina.setAlignmentY(50.0f);
+			listaRutinas.add(btnImprimirRutina);
 			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		ElementoListaRutinas elementoListaRutinas = new ElementoListaRutinas(ventana,rutinas);
-		System.out.println(rutinas);
-		listaRutinas.add(elementoListaRutinas);
+		
 		
 		
 		

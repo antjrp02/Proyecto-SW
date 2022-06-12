@@ -1,6 +1,7 @@
 package pantallas;
 
 import java.awt.Color;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -9,12 +10,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import clases.Usuario;
+import excepciones.ContraseñaIncorrectaException;
+import excepciones.ContraseñaVaciaException;
+import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioVacioException;
 
 public class Ventana extends JFrame {
 	private JPanel pantallaActual;
 	public Usuario usuarioLogeado;
 
-	public Ventana() {
+	public Ventana(String usuario, String contrasena) throws SQLException,ContraseñaIncorrectaException,UsuarioNoExisteException,UsuarioVacioException 
+	,ContraseñaVaciaException{
 
 		this.setSize(800, 500);
 		this.setLocationRelativeTo(null);
@@ -26,7 +32,11 @@ public class Ventana extends JFrame {
 		this.setResizable(false);
 		this.setVisible(true);
 	}
+	
+	
 
+		
+	
 	public void cambiarAPantalla(String nombrePantalla) {
 		this.pantallaActual.setVisible(false);
 		this.pantallaActual = null;
@@ -55,6 +65,10 @@ public class Ventana extends JFrame {
 			break;
 		case "mostrarRutinas":
 			this.pantallaActual= new PantallaMostrarRutinas(this);
+			break;
+		case "infoEj":
+			this.pantallaActual= new PantallaInformacionEjercicios(this);
+			break;
 		}
 		this.pantallaActual.setVisible(true);
 		this.setContentPane(pantallaActual);

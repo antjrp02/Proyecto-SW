@@ -92,6 +92,11 @@ public class PantallaMenuNivel extends JPanel {
 		;
 
 		JButton botonOp3 = new BotonMenu("New button");
+		botonOp3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("mostrarRutinas");
+			}
+		});
 		botonOp3.setText("Mis rutinas");
 		GroupLayout gl_panelDerecha = new GroupLayout(panelDerecha);
 		gl_panelDerecha.setHorizontalGroup(gl_panelDerecha.createParallelGroup(Alignment.LEADING)
@@ -121,9 +126,6 @@ public class PantallaMenuNivel extends JPanel {
 		panelIzquierda.setBorder(new LineBorder(Color.WHITE, 2));
 		panelIzquierda.setBackground(new Color(37, 42, 52));
 
-		JButton botonEditar = new BotonMenu("Editar");
-		botonEditar.setVerticalAlignment(SwingConstants.TOP);
-
 		BotonMenu botonSalir = new BotonMenu("Salir");
 		botonSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -134,20 +136,26 @@ public class PantallaMenuNivel extends JPanel {
 		botonSalir.setText("Salir");
 
 		BotonMenu botonPerfil = new BotonMenu("Perfil");
+		botonPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("perfil");
+			}
+		});
 
 		botonPerfil.setVerticalAlignment(SwingConstants.TOP);
 		GroupLayout gl_panelIzquierda = new GroupLayout(panelIzquierda);
-		gl_panelIzquierda.setHorizontalGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+		gl_panelIzquierda.setHorizontalGroup(
+			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE));
-		gl_panelIzquierda.setVerticalGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+				.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+		);
+		gl_panelIzquierda.setVerticalGroup(
+			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
-						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(292).addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)));
+					.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addGap(325)
+					.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		);
 		panelIzquierda.setLayout(gl_panelIzquierda);
 
 		JPanel panel = new JPanel();
@@ -237,7 +245,7 @@ public class PantallaMenuNivel extends JPanel {
 				}
 			}
 		});
-		botonNivel.setBounds(94, 148, 126, 23);
+		botonNivel.setBounds(94, 148, 163, 23);
 		panel_1.add(botonNivel);
 
 		JLabel labelNivel = new JLabel("Selecciona tu Nivel");

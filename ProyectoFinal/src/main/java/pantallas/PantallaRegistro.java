@@ -54,11 +54,6 @@ public class PantallaRegistro extends JPanel {
 		lblNewLabel_2.setForeground(new Color(8, 217, 214));
 		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 40));
 		add(lblNewLabel_2);
-		
-		
-		JButton botonRegistro = new Boton2("Registrarme");
-		botonRegistro.setBounds(60, 372, 130, 21);
-		add(botonRegistro);
 		JLabel yerayPinito = new JLabel("New label");
 		yerayPinito.setIcon(new ImageIcon("./yerai.png"));
 		yerayPinito.setBounds(483, -23, 365, 539);
@@ -72,7 +67,7 @@ public class PantallaRegistro extends JPanel {
 		borde.setLayout(null);
 		
 		JButton botonAtras = new Boton3("Atrás");
-		botonAtras.setBounds(416, 259, 77, 21);
+		botonAtras.setBounds(393, 259, 100, 21);
 		borde.add(botonAtras);
 		
 		
@@ -112,16 +107,11 @@ public class PantallaRegistro extends JPanel {
 		
 		listaUbicacion.setBounds(167, 113, 285, 21);
 		borde.add(listaUbicacion);
-		botonAtras.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarAPantalla("login");
-			}
-		});
-		GridBagConstraints gbc_botonAtras = new GridBagConstraints();
-		gbc_botonAtras.anchor = GridBagConstraints.EAST;
-		gbc_botonAtras.gridx = 5;
-		gbc_botonAtras.gridy = 10;
+		
+		
+		JButton botonRegistro = new Boton2("Registrarme");
+		botonRegistro.setBounds(23, 259, 130, 21);
+		borde.add(botonRegistro);
 		
 		
 		botonRegistro.addMouseListener(new MouseAdapter() {
@@ -154,6 +144,16 @@ public class PantallaRegistro extends JPanel {
 				
 			}
 		});
+		botonAtras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla("login");
+			}
+		});
+		GridBagConstraints gbc_botonAtras = new GridBagConstraints();
+		gbc_botonAtras.anchor = GridBagConstraints.EAST;
+		gbc_botonAtras.gridx = 5;
+		gbc_botonAtras.gridy = 10;
 		
 	}
 }

@@ -45,44 +45,9 @@ public class Rutina {
 
 		UtilsDB.desconectarBD();
 
-		/**
-		 * 
-		 * Statement smt = UtilsDB.conectarBD(); ResultSet cursor;
-		 * 
-		 * try { cursor = smt.executeQuery("select * from rutina where usuario='" +
-		 * 
-		 * usuario.getNombre() + "'"); if (cursor.next()) {
-		 * 
-		 * 
-		 * 
-		 * UtilsDB.desconectarBD();
-		 * 
-		 * 
-		 * 
-		 * this.usuario= new Usuario(cursor.getString("Usuario")); this.descansoSg =
-		 * cursor.getInt("descansoSg"); this.fecha =
-		 * cursor.getTimestamp("fecha").toLocalDateTime();
-		 * 
-		 * } else {
-		 * 
-		 * UtilsDB.desconectarBD();
-		 * 
-		 * throw new UsuarioNoExisteException("El nombre de usuario no existe");
-		 * 
-		 * }
-		 * 
-		 * UtilsDB.desconectarBD(); } catch (SQLException | UsuarioNoExisteException e)
-		 * { // TODO Auto-generated catch block e.printStackTrace(); }
-		 */
-
+		
 	}
 
-	public void imprimirEjercicios(ArrayList<Ejercicio> ejercicios) {
-		for (int i = 0; i < ejercicios.size(); i++) {
-			System.out.println(ejercicios.get(i));
-		}
-
-	}
 
 	public Rutina() {
 		// Genera rutina vacía OJO: INICIALIZAR ARRAYLIST
@@ -91,7 +56,6 @@ public class Rutina {
 	public void añadirEjercicio(Ejercicio e) {
 		ArrayList<Ejercicio> ejercicios = new ArrayList<Ejercicio>();
 		ejercicios.add(e);
-		System.out.println("Ejercicio añadido al arrayList");
 
 	}
 
@@ -135,40 +99,9 @@ public class Rutina {
 	}
 	
 	
-	public String mostrarRutinas(Usuario usu) throws SQLException {
-		String ret = "";
-		
-		Statement smt = UtilsDB.conectarBD();
-		ResultSet rutinasUsuario = smt.executeQuery("Select fecha from rutina where usuario ='"+usu.getNombre()+"' ;");
-		LocalDateTime fecha = null;
-		while (rutinasUsuario.next()) {
-			
-			this.fecha = rutinasUsuario.getTimestamp("fecha").toLocalDateTime();
-			System.out.println(fecha);
-			ret+="------------------------------------";
-			String select_query="Select usuario from rutina ;";
-			ResultSet ejerciciosRutina = smt.executeQuery(select_query);
-			
-			while (ejerciciosRutina.next()) {	
-				/**this.nombre = ejerciciosRutina.getString("nombre");
-				this.repeticiones = ejerciciosRutina.getByte("repeticiones");
-				this. series = ejerciciosRutina.getByte("series");
-				this.eod = ejerciciosRutina.getString("estatico_o_dinamico");
-				*/
-				this.nombreEjercicio=ejerciciosRutina.getString("usuario");
-				ret+=nombreEjercicio;
-				//ret+= series+" series de "+repeticiones+" repeticiones de "+nombre+"\n";
-			
-		}
-		}
-		
-		UtilsDB.desconectarBD();
-		return fecha+"";
-
 	
-	}
-	public ArrayList<Ejercicio> pruebaQuery(Usuario usu) throws SQLException {
-		
+	public String pruebaQuery(Usuario usu) throws SQLException {
+		String ret="";
 		Statement smt = UtilsDB.conectarBD();
 		ResultSet rutinasUsuario = smt.executeQuery("Select fecha from rutina where usuario ='"+usu.getNombre()+"';");
 		ArrayList<LocalDateTime> fechaEjercicio = new ArrayList<LocalDateTime>();
@@ -189,7 +122,17 @@ public class Rutina {
 				this.nombreEjercicio = ejerciciosRutina.getString("nombreEjercicio");
 				this.repeticiones = ejerciciosRutina.getByte("repeticiones");
 				this.series = ejerciciosRutina.getByte("series");
+				if(ret.contains(fechaEjercicio.get(i)+"")) {
 				
+				}
+				else {
+				ret+="Fecha de la rutina: "+fecha+"\n\n";
+				}
+				if(ret.contains(nombreEjercicio)) {
+					
+				}else {
+				ret+=" Ejercicios: "+this.nombreEjercicio+" series: "+this.series+" repeticiones: "+this.repeticiones+"\n";
+				}
 				
 			}
 		

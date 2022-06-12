@@ -90,6 +90,11 @@ public class PantallaMenuEntrenamiento extends JPanel {
 		botonOp4.setSize(180, 29);
 
 		JButton botonOp3 = new BotonMenu("Mis rutinas");
+		botonOp3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("mostrarRutinas");
+			}
+		});
 		GroupLayout gl_panelDerecha = new GroupLayout(panelDerecha);
 		gl_panelDerecha.setHorizontalGroup(gl_panelDerecha.createParallelGroup(Alignment.LEADING)
 				.addComponent(botonSNivel, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
@@ -118,10 +123,12 @@ public class PantallaMenuEntrenamiento extends JPanel {
 		panelIzquierda.setBorder(new LineBorder(Color.WHITE, 2));
 		panelIzquierda.setBackground(new Color(37, 42, 52));
 
-		JButton botonEditar = new BotonMenu("Editar");
-		botonEditar.setVerticalAlignment(SwingConstants.TOP);
-
 		BotonMenu botonPerfil = new BotonMenu("Perfil");
+		botonPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("perfil");
+			}
+		});
 
 		botonPerfil.setVerticalAlignment(SwingConstants.TOP);
 
@@ -135,21 +142,22 @@ public class PantallaMenuEntrenamiento extends JPanel {
 		botonSalir.setText("Salir");
 
 		GroupLayout gl_panelIzquierda = new GroupLayout(panelIzquierda);
-		gl_panelIzquierda.setHorizontalGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+		gl_panelIzquierda.setHorizontalGroup(
+			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
-						.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
-								.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-								.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-								.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-						.addGap(20)));
-		gl_panelIzquierda.setVerticalGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+					.addGap(20))
+		);
+		gl_panelIzquierda.setVerticalGroup(
+			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
-						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(botonEditar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
-						.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-						.addGap(37)));
+					.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
+					.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addGap(37))
+		);
 		panelIzquierda.setLayout(gl_panelIzquierda);
 
 		JPanel panel = new JPanel();
@@ -182,7 +190,7 @@ public class PantallaMenuEntrenamiento extends JPanel {
 		JButton botonMusica = new BotonConSonido("");
 		botonMusica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
 			}
 
 		});

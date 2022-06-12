@@ -14,9 +14,12 @@ import javax.swing.SwingConstants;
 import elementosvisuales.Boton1;
 import elementosvisuales.Boton2;
 import elementosvisuales.BotonMenu;
+import elementosvisuales.ElementoListaEjercicios;
 
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -28,6 +31,9 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
+
+import clases.Ejercicio;
+
 import java.awt.Insets;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -35,18 +41,18 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
 
-public class PantallaMenu extends JPanel{
+public class PantallaInformacionEjercicios extends JPanel{
 	private Ventana ventana;
 	
 	
-	public PantallaMenu(Ventana v) {
+	public PantallaInformacionEjercicios(Ventana v) {
 		setBorder(null);
 		setBackground(new Color(37, 42, 52));
 		this.ventana = v;
 		setSize(800, 500);
 		setLayout(null);
 		
-		
+		System.out.println(ventana.usuarioLogeado.getEntrenamiento());
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(611, 59, 189, 441);
 		add(scrollPane);
@@ -54,7 +60,7 @@ public class PantallaMenu extends JPanel{
 		JPanel panelDerecha = new JPanel();
 		panelDerecha.setBorder(new LineBorder(Color.WHITE, 2));
 		panelDerecha.setBackground(new Color(37, 42, 52));
-		scrollPane.setViewportView(panelDerecha);
+		scrollPane.setRowHeaderView(panelDerecha);
 		
 		JButton botonSNivel = new BotonMenu("Seleccionar Nivel");
 		botonSNivel.addActionListener(new ActionListener() {
@@ -89,13 +95,21 @@ public class PantallaMenu extends JPanel{
 				ventana.cambiarAPantalla("mostrarRutinas");
 			}
 		});
+		
+		BotonMenu botonCerrar = new BotonMenu("Salir");
+		botonCerrar.setVerticalAlignment(SwingConstants.TOP);
+		botonCerrar.setText("Cerrar");
 		GroupLayout gl_panelDerecha = new GroupLayout(panelDerecha);
 		gl_panelDerecha.setHorizontalGroup(
 			gl_panelDerecha.createParallelGroup(Alignment.LEADING)
-				.addComponent(botonSNivel, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonSEntrenamiento, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonOp4, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonOp3, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+				.addGroup(gl_panelDerecha.createSequentialGroup()
+					.addGroup(gl_panelDerecha.createParallelGroup(Alignment.LEADING)
+						.addComponent(botonSNivel, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonSEntrenamiento, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonOp4, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonOp3, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonCerrar, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		gl_panelDerecha.setVerticalGroup(
 			gl_panelDerecha.createParallelGroup(Alignment.LEADING)
@@ -103,7 +117,10 @@ public class PantallaMenu extends JPanel{
 					.addComponent(botonSNivel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					.addComponent(botonSEntrenamiento, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 					.addComponent(botonOp4, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addComponent(botonOp3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+					.addComponent(botonOp3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+					.addComponent(botonCerrar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addGap(41))
 		);
 		panelDerecha.setLayout(gl_panelDerecha);
 		
@@ -111,51 +128,6 @@ public class PantallaMenu extends JPanel{
 		list.setBounds(0, 500, 800, 0);
 		list.setBackground(Color.BLACK);
 		add(list);
-		
-		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(0, 59, 94, 441);
-		add(scrollPane_2);
-		
-		JPanel panelIzquierda = new JPanel();
-		scrollPane_2.setRowHeaderView(panelIzquierda);
-		panelIzquierda.setBorder(new LineBorder(Color.WHITE, 2));
-		panelIzquierda.setBackground(new Color(37, 42, 52));
-		
-		BotonMenu botonPerfil = new BotonMenu("Perfil");
-		botonPerfil.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ventana.cambiarAPantalla("perfil");
-			}
-		});
-		
-		botonPerfil.setVerticalAlignment(SwingConstants.TOP);
-		
-		BotonMenu botonCerrar = new BotonMenu("Salir");
-		botonCerrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ventana.cambiarAPantalla("login");
-			}
-		});
-		botonCerrar.setVerticalAlignment(SwingConstants.TOP);
-		botonCerrar.setText("Cerrar");
-		GroupLayout gl_panelIzquierda = new GroupLayout(panelIzquierda);
-		gl_panelIzquierda.setHorizontalGroup(
-			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelIzquierda.createSequentialGroup()
-					.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
-						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-						.addComponent(botonCerrar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-		);
-		gl_panelIzquierda.setVerticalGroup(
-			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelIzquierda.createSequentialGroup()
-					.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addGap(325)
-					.addComponent(botonCerrar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-					.addGap(40))
-		);
-		panelIzquierda.setLayout(gl_panelIzquierda);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 800, 59);
@@ -182,21 +154,35 @@ public class PantallaMenu extends JPanel{
 		);
 		panel.setLayout(gl_panel);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(94, 59, 517, 441);
-		panel_1.setBorder(new LineBorder(Color.WHITE, 2));
-		panel_1.setBackground(Color.WHITE);
-		add(panel_1);
-		panel_1.setLayout(null);
+		JScrollPane scrollPaneEjercicios = new JScrollPane();
+		scrollPaneEjercicios.setBounds(0, 59, 611, 441);
+		add(scrollPaneEjercicios);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("./images (2).jpg"));
-		lblNewLabel.setBounds(0, -240, 921, 1074);
-		panel_1.add(lblNewLabel);
+		JLabel lblNewLabel = new JLabel("Informacion Ejercicios");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		scrollPaneEjercicios.setColumnHeaderView(lblNewLabel);
+		
+		JPanel listaEjercicios = new JPanel();
+		scrollPaneEjercicios.setViewportView(listaEjercicios);
+		listaEjercicios.setLayout(new BoxLayout(listaEjercicios, BoxLayout.Y_AXIS));
+		Ejercicio ej = new Ejercicio();
+		
+		try {
+			ArrayList<Ejercicio>ejercicios=ej.todos();
+			for(byte i=0;i<ejercicios.size();i++) {
+				listaEjercicios.add(new ElementoListaEjercicios(ventana,ejercicios.get(i).toString()));
+				
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		
 		
 		
+	
 		
 	}
 }

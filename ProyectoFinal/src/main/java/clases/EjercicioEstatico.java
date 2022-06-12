@@ -33,6 +33,12 @@ public class EjercicioEstatico extends Ejercicio {
 		this.aguanteSg = aguanteSg;
 	}
 	
+	public EjercicioEstatico(String nombreEjercicio) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public byte getAguanteSg() {
 		return aguanteSg;
 	}
