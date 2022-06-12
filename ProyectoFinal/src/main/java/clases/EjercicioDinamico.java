@@ -12,7 +12,7 @@ import utilsDB.UtilsDB;
 
 public class EjercicioDinamico extends Ejercicio {
 	private byte repeticiones;
-	private String nombreEjercicio;
+
 
 	public EjercicioDinamico(String nombre, Dificultad dificultad, GruposMusculares gruposMusculares,
 			TipoEjercicio tipoEjercicio, boolean usaGoma, boolean realizado, byte series, byte repeticiones) throws SQLException {
@@ -30,7 +30,7 @@ public class EjercicioDinamico extends Ejercicio {
 				"Update ejercicio_dinamico set repeticiones = '" + repeticiones + "' where nombre = '" + nombre + "';");
 		
 		UtilsDB.desconectarBD();
-		this.nombreEjercicio=nombre;
+		this.nombre=nombre;
 		
 		this.repeticiones = repeticiones;
 	}

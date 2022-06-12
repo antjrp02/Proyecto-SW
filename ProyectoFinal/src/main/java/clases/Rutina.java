@@ -167,14 +167,15 @@ public class Rutina {
 
 	
 	}
-	public String pruebaQuery(Usuario usu) throws SQLException {
-		String ret="";
+	public ArrayList<Ejercicio> pruebaQuery(Usuario usu) throws SQLException {
+		
 		Statement smt = UtilsDB.conectarBD();
 		ResultSet rutinasUsuario = smt.executeQuery("Select fecha from rutina where usuario ='"+usu.getNombre()+"';");
 		ArrayList<LocalDateTime> fechaEjercicio = new ArrayList<LocalDateTime>();
 		while (rutinasUsuario.next()) {
 			
 			this.fecha= rutinasUsuario.getTimestamp("fecha").toLocalDateTime();
+			
 			fechaEjercicio.add(fecha);
 			
 		}
@@ -190,13 +191,10 @@ public class Rutina {
 				this.series = ejerciciosRutina.getByte("series");
 				
 				
-				ret+="Ejercicio: "+this.nombreEjercicio+" series: "+this.series+" repeticiones: "+this.repeticiones+"\n";
-				
-				
 			}
 		
 		}
-		System.out.println(ret);
+		
 		return ret;
 	}
 	

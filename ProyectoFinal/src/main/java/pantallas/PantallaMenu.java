@@ -86,7 +86,7 @@ public class PantallaMenu extends JPanel{
 		JButton botonOp3 = new BotonMenu("Mis rutinas");
 		botonOp3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ventana.cambiarAPantalla("mostrar rutinas");
+				ventana.cambiarAPantalla("mostrarRutinas");
 			}
 		});
 		GroupLayout gl_panelDerecha = new GroupLayout(panelDerecha);

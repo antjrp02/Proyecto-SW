@@ -118,7 +118,7 @@ public class Ejercicio extends EntidadConDificultad {
 		
 		UtilsDB.desconectarBD();
 		return estatico_o_dinamico;
-
+		
 	}
 	public ArrayList<String> nombreEjercicioFront() throws SQLException {
 

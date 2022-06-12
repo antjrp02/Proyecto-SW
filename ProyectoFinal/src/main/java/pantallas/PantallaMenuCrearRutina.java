@@ -41,6 +41,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import Enums.TipoEntrenamiento;
 import clases.Ejercicio;
 import clases.EjercicioDinamico;
+import clases.EjercicioEstatico;
 import clases.Rutina;
 import clases.Usuario;
 
@@ -102,13 +103,7 @@ public class PantallaMenuCrearRutina extends JPanel {
 		JButton botonRutinas = new BotonMenu("Mis rutinas");
 		botonRutinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					Rutina rut = new Rutina();
-					rut.pruebaQuery(ventana.usuarioLogeado);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				ventana.cambiarAPantalla("mostrarRutinas");
 			}
 		});
 		GroupLayout gl_panelDerecha = new GroupLayout(panelDerecha);
@@ -393,13 +388,14 @@ public class PantallaMenuCrearRutina extends JPanel {
 					Ejercicio ejD = new Ejercicio((String) comboEjercicios.getSelectedItem(),
 							(Byte) comboSeries.getSelectedItem());
 					String estaticoOdinamico = ejD.estaticoODinamico();
-
+					
 					if (estaticoOdinamico.equals("dinamico")) {
 						EjercicioDinamico ejDi = new EjercicioDinamico((String) comboEjercicios.getSelectedItem(),
 								(Byte) comboSeries.getSelectedItem(), (Byte) comboRepeticiones.getSelectedItem());
 					}
 					if (estaticoOdinamico.equals("estatico")) {
-
+						EjercicioEstatico ejEs = new EjercicioEstatico((String) comboEjercicios.getSelectedItem(),
+								(Byte) comboSeries.getSelectedItem(), (Byte) comboRepeticiones.getSelectedItem());
 					}
 					Ejercicio ej = new Ejercicio(ejD.getNombre(), ventana.usuarioLogeado);
 					ejercicios.add(ejD);

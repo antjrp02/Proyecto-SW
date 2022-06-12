@@ -355,7 +355,7 @@ select * from Rutina where usuario="1";
 select * from ejercicio_dinamico;
 select er.nombreEjercicio,e.series, ed.repeticiones 
 from ejercicios_rutina er,ejercicios e,ejercicio_Dinamico ed,rutina r  
-where  r.fecha="2022-06-12 07:17:48" , er.nombreEjercicio = e.nombre and ed.nombre=er.nombreEjercicio;
+where  r.fecha="2022-06-12 07:17:48" and er.nombreEjercicio = e.nombre and ed.nombre=er.nombreEjercicio;
 
 Select e.nombre,ed.repeticiones,e.series,e.estatico_o_dinamico from ejercicios e,rutina r,ejercicios_rutina er,ejercicio_dinamico ed where r.fecha ="2022-06-12 02:04:24" and ed.nombre=er.nombreEjercicio and ed.nombre=er.nombreEjercicio;
 select usuario from rutina;
@@ -425,13 +425,15 @@ foreign key (usuario) references usuario(nombre)on delete cascade,
 primary key(usuario,fecha)
 );
 
+
 create table ejercicios_rutina(
 usuario varchar(40),
 nombreEjercicio varchar(60),
 foreign key (usuario) references usuario(nombre),
 Foreign key (nombreEjercicio) references ejercicios(nombre) on delete cascade
 );
-
+select estatico_o_dinamico from ejercicios e,ejercicios_rutina er,rutina r where r.usuario="1" and e.nombre=er.nombreEjercicio;
+select * from ejercicio_Estatico;
 create table entrenamiento(
 Usuario varchar(40)primary key,
 tipoEntrenamiento Varchar(40),

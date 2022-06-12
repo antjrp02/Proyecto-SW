@@ -18,6 +18,7 @@ import elementosvisuales.ElementoListaRutinas;
 
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
@@ -33,6 +34,7 @@ import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 
 import Enums.TipoEntrenamiento;
+import clases.Ejercicio;
 import clases.Rutina;
 import clases.Usuario;
 
@@ -193,22 +195,34 @@ public class PantallaMostrarRutinas extends JPanel{
 		);
 		panel.setLayout(gl_panel);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(94, 59, 517, 441);
-		panel_1.setBorder(new LineBorder(Color.WHITE, 2));
-		panel_1.setBackground(new Color(37, 42, 52));
-		add(panel_1);
-		panel_1.setLayout(null);
+		
+		
+		JScrollPane ScrollPaneRutinas = new JScrollPane();
+		ScrollPaneRutinas.setBounds(92, 59, 523, 441);
+		add(ScrollPaneRutinas);
+		
+		JPanel listaRutinas = new JPanel();
+		ScrollPaneRutinas.setViewportView(listaRutinas);
+		listaRutinas.setForeground(Color.PINK);
+		listaRutinas.setBackground(new Color(0, 0, 255));
+		ScrollPaneRutinas.setViewportView(listaRutinas);
+		listaRutinas.setLayout(new BoxLayout(listaRutinas, BoxLayout.Y_AXIS));
 		
 		
 		
-		JScrollPane scrollPaneRutinas;
-		scrollPaneRutinas = new JScrollPane();
-		add(scrollPaneRutinas, BorderLayout.CENTER);
-		
-		JPanel listaUsuarios = new JPanel();
-		scrollPaneRutinas.setViewportView(listaUsuarios);
-		listaUsuarios.setLayout(new BoxLayout(listaUsuarios, BoxLayout.Y_AXIS));
+			
+		String rutinas="";
+		Rutina rut = new Rutina();
+		try {
+			 rutinas=rut.pruebaQuery(ventana.usuarioLogeado);
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		ElementoListaRutinas elementoListaRutinas = new ElementoListaRutinas(ventana,rutinas);
+		System.out.println(rutinas);
+		listaRutinas.add(elementoListaRutinas);
 		
 		
 		
