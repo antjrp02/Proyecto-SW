@@ -49,13 +49,23 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
-
+/**
+ * Clase que crea la pantalla en la cual podemos ver todas las rutinas creadads por el usuario
+ * @author Antonio Jesus
+ *
+ */
 public class PantallaMostrarRutinas extends JPanel{
+	//Ventana donde se mostrara la pantalla para mostrar las rutinas
 	private Ventana ventana;
+	//ScrollPAne el cual aparecera en la derecha y tiene botones dentro para recorrer otras pantallas.
 	private JScrollPane scrollPaneDerecha;
+	//ScrollPAne el cual aparecera en la izquierda y tiene botones dentro para recorrer otras pantallas.
 	private JScrollPane scrollPaneRutinas;
 	
-	
+	/**
+	 * Constructor el cual creara la pantalla para poder ver todas las rutinas del usuario.
+	 * @param v Ventana donde se mostrara la pantalla de la app
+	 */
 	public PantallaMostrarRutinas(Ventana v) {
 		setBorder(null);
 		setBackground(new Color(37, 42, 52));
@@ -76,6 +86,7 @@ public class PantallaMostrarRutinas extends JPanel{
 		
 		JButton botonSNivel = new BotonMenu("Seleccionar Nivel");
 		botonSNivel.addActionListener(new ActionListener() {
+			//Funcion que al hacer clic en el botonSNivel nos llevará a la ventana para seleccionarNivel
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("nivel");
 			}
@@ -84,6 +95,7 @@ public class PantallaMostrarRutinas extends JPanel{
 		JButton botonSEntrenamiento = new BotonMenu("Entrenamientos");
 		botonSEntrenamiento.setSize(180,29);
 		botonSEntrenamiento.addActionListener(new ActionListener() {
+			//Funcion que al hacer clic en el botonSEntrenamiento nos llevará a la ventana para seleccionar Entrenamiento
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("entrenamiento");
 			}
@@ -92,6 +104,8 @@ public class PantallaMostrarRutinas extends JPanel{
 		JButton botonOp4 = new BotonMenu("Crear Rutinas");
 		botonOp4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Boton que si el entrenamiento y el nivel están seleccionados, nos llevará a la pantalla para crear las rutinas, 
+				//si no, saldra una ventana de error referenciando a que no se han seleccionado los campos nivel y o entrenamiento
 				if(ventana.usuarioLogeado.getEntrenamiento()==null||ventana.usuarioLogeado.getNivel()==0) {
 					JOptionPane.showMessageDialog(ventana,"Nivel o entrenamiento no seleccionados","Error",JOptionPane.ERROR_MESSAGE);
 				}else {
@@ -136,6 +150,7 @@ public class PantallaMostrarRutinas extends JPanel{
 		
 		BotonMenu botonPerfil = new BotonMenu("Perfil");
 		botonPerfil.addActionListener(new ActionListener() {
+			//Boton que al hacer clic sbre el botonPErfil nos llevará a la pantalla donde estan los datos del usuario que ha iniciado sesion
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("perfil");
 			}
@@ -145,6 +160,7 @@ public class PantallaMostrarRutinas extends JPanel{
 		
 		BotonMenu botonSalir = new BotonMenu("Salir");
 		botonSalir.addActionListener(new ActionListener() {
+			//Boton que al hacer clic sbre el botonSalir nos llevará al menu del programa
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("menu");
 			}
@@ -218,12 +234,16 @@ public class PantallaMostrarRutinas extends JPanel{
 			elementoListaRutinas.setBounds(0, 0, 530, 70);
 			GridBagLayout gridBagLayout = (GridBagLayout) elementoListaRutinas.getLayout();
 			gridBagLayout.columnWidths = new int[]{0, 0, 0, 432};
-			System.out.println(rutinas);
+			
 			listaRutinas.setLayout(null);
 			listaRutinas.add(elementoListaRutinas);
 			listaRutinas.setPreferredSize(new Dimension(900,200));
 			JButton btnImprimirRutina = new BotonMenu("Imprimir");
 			btnImprimirRutina.addActionListener(new ActionListener() {
+				/**
+				 * Funcion que al hacer clic en el boton btnImprimirRutina se guardará la rutina en un fichero de texto llamado rutinas.txt
+				 * @param e evento de hacer clic
+				 */
 				public void actionPerformed(ActionEvent e) {
 					File archivo = new File("./rutinas.txt");
 					try {

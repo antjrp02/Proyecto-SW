@@ -17,11 +17,18 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
-
+/**
+ * Clase que crea una pantalla con todos los datos del usuario.
+ * @author Antonio Jesus
+ *
+ */
 public class PantallaPerfil extends JPanel{
-	
+	//Ventana donde se mostrara la pantalla
 	private Ventana ventana;
-
+	/**
+	 * Constructor que creara todos los Campos de la PantallaPerfil
+	 * @param v Ventana donde se creara la pantalla.
+	 */
 	public PantallaPerfil(Ventana v) {
 		setBorder(null);
 		setBackground(new Color(37, 42, 52));
@@ -123,6 +130,9 @@ public class PantallaPerfil extends JPanel{
 		add(botonSalir);
 		
 		botonSalir.addActionListener(new ActionListener() {
+			/**
+			 * Funcion que al hacerClic sobre el botonSalir, nos llevará al menú de la aplicacion.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("menu");
 			}

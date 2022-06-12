@@ -19,9 +19,16 @@ import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioVacioException;
 import pantallas.Ventana;
 import utilsDB.UtilsDB;
-
+/**
+ * Clase principal donde se desarrollara la aplicacion
+ * @author Antonio Jesus
+ *
+ */
 public class Main {
-
+/**
+ * 
+ * @param args en uso, se le pasa por parametros el nombre de usuario y la contraseña para que inicie sesion automaticamente, si no se le pasan argumentos por parametros,se iniciara sesion de forma normal
+ */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String usuario = null;
@@ -34,7 +41,7 @@ public class Main {
 
 			}
 			if (args[i].equals("-contraseña")) {
-				contraseña = args[i + 1];
+				contraseña = args[i ];
 			}
 		}
 		try {

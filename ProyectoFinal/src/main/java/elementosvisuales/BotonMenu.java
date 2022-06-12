@@ -7,7 +7,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-
+/**
+ * Constructor que le da las caracteristicas al botom¡n
+ * @param m String para el mensaje que queramos dentro
+ */
 public class BotonMenu extends JButton {
 	public BotonMenu(String m) {
 		super(m);
@@ -15,6 +18,7 @@ public class BotonMenu extends JButton {
 
 		this.addMouseListener(new MouseAdapter() {
 			@Override
+			//Esta funcion se encarga de que si el cursor está encima del boton, este cambie
 			public void mouseEntered(MouseEvent e) {
 
 				setBackground(new Color(150, 10, 30));
@@ -23,12 +27,15 @@ public class BotonMenu extends JButton {
 			}
 
 			@Override
+			//Y una vez que ya no está el cursor encima del boton,lo devuelve por defecto
 			public void mouseExited(MouseEvent e) {
 				estiloPorDefecto();
 			}
 		});
 	}
-
+	/**
+	 * Esta funcion devuelde por defecto los valores del boton
+	 */
 	private void estiloPorDefecto() {
 		this.setBackground(new Color(255, 46, 99));
 		this.setForeground(new Color(255,255,255));

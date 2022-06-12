@@ -38,11 +38,25 @@ import javax.swing.border.LineBorder;
 import clases.Usuario;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
-
+/**
+ * 
+ * @author Antonio Jesus
+ * La clase PantallaRegistro creara la pantalla con la cual podremos insertar usuarios en la base de datos y poder registrarnos con el en la app
+ *
+ */
 public class PantallaRegistro extends JPanel {
+	//campoUsuario es un textField, en el cual insertaremos el nombre de usuario
 	private JTextField campoUsuario;
+	//campoContraseña es el campo donde insertaremos la contraseña, la diferencia entre JTextField y un JPasswordField es que este no mostrara el contenido al escribirlo
 	private JPasswordField campoContraseña;
+	//ventana de Tipo Venntana, en la cual aparecera la pantalla de registro
 	private Ventana ventana;
+	/**
+	 * Constructor que crea la pantalla de registro, en la cual insertaremos los datos que nos pide e insertará el usuario en la base de dato y 
+	 * ya podremo iniciar sesion con el.
+	 * 
+	 * @param v es la Ventana en la cual apareceran todos los campos de la pantalla.
+	 */
 	public PantallaRegistro(Ventana v) {
 		setBackground(new Color(37, 42, 52));
 		this.ventana = v;
@@ -116,13 +130,16 @@ public class PantallaRegistro extends JPanel {
 		
 		botonRegistro.addMouseListener(new MouseAdapter() {
 			@Override
+			/**
+			 * Funcion, la cual al hacer clic sobre el botonRegistro, almacenara los datos del usuario en la base de datos.
+			 */
 			public void mouseClicked(MouseEvent e) {
 				
 					
 					String nombre = new String(campoUsuario.getText());
 					String contraseña = new String(campoContraseña.getPassword());
 					String ubicacion = (String) listaUbicacion.getSelectedItem();
-					System.out.println(ubicacion);
+					
 
 					try {
 						Usuario u = new Usuario(nombre, contraseña, ubicacion);
@@ -146,6 +163,9 @@ public class PantallaRegistro extends JPanel {
 		});
 		botonAtras.addMouseListener(new MouseAdapter() {
 			@Override
+			/**
+			 * Funcion, la cual al hacer clic sobre el botonAtras, nos llevará a la pantalla de login.
+			 */
 			public void mouseClicked(MouseEvent e) {
 				ventana.cambiarAPantalla("login");
 			}

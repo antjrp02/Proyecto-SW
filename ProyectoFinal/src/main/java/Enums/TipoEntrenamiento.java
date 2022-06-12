@@ -1,12 +1,9 @@
 package Enums;
 
 public enum TipoEntrenamiento {
-		
-	FRONTLEVER,
-	PLANCHA,
-	HIPERTROFIA,
-	RESISTENCIA,
-	AUMENTOREPETICIONES,
-	MIXTO,//(Mixto entre Resistencia y Tension).
-	
+	/**
+	 * Enum en el que puedes seleccionar tu tupo de entrenamiento
+	 */
+	FRONTLEVER, PLANCHA, HIPERTROFIA, RESISTENCIA, AUMENTOREPETICIONES, MIXTO,// (Mixto entre Resistencia y Tension).
+
 }

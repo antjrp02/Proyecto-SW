@@ -55,16 +55,25 @@ import javax.swing.JComboBox;
 import java.awt.event.HierarchyListener;
 import java.awt.event.HierarchyEvent;
 
+/**
+ * La clase PantallaMenuCrearRutina genera todo lo necesario para poder hacer
+ * una rutina bastante completa al usuario que se haya registrado.
+ * 
+ * @author Antonio Jesus
+ *
+ */
 public class PantallaMenuCrearRutina extends JPanel {
+	// ArrayList de ejercicio necesario para crear una rutina(una rutina es un
+	// ArrayList<Ejercicio>).
 	private ArrayList<Ejercicio> ejercicios;
-	private HashMap<TipoEntrenamiento, Rutina> rutinas;
+	// Ventana donde se mostrara la pantalla de la clase
 	private Ventana ventana;
-	private Ejercicio ejercicio;
-	private String nombre;
-	private Byte series;
-	private Byte repeticiones;
-	private Byte segundos;
 
+	/**
+	 * Constructor para crear la pantalla de la clase
+	 * 
+	 * @param v Ventana para crear la pantalla.
+	 */
 	public PantallaMenuCrearRutina(Ventana v) {
 		setBorder(null);
 		setBackground(new Color(37, 42, 52));
@@ -85,6 +94,8 @@ public class PantallaMenuCrearRutina extends JPanel {
 		JButton botonSNivel = new BotonMenu("Seleccionar Nivel");
 		botonSNivel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Funcion que al hacer clic en el botonSNivel nos llevará a la ventana para
+				// seleccionarNivel
 				ventana.cambiarAPantalla("nivel");
 			}
 		});
@@ -93,6 +104,8 @@ public class PantallaMenuCrearRutina extends JPanel {
 		botonSEntrenamiento.setSize(180, 29);
 		botonSEntrenamiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Funcion que al hacer clic en el botonSEntrenamiento nos llevará a la ventana
+				// para seleccionar Entrenamiento
 				ventana.cambiarAPantalla("entrenamiento");
 			}
 		});
@@ -102,6 +115,10 @@ public class PantallaMenuCrearRutina extends JPanel {
 
 		JButton botonRutinas = new BotonMenu("Mis rutinas");
 		botonRutinas.addActionListener(new ActionListener() {
+
+			// Funcion que al hacer clic en el botonRutinas nos llevará a la
+			// pantalla para mostrar las rutinas
+
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("mostrarRutinas");
 			}
@@ -135,11 +152,19 @@ public class PantallaMenuCrearRutina extends JPanel {
 		panelIzquierda.setBackground(new Color(37, 42, 52));
 
 		BotonMenu botonPerfil = new BotonMenu("Perfil");
+		botonPerfil.addActionListener(new ActionListener() {
+			// Boton que al hacer clic sbre el botonPErfil nos llevará a la pantalla donde
+			// estan los datos del usuario que ha iniciado sesion
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla("perfil");
+			}
+		});
 
 		botonPerfil.setVerticalAlignment(SwingConstants.TOP);
 
 		BotonMenu botonSalir = new BotonMenu("Salir");
 		botonSalir.addActionListener(new ActionListener() {
+			// Boton que al hacer clic sbre el botonSalir nos llevará al menu del programa
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("menu");
 			}
@@ -148,22 +173,18 @@ public class PantallaMenuCrearRutina extends JPanel {
 		botonSalir.setText("Salir");
 
 		GroupLayout gl_panelIzquierda = new GroupLayout(panelIzquierda);
-		gl_panelIzquierda.setHorizontalGroup(
-			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+		gl_panelIzquierda.setHorizontalGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
-					.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
-						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-						.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-					.addGap(20))
-		);
-		gl_panelIzquierda.setVerticalGroup(
-			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+								.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+								.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+						.addGap(20)));
+		gl_panelIzquierda.setVerticalGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
-					.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
-					.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-					.addGap(37))
-		);
+						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
+						.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+						.addGap(37)));
 		panelIzquierda.setLayout(gl_panelIzquierda);
 
 		JPanel panel = new JPanel();
@@ -232,13 +253,14 @@ public class PantallaMenuCrearRutina extends JPanel {
 
 		JButton btGuardarRutina = new JButton("Guardar Rutina");
 		btGuardarRutina.addActionListener(new ActionListener() {
+			// Funcion que al hacer clic en el boton brGuardarRutine almacena en un
+			// ArrayList todos los ejercicos seleccionados.
 			public void actionPerformed(ActionEvent e) {
 				int segundos = Integer.parseInt((String) comboDescanso.getSelectedItem());
 
 				try {
 					Rutina rutina = new Rutina(ejercicios, segundos, LocalDateTime.now(), ventana.usuarioLogeado);
 					ventana.usuarioLogeado.rutinas(rutina);
-					
 
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -247,7 +269,6 @@ public class PantallaMenuCrearRutina extends JPanel {
 				JOptionPane.showMessageDialog(ventana, "Rutina creada ", "Rutina creada con exito",
 						JOptionPane.PLAIN_MESSAGE);
 				ventana.cambiarAPantalla("menu");
-				
 
 			}
 
@@ -295,7 +316,9 @@ public class PantallaMenuCrearRutina extends JPanel {
 
 		final JComboBox comboEjercicios = new JComboBox();
 		comboEjercicios.setBounds(43, 65, 211, 21);
-
+		// Por cada tipo de entrenamiento, los ejercicios van a ir cambiando(En
+		// resistencia,hipertrofia y aumento de repeticiones los ejercicios son los
+		// mismos)
 		if ((ventana.usuarioLogeado.getEntrenamiento()).equals(TipoEntrenamiento.RESISTENCIA)
 				|| (ventana.usuarioLogeado.getEntrenamiento()).equals(TipoEntrenamiento.AUMENTOREPETICIONES)
 				|| (ventana.usuarioLogeado.getEntrenamiento()).equals(TipoEntrenamiento.HIPERTROFIA)) {
@@ -315,6 +338,8 @@ public class PantallaMenuCrearRutina extends JPanel {
 
 			add(comboEjercicios);
 		}
+		// Al seleccionar FRONTLEVER como tipo de entrenamiento los ejercicios que nos
+		// encontraremos son diferentes
 		if ((ventana.usuarioLogeado.getEntrenamiento()).equals(TipoEntrenamiento.FRONTLEVER)) {
 
 			comboEjercicios.setModel(new DefaultComboBoxModel(new String[] {}));
@@ -332,6 +357,9 @@ public class PantallaMenuCrearRutina extends JPanel {
 
 			add(comboEjercicios);
 		}
+		// Al seleccionar Mixtos saldrán todos los ejercicios(hasta 127 ejercicios, es
+		// la cantidad maxima de un comboBox) ya que en los entrenamientos mixos se
+		// entrenan varios tipos de ejercicios.
 		if ((ventana.usuarioLogeado.getEntrenamiento()).equals(TipoEntrenamiento.MIXTO)) {
 
 			comboEjercicios.setModel(new DefaultComboBoxModel(new String[] {}));
@@ -349,6 +377,8 @@ public class PantallaMenuCrearRutina extends JPanel {
 
 			add(comboEjercicios);
 		}
+		// Al seleccionar PLANCHA como tipo de entrenamiento los ejercicios que nos
+		// encontraremos son diferentes
 		if ((ventana.usuarioLogeado.getEntrenamiento()).equals(TipoEntrenamiento.PLANCHA)) {
 
 			comboEjercicios.setModel(new DefaultComboBoxModel(new String[] {}));
@@ -379,13 +409,15 @@ public class PantallaMenuCrearRutina extends JPanel {
 
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
+			// Funcion que al hacer clic en el boton btnGuardar, guardará el ejercicio, las
+			// series y las repeticiones o segundos seleccionados para hacer la rutina.
 			public void actionPerformed(ActionEvent e) {
 
 				try {
 					Ejercicio ejD = new Ejercicio((String) comboEjercicios.getSelectedItem(),
 							(Byte) comboSeries.getSelectedItem());
 					String estaticoOdinamico = ejD.estaticoODinamico();
-					
+
 					if (estaticoOdinamico.equals("dinamico")) {
 						EjercicioDinamico ejDi = new EjercicioDinamico((String) comboEjercicios.getSelectedItem(),
 								(Byte) comboSeries.getSelectedItem(), (Byte) comboRepeticiones.getSelectedItem());
@@ -407,7 +439,7 @@ public class PantallaMenuCrearRutina extends JPanel {
 		});
 		btnGuardar.setBounds(401, 159, 85, 21);
 		panelSeleccionarEjercicios.add(btnGuardar);
-		
+
 		JButton botonEjercicios = new JButton("Info Ejercicios");
 		botonEjercicios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -30,12 +30,26 @@ import javax.swing.ImageIcon;
 import javax.swing.border.EtchedBorder;
 import javax.swing.UIManager;
 
+/**
+ * Clase pantallagin es la forma de que un usuario de la base de datos pueda
+ * acceder de forma rapida al programa
+ * 
+ * @author Antonio Jesus
+ *
+ */
 public class PantallaLogin extends JPanel {
+	// Ventana donde se mostrará la pantalla
 	private Ventana ventana;
-	private JTextField textField;
+	// TextField dodne se escribirá el nombre del usuario
 	private JTextField campoUsuario;
+	// JPasswordFile donde se escribirá la contraseña del usuario
 	private JPasswordField campoContraseña;
 
+	/**
+	 * Constructor que crea la pantalla donde el usuario podrá iniciar sesion
+	 * 
+	 * @param v Ventana que mostrará la pantalla de Login
+	 */
 	public PantallaLogin(Ventana v) {
 		setBackground(new Color(37, 42, 52));
 		this.ventana = v;
@@ -54,12 +68,12 @@ public class PantallaLogin extends JPanel {
 		labelTitulo.setBounds(88, 169, 92, 28);
 		add(labelTitulo);
 
-		JLabel lblNewLabel_2 = new JLabel("HARD WORKOUT");
-		lblNewLabel_2.setForeground(new Color(8, 217, 214));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 40));
-		lblNewLabel_2.setBounds(53, 77, 520, 66);
-		add(lblNewLabel_2);
+		JLabel lbTitulo = new JLabel("HARD WORKOUT");
+		lbTitulo.setForeground(new Color(8, 217, 214));
+		lbTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lbTitulo.setFont(new Font("Arial", Font.BOLD, 40));
+		lbTitulo.setBounds(53, 77, 520, 66);
+		add(lbTitulo);
 
 		JLabel yerayPinito = new JLabel("");
 		yerayPinito.setIcon(new ImageIcon("./yerai.png"));
@@ -69,25 +83,23 @@ public class PantallaLogin extends JPanel {
 		JButton botonLogin = new Boton2("Iniciar Sesion");
 		botonLogin.addMouseListener(new MouseAdapter() {
 			@Override
+			// Funcion que al hacer clic sobre el botonLogin se intentará iniciar sesión con
+			// los datos insertados en sus respectivos campos;
 			public void mouseClicked(MouseEvent e) {
-				
-					String nombre = campoUsuario.getText();
-					String contraseña = new String (campoContraseña.getPassword());
-					try {
-						ventana.usuarioLogeado = new Usuario(nombre,contraseña);
-						JOptionPane.showMessageDialog(ventana, "Bienvenido, "+ventana.usuarioLogeado.getNombre(), "Logeado Correctamente", JOptionPane.PLAIN_MESSAGE);
-						ventana.cambiarAPantalla("menu");
-					} catch (SQLException | ContraseñaIncorrectaException | UsuarioNoExisteException
-							| UsuarioVacioException | ContraseñaVaciaException e1) {
-						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(ventana,e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-					}
-					
-					
-					
-					
-					
-					
+
+				String nombre = campoUsuario.getText();
+				String contraseña = new String(campoContraseña.getPassword());
+				try {
+					ventana.usuarioLogeado = new Usuario(nombre, contraseña);
+					JOptionPane.showMessageDialog(ventana, "Bienvenido, " + ventana.usuarioLogeado.getNombre(),
+							"Logeado Correctamente", JOptionPane.PLAIN_MESSAGE);
+					ventana.cambiarAPantalla("menu");
+				} catch (SQLException | ContraseñaIncorrectaException | UsuarioNoExisteException | UsuarioVacioException
+						| ContraseñaVaciaException e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
+
 			}
 		});
 
@@ -107,6 +119,7 @@ public class PantallaLogin extends JPanel {
 		JButton botonRegistro = new Boton1("Registrarme");
 		botonRegistro.addMouseListener(new MouseAdapter() {
 			@Override
+			//Funcion que al hacer clic en el botonRegistro, nos manda a la pantalla para registrar un usuario
 			public void mouseClicked(MouseEvent e) {
 				ventana.cambiarAPantalla("registro");
 			}

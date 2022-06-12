@@ -407,7 +407,7 @@ foreign key (usuario) references usuario(nombre)on delete cascade,
 primary key(usuario,fecha)
 );
 
-drop table ejercicios_rutina;
+select * from usuario;
 create table ejercicios_rutina(
 usuario varchar(40),
 nombreEjercicio varchar(60),

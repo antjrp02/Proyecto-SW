@@ -43,9 +43,22 @@ import clases.Entrenamiento;
 import clases.Rutina;
 import clases.Usuario;
 
+/**
+ * Clase que creará una pantalla, en la cual podremos seleccionar el
+ * entrenamiento para el usuarioLogueado
+ * 
+ * @author Antonio Jesus
+ *
+ */
 public class PantallaMenuEntrenamiento extends JPanel {
+	// Ventana en la que se mostrará la pantalla para seleccionar el entrenamiento
 	private Ventana ventana;
 
+	/**
+	 * Constructor donde se creara la pantalla para seleccionar el entrenamiento
+	 * 
+	 * @param v Ventana donde se mostrará la pantalla
+	 */
 	public PantallaMenuEntrenamiento(Ventana v) {
 		setBorder(null);
 		setBackground(new Color(37, 42, 52));
@@ -64,6 +77,8 @@ public class PantallaMenuEntrenamiento extends JPanel {
 
 		JButton botonSNivel = new BotonMenu("Seleccionar Nivel");
 		botonSNivel.addActionListener(new ActionListener() {
+			// Funcion que al hacer clic en el botonSNivel nos llevará a la ventana para
+			// seleccionarNivel
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("nivel");
 			}
@@ -77,21 +92,29 @@ public class PantallaMenuEntrenamiento extends JPanel {
 			}
 		});
 
-		JButton botonOp4 = new BotonMenu("Crear Rutinas");
-		botonOp4.addActionListener(new ActionListener() {
+		JButton botonCrearRutina = new BotonMenu("Crear Rutinas");
+		botonCrearRutina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(ventana.usuarioLogeado.getEntrenamiento()==null||ventana.usuarioLogeado.getNivel()==0) {
-					JOptionPane.showMessageDialog(ventana,"Nivel o entrenamiento no seleccionados","Error",JOptionPane.ERROR_MESSAGE);
-				}else {
-				ventana.cambiarAPantalla("crearRutina");
+				// Boton que si el entrenamiento y el nivel están seleccionados, nos llevará a
+				// la pantalla para crear las rutinas,
+				// si no, saldra una ventana de error referenciando a que no se han seleccionado
+				// los campos nivel y o entrenamiento
+				if (ventana.usuarioLogeado.getEntrenamiento() == null || ventana.usuarioLogeado.getNivel() == 0) {
+					JOptionPane.showMessageDialog(ventana, "Nivel o entrenamiento no seleccionados", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					ventana.cambiarAPantalla("crearRutina");
 				}
 			}
 		});
-		botonOp4.setSize(180, 29);
+		botonCrearRutina.setSize(180, 29);
 
-		JButton botonOp3 = new BotonMenu("Mis rutinas");
-		botonOp3.addActionListener(new ActionListener() {
+		JButton botonMostrarRutinas = new BotonMenu("Mis rutinas");
+		botonMostrarRutinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				// Funcion que al hacer clic en el boton botonMostrarRutina nos llevará a la
+				// pantalla para mostrar las rutinas
 				ventana.cambiarAPantalla("mostrarRutinas");
 			}
 		});
@@ -99,14 +122,15 @@ public class PantallaMenuEntrenamiento extends JPanel {
 		gl_panelDerecha.setHorizontalGroup(gl_panelDerecha.createParallelGroup(Alignment.LEADING)
 				.addComponent(botonSNivel, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
 				.addComponent(botonSEntrenamiento, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonOp4, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonOp3, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE));
+				.addComponent(botonCrearRutina, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+				.addComponent(botonMostrarRutinas, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE));
 		gl_panelDerecha.setVerticalGroup(gl_panelDerecha.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelDerecha.createSequentialGroup()
 						.addComponent(botonSNivel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 						.addComponent(botonSEntrenamiento, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(botonOp4, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(botonOp3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)));
+						.addComponent(botonCrearRutina, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonMostrarRutinas, GroupLayout.PREFERRED_SIZE, 30,
+								GroupLayout.PREFERRED_SIZE)));
 		panelDerecha.setLayout(gl_panelDerecha);
 
 		JList list = new JList();
@@ -125,6 +149,8 @@ public class PantallaMenuEntrenamiento extends JPanel {
 
 		BotonMenu botonPerfil = new BotonMenu("Perfil");
 		botonPerfil.addActionListener(new ActionListener() {
+			// Boton que al hacer clic sbre el botonPErfil nos llevará a la pantalla donde
+			// estan los datos del usuario que ha iniciado sesion
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("perfil");
 			}
@@ -134,6 +160,7 @@ public class PantallaMenuEntrenamiento extends JPanel {
 
 		BotonMenu botonSalir = new BotonMenu("Salir");
 		botonSalir.addActionListener(new ActionListener() {
+			// Boton que al hacer clic sbre el botonSalir nos llevará al menu del programa
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("menu");
 			}
@@ -142,22 +169,18 @@ public class PantallaMenuEntrenamiento extends JPanel {
 		botonSalir.setText("Salir");
 
 		GroupLayout gl_panelIzquierda = new GroupLayout(panelIzquierda);
-		gl_panelIzquierda.setHorizontalGroup(
-			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+		gl_panelIzquierda.setHorizontalGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
-					.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
-						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-						.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-					.addGap(20))
-		);
-		gl_panelIzquierda.setVerticalGroup(
-			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+								.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+								.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+						.addGap(20)));
+		gl_panelIzquierda.setVerticalGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
-					.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
-					.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-					.addGap(37))
-		);
+						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
+						.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+						.addGap(37)));
 		panelIzquierda.setLayout(gl_panelIzquierda);
 
 		JPanel panel = new JPanel();
@@ -189,8 +212,9 @@ public class PantallaMenuEntrenamiento extends JPanel {
 
 		JButton botonMusica = new BotonConSonido("");
 		botonMusica.addActionListener(new ActionListener() {
+			//Funcion que al hacer clic sonre botonConMusica empezará a sonar una cancion.
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 
 		});
@@ -209,25 +233,23 @@ public class PantallaMenuEntrenamiento extends JPanel {
 
 		JButton botonSeleccionar = new JButton("Seleccionar");
 		botonSeleccionar.addActionListener(new ActionListener() {
+			//funcion que al hacer clic sobre botonSeleccionar se guardará el tipo de entrenamiento seleccionado.
 			public void actionPerformed(ActionEvent e) {
 
-				
-					String nombre = ventana.usuarioLogeado.getNombre();
-					TipoEntrenamiento entrenamiento = (TipoEntrenamiento) listaEntrenamientos.getSelectedItem();
-					ventana.usuarioLogeado.setEntrenamiento(entrenamiento);
-					JOptionPane.showMessageDialog(
-							ventana,entrenamiento+" ","Entrenamiento seleccionado",
-							JOptionPane.INFORMATION_MESSAGE);
-					ventana.cambiarAPantalla("menu");
-				
-					// TODO Auto-generated catch block
-					
-				
+				String nombre = ventana.usuarioLogeado.getNombre();
+				TipoEntrenamiento entrenamiento = (TipoEntrenamiento) listaEntrenamientos.getSelectedItem();
+				ventana.usuarioLogeado.setEntrenamiento(entrenamiento);
+				JOptionPane.showMessageDialog(ventana, entrenamiento + " ", "Entrenamiento seleccionado",
+						JOptionPane.INFORMATION_MESSAGE);
+				ventana.cambiarAPantalla("menu");
+
+				// TODO Auto-generated catch block
+
 			}
 		});
 		botonSeleccionar.setBounds(124, 122, 104, 23);
 		panel_1.add(botonSeleccionar);
-		
+
 		JLabel lbSeleccionarEntrenamiento = new JLabel("Selecciona Entrenamiento");
 		lbSeleccionarEntrenamiento.setForeground(Color.WHITE);
 		lbSeleccionarEntrenamiento.setFont(new Font("Tahoma", Font.PLAIN, 26));

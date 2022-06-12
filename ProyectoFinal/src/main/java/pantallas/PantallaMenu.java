@@ -35,103 +35,124 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
 
-public class PantallaMenu extends JPanel{
+/**
+ * Clase PantallaMenu es el menu principal del programa, en esta pantalla habrá
+ * diversos botones para recorrer las diferentes opciones que ofrece el programa
+ * 
+ * @author Antoio Jesus
+ *
+ */
+public class PantallaMenu extends JPanel {
+	//Ventana donde se mostrará la pantalla del menu
 	private Ventana ventana;
-	
-	
+	/**
+	 * Constructor donde se creara la pantalla menu
+	 * @param v Ventana donde se creará la pantalla
+	 */
 	public PantallaMenu(Ventana v) {
 		setBorder(null);
 		setBackground(new Color(37, 42, 52));
 		this.ventana = v;
 		setSize(800, 500);
 		setLayout(null);
-		
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(611, 59, 189, 441);
 		add(scrollPane);
-		
+
 		JPanel panelDerecha = new JPanel();
 		panelDerecha.setBorder(new LineBorder(Color.WHITE, 2));
 		panelDerecha.setBackground(new Color(37, 42, 52));
 		scrollPane.setViewportView(panelDerecha);
-		
+
 		JButton botonSNivel = new BotonMenu("Seleccionar Nivel");
 		botonSNivel.addActionListener(new ActionListener() {
+			// Funcion que al hacer clic en el botonSNivel nos llevará a la ventana para
+			// seleccionarNivel
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("nivel");
 			}
 		});
-		
+
 		JButton botonSEntrenamiento = new BotonMenu("Entrenamientos");
-		botonSEntrenamiento.setSize(180,29);
+		botonSEntrenamiento.setSize(180, 29);
 		botonSEntrenamiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Funcion que al hacer clic en el botonSEntrenamiento nos llevará a la ventana
+				// para seleccionar Entrenamiento
 				ventana.cambiarAPantalla("entrenamiento");
 			}
 		});
-		
-		JButton botonOp4 = new BotonMenu("Crear Rutinas");
-		botonOp4.addActionListener(new ActionListener() {
+
+		JButton botonCrearRutina = new BotonMenu("Crear Rutinas");
+		botonCrearRutina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(ventana.usuarioLogeado.getEntrenamiento()==null||ventana.usuarioLogeado.getNivel()==0) {
-					JOptionPane.showMessageDialog(ventana,"Nivel o entrenamiento no seleccionados","Error",JOptionPane.ERROR_MESSAGE);
-				}else {
-				ventana.cambiarAPantalla("crearRutina");
+				// Boton que si el entrenamiento y el nivel están seleccionados, nos llevará a
+				// la pantalla para crear las rutinas,
+				// si no, saldra una ventana de error referenciando a que no se han seleccionado
+				// los campos nivel y o entrenamiento
+				if (ventana.usuarioLogeado.getEntrenamiento() == null || ventana.usuarioLogeado.getNivel() == 0) {
+					JOptionPane.showMessageDialog(ventana, "Nivel o entrenamiento no seleccionados", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					ventana.cambiarAPantalla("crearRutina");
 				}
-				}
+			}
 		});
-		botonOp4.setSize(180,29);
-		
-		JButton botonOp3 = new BotonMenu("Mis rutinas");
-		botonOp3.addActionListener(new ActionListener() {
+		botonCrearRutina.setSize(180, 29);
+
+		JButton botonMostrarRutina = new BotonMenu("Mis rutinas");
+		botonMostrarRutina.addActionListener(new ActionListener() {
+
+			// Funcion que al hacer clic en el boton botonMostrarRutina nos llevará a la
+			// pantalla para mostrar las rutinas
+
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("mostrarRutinas");
 			}
 		});
 		GroupLayout gl_panelDerecha = new GroupLayout(panelDerecha);
-		gl_panelDerecha.setHorizontalGroup(
-			gl_panelDerecha.createParallelGroup(Alignment.LEADING)
+		gl_panelDerecha.setHorizontalGroup(gl_panelDerecha.createParallelGroup(Alignment.LEADING)
 				.addComponent(botonSNivel, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
 				.addComponent(botonSEntrenamiento, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonOp4, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonOp3, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-		);
-		gl_panelDerecha.setVerticalGroup(
-			gl_panelDerecha.createParallelGroup(Alignment.LEADING)
+				.addComponent(botonCrearRutina, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+				.addComponent(botonMostrarRutina, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE));
+		gl_panelDerecha.setVerticalGroup(gl_panelDerecha.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelDerecha.createSequentialGroup()
-					.addComponent(botonSNivel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addComponent(botonSEntrenamiento, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addComponent(botonOp4, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addComponent(botonOp3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-		);
+						.addComponent(botonSNivel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonSEntrenamiento, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonCrearRutina, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonMostrarRutina, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)));
 		panelDerecha.setLayout(gl_panelDerecha);
-		
+
 		JList list = new JList();
 		list.setBounds(0, 500, 800, 0);
 		list.setBackground(Color.BLACK);
 		add(list);
-		
+
 		JScrollPane scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(0, 59, 94, 441);
 		add(scrollPane_2);
-		
+
 		JPanel panelIzquierda = new JPanel();
 		scrollPane_2.setRowHeaderView(panelIzquierda);
 		panelIzquierda.setBorder(new LineBorder(Color.WHITE, 2));
 		panelIzquierda.setBackground(new Color(37, 42, 52));
-		
+
 		BotonMenu botonPerfil = new BotonMenu("Perfil");
 		botonPerfil.addActionListener(new ActionListener() {
+			// Boton que al hacer clic sbre el botonPErfil nos llevará a la pantalla donde
+			// estan los datos del usuario que ha iniciado sesion
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("perfil");
 			}
 		});
-		
+
 		botonPerfil.setVerticalAlignment(SwingConstants.TOP);
-		
+
 		BotonMenu botonCerrar = new BotonMenu("Salir");
 		botonCerrar.addActionListener(new ActionListener() {
+			//Funcion que al hacer clic en el boton botonCerrar,cerrará la sesion del usuarioLogeado
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("login");
 			}
@@ -139,64 +160,51 @@ public class PantallaMenu extends JPanel{
 		botonCerrar.setVerticalAlignment(SwingConstants.TOP);
 		botonCerrar.setText("Cerrar");
 		GroupLayout gl_panelIzquierda = new GroupLayout(panelIzquierda);
-		gl_panelIzquierda.setHorizontalGroup(
-			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+		gl_panelIzquierda.setHorizontalGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
-					.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
-						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-						.addComponent(botonCerrar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-		);
-		gl_panelIzquierda.setVerticalGroup(
-			gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
+								.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+								.addComponent(botonCerrar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap()));
+		gl_panelIzquierda.setVerticalGroup(gl_panelIzquierda.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelIzquierda.createSequentialGroup()
-					.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addGap(325)
-					.addComponent(botonCerrar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-					.addGap(40))
-		);
+						.addComponent(botonPerfil, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+						.addGap(325)
+						.addComponent(botonCerrar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+						.addGap(40)));
 		panelIzquierda.setLayout(gl_panelIzquierda);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 800, 59);
 		panel.setBorder(new LineBorder(Color.WHITE, 2));
 		panel.setBackground(new Color(8, 217, 214));
 		add(panel);
-		
+
 		JLabel lblMenu = new JLabel("HARD WORKOUT");
 		lblMenu.setBackground(Color.BLACK);
 		lblMenu.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMenu.setForeground(new Color(37, 42, 52));
 		lblMenu.setFont(new Font("Arial", Font.BOLD, 40));
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(87)
-					.addComponent(lblMenu, GroupLayout.PREFERRED_SIZE, 524, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(183, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addComponent(lblMenu, GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-		);
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup().addGap(87)
+						.addComponent(lblMenu, GroupLayout.PREFERRED_SIZE, 524, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(183, Short.MAX_VALUE)));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(lblMenu,
+				GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE));
 		panel.setLayout(gl_panel);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(94, 59, 517, 441);
 		panel_1.setBorder(new LineBorder(Color.WHITE, 2));
 		panel_1.setBackground(Color.WHITE);
 		add(panel_1);
 		panel_1.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("./images (2).jpg"));
 		lblNewLabel.setBounds(0, -240, 921, 1074);
 		panel_1.add(lblNewLabel);
-		
-		
-		
-		
-		
+
 	}
 }

@@ -43,10 +43,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextPane;
-
+/**
+ * Clase PantallaMenuNivel, la cual creara una pantalla para seleccionar el nivel del usuario logeado
+ * @author Antonio Jesus
+ *
+ */
 public class PantallaMenuNivel extends JPanel {
+	//Ventana donde se creara la pantalla de la clase.
 	private Ventana ventana;
-
+	/**
+	 * Constructor el cual creara la pantalla para poder seleccionar el nivel.
+	 * @param v Ventana donde se creará la ventana
+	 */
 	public PantallaMenuNivel(Ventana v) {
 		setBorder(null);
 		setBackground(new Color(37, 42, 52));
@@ -74,12 +82,15 @@ public class PantallaMenuNivel extends JPanel {
 		botonSEntrenamiento.setSize(180, 29);
 		botonSEntrenamiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Funcion que al hacer clic en el botonSEntrenamiento nos llevará a la ventana para seleccionar Entrenamiento
 				ventana.cambiarAPantalla("entrenamiento");
 			}
 		});
 
-		JButton botonOp4 = new BotonMenu("Crear Rutinas");
-		botonOp4.addActionListener(new ActionListener() {
+		JButton botonCrearRutina = new BotonMenu("Crear Rutinas");
+		botonCrearRutina.addActionListener(new ActionListener() {
+			//Funcion que si al hacer clic si el entrenamiento y el nivel están seleccionados, nos llevará a la pantalla para crear las rutinas, 
+			//si no, saldra una ventana de error referenciando a que no se han seleccionado los campos nivel y o entrenamiento
 			public void actionPerformed(ActionEvent e) {
 				if(ventana.usuarioLogeado.getEntrenamiento()==null||ventana.usuarioLogeado.getNivel()==0) {
 					JOptionPane.showMessageDialog(ventana,"Nivel o entrenamiento no seleccionados","Error",JOptionPane.ERROR_MESSAGE);
@@ -88,28 +99,30 @@ public class PantallaMenuNivel extends JPanel {
 				}
 			}
 		});
-		botonOp4.setSize(180, 29);
+		botonCrearRutina.setSize(180, 29);
 		;
 
-		JButton botonOp3 = new BotonMenu("New button");
-		botonOp3.addActionListener(new ActionListener() {
+		JButton botonMostrarRutina = new BotonMenu("Mis rutinas");
+		botonMostrarRutina.addActionListener(new ActionListener() {
+			// Funcion que al hacer clic en el boton botonMostrarRutina nos llevará a la
+			// pantalla para mostrar las rutinas
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("mostrarRutinas");
 			}
 		});
-		botonOp3.setText("Mis rutinas");
+		
 		GroupLayout gl_panelDerecha = new GroupLayout(panelDerecha);
 		gl_panelDerecha.setHorizontalGroup(gl_panelDerecha.createParallelGroup(Alignment.LEADING)
 				.addComponent(botonSNivel, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
 				.addComponent(botonSEntrenamiento, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonOp4, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-				.addComponent(botonOp3, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE));
+				.addComponent(botonCrearRutina, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+				.addComponent(botonMostrarRutina, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE));
 		gl_panelDerecha.setVerticalGroup(gl_panelDerecha.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelDerecha.createSequentialGroup()
 						.addComponent(botonSNivel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 						.addComponent(botonSEntrenamiento, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(botonOp4, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(botonOp3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)));
+						.addComponent(botonCrearRutina, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(botonMostrarRutina, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)));
 		panelDerecha.setLayout(gl_panelDerecha);
 
 		JList list = new JList();
@@ -128,6 +141,7 @@ public class PantallaMenuNivel extends JPanel {
 
 		BotonMenu botonSalir = new BotonMenu("Salir");
 		botonSalir.addActionListener(new ActionListener() {
+			//Boton que al hacer clic sbre el botonSalir nos llevará al menu del programa
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("menu");
 			}
@@ -137,6 +151,7 @@ public class PantallaMenuNivel extends JPanel {
 
 		BotonMenu botonPerfil = new BotonMenu("Perfil");
 		botonPerfil.addActionListener(new ActionListener() {
+			//Boton que al hacer clic sbre el botonPErfil nos llevará a la pantalla donde estan los datos del usuario que ha iniciado sesion
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla("perfil");
 			}
@@ -184,7 +199,7 @@ public class PantallaMenuNivel extends JPanel {
 		panel_1.setBackground(Color.WHITE);
 		add(panel_1);
 		panel_1.setLayout(null);
-
+		
 		final JComboBox comboNivel = new JComboBox();
 		comboNivel.setEditable(true);
 		comboNivel.setModel(
@@ -194,6 +209,11 @@ public class PantallaMenuNivel extends JPanel {
 
 		JButton botonNivel = new JButton("Seleccionar Nivel");
 		botonNivel.addActionListener(new ActionListener() {
+			/**
+			 * Funcion que al hacer clic sobre el botonNiel nos seleccionará el nivel que hayamos seleccionado entre el 1 y el 10, no se podrá 
+			 * seleccionar "..."
+			 * @param e Evento de hacer clic
+			 */
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String nombre = ventana.usuarioLogeado.getNombre();
@@ -258,6 +278,11 @@ public class PantallaMenuNivel extends JPanel {
 
 		JButton botonAyuda = new JButton("Ayuda:");
 		botonAyuda.addActionListener(new ActionListener() {
+			/**
+			 * Funcion la cual, al hacer clic sobre el botonAyuda nos mostrará una ventana con todo lo necesario para poder seleccionar nuestro
+			 * nivel en calistenia
+			 * @param e Evento de hacer clic
+			 */
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(ventana, "Nivel 1: >3 dominadas,>3 fondos. > 5 flexiones\r\n"
 						+ "Nivel 2: 3 dominadas, 3 fondos, 5 flexiones\r\n"
