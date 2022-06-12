@@ -22,6 +22,7 @@ public class Ejercicio extends EntidadConDificultad {
 	protected byte series;
 	private String estatico_o_dinamico;
 	private Usuario usuario;
+	private String descripcion;
 
 	public Ejercicio(String nombre, Dificultad dificultad, GruposMusculares gruposMusculares,
 			TipoEjercicio tipoEjercicio, boolean usaGoma, boolean realizado, byte series) {
@@ -94,11 +95,11 @@ public class Ejercicio extends EntidadConDificultad {
 		this.realizado = realizado;
 	}
 
-	public ArrayList<String> nombreEjercicio() throws SQLException {
+	public ArrayList<String> nombreEjercicioTironOEmpuje() throws SQLException {
 
 		ArrayList<String> nombreEjercicio = new ArrayList<String>();
 		Statement smt = UtilsDB.conectarBD();
-		ResultSet devuelveDatos = smt.executeQuery("Select nombre from ejercicios ;");
+		ResultSet devuelveDatos = smt.executeQuery("Select nombre from ejercicios where tipoEjercicio='tiron' or tipoEjercicio='empuje' ;");
 		while (devuelveDatos.next()) {
 			this.nombre = devuelveDatos.getString("nombre");
 			nombreEjercicio.add(this.nombre);
@@ -119,11 +120,47 @@ public class Ejercicio extends EntidadConDificultad {
 		return estatico_o_dinamico;
 
 	}
+	public ArrayList<String> nombreEjercicioFront() throws SQLException {
+
+		ArrayList<String> nombreEjercicio = new ArrayList<String>();
+		Statement smt = UtilsDB.conectarBD();
+		ResultSet devuelveDatos = smt.executeQuery("Select nombre from ejercicios where tipoEjercicio='FRONTLEVER' ;");
+		while (devuelveDatos.next()) {
+			this.nombre = devuelveDatos.getString("nombre");
+			nombreEjercicio.add(this.nombre);
+		}
+		UtilsDB.desconectarBD();
+		return nombreEjercicio;
+	}
+	public ArrayList<String> nombreEjercicio() throws SQLException {
+
+		ArrayList<String> nombreEjercicio = new ArrayList<String>();
+		Statement smt = UtilsDB.conectarBD();
+		ResultSet devuelveDatos = smt.executeQuery("Select nombre from ejercicios  ;");
+		while (devuelveDatos.next()) {
+			this.nombre = devuelveDatos.getString("nombre");
+			nombreEjercicio.add(this.nombre);
+		}
+		UtilsDB.desconectarBD();
+		return nombreEjercicio;
+	}
+	
+	public ArrayList<String> nombreEjercicioPlancha() throws SQLException {
+
+		ArrayList<String> nombreEjercicio = new ArrayList<String>();
+		Statement smt = UtilsDB.conectarBD();
+		ResultSet devuelveDatos = smt.executeQuery("Select nombre from ejercicios where tipoEjercicio='PLANCHA'  ;");
+		while (devuelveDatos.next()) {
+			this.nombre = devuelveDatos.getString("nombre");
+			nombreEjercicio.add(this.nombre);
+		}
+		UtilsDB.desconectarBD();
+		return nombreEjercicio;
+	}
 
 	@Override
 	public String toString() {
-		return "Ejercicio [gruposMusculares=" + gruposMusculares + ", tipoEjercicio=" + tipoEjercicio + ", usaGoma="
-				+ usaGoma + ", realizado=" + realizado + ", series=" + series + ", estatico_o_dinamico="
-				+ estatico_o_dinamico + ", usuario=" + usuario + "]";
+		return "Ejercicio: "+nombre+" dificultad: "+dificultad+" musculo mas ejercitado: " + gruposMusculares + "tipo de ejercicio: " + tipoEjercicio + "usa goma: "
+				+ usaGoma+ "\n descripcion: "+descripcion+"\n";
 	}
 }

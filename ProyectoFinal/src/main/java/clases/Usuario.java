@@ -27,6 +27,9 @@ public class Usuario extends EntidadConNombre {
 	private String UbicacionEntrenamiento;
 	private TipoEntrenamiento entrenamiento;
 	private ArrayList<Rutina> rutinas;
+	private String eod;
+	private byte series;
+	private byte repeticiones;
 
 	public Usuario(String nombre, String contraseña, String ubicacionEntrenamiento)
 			throws SQLException, ContraseñaVaciaException, UsuarioVacioException, UbicacionVaciaException {
@@ -184,10 +187,11 @@ public class Usuario extends EntidadConNombre {
 		return rutinas;
 
 	}
-
+	
+	/**
 	public String mostrarRutinas(Usuario usu) throws SQLException {
 		String ret = "";
-	
+		
 		Statement smt = UtilsDB.conectarBD();
 		ResultSet rutinasUsuario = smt.executeQuery("Select fecha from rutina where usuario ='"+usu.getNombre()+"' ;");
 		LocalDateTime fecha = null;
@@ -195,11 +199,18 @@ public class Usuario extends EntidadConNombre {
 			
 			fecha = rutinasUsuario.getTimestamp("fecha").toLocalDateTime();
 			System.out.println(fecha);
-			
-			ResultSet ejerciciosRutina = smt.executeQuery("Select e.nombre,ed.repeticiones,e.series,e.estatico_o_dinamico from ejercicios e,rutina r,ejercicios_rutina er,ejercicio_dinamico ed where r.fecha ="+fecha+" and ed.nombre=er.nombreEjercicio and ed.nombre=er.nombreEjercicio;");
+			ret+="------------------------------------";
+			ResultSet ejerciciosRutina = smt.executeQuery("Select usuario from rutina ;");
 			
 			while (ejerciciosRutina.next()) {	
-				String resultado = ejerciciosRutina.getString("weq");
+				/**this.nombre = ejerciciosRutina.getString("nombre");
+				this.repeticiones = ejerciciosRutina.getByte("repeticiones");
+				this. series = ejerciciosRutina.getByte("series");
+				this.eod = ejerciciosRutina.getString("estatico_o_dinamico");
+				
+				this.nombre=ejerciciosRutina.getString("usuario");
+				ret+=nombre;
+				//ret+= series+" series de "+repeticiones+" repeticiones de "+nombre+"\n";
 			
 		}
 		}
@@ -209,7 +220,8 @@ public class Usuario extends EntidadConNombre {
 
 	
 	}
-	/**
+	
+	
 		System.out.println("fuera");
 		System.out.println(rutinas);
 			for(byte i=0;i<rutinas.size();i++) {

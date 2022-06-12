@@ -21,6 +21,7 @@ public class Rutina {
 	private int descansoSg;
 	private LocalDateTime fecha;
 	private Usuario usuario;
+	private String nombreEjercicio;
 
 	public Rutina(ArrayList<Ejercicio> ejercicios, int descansoSg, LocalDateTime fecha, Usuario usuario)
 			throws SQLException {
@@ -131,39 +132,60 @@ public class Rutina {
 		this.ejercicios = ejercicios;
 	}
 	
+	
 	public String mostrarRutinas(Usuario usu) throws SQLException {
 		String ret = "";
-	
+		
 		Statement smt = UtilsDB.conectarBD();
-		ResultSet rutinasUsuario = smt.executeQuery("Select rutina from usuario where usuario ='"+usu.getNombre()+"' ;");
+		ResultSet rutinasUsuario = smt.executeQuery("Select fecha from rutina where usuario ='"+usu.getNombre()+"' ;");
+		LocalDateTime fecha = null;
 		while (rutinasUsuario.next()) {
 			
-			fecha = rutinasUsuario.getTimestamp("fecha").toLocalDateTime();
-			System.out.println();
+			this.fecha = rutinasUsuario.getTimestamp("fecha").toLocalDateTime();
+			System.out.println(fecha);
+			ret+="------------------------------------";
+			String select_query="Select usuario from rutina ;";
+			ResultSet ejerciciosRutina = smt.executeQuery(select_query);
+			
+			while (ejerciciosRutina.next()) {	
+				/**this.nombre = ejerciciosRutina.getString("nombre");
+				this.repeticiones = ejerciciosRutina.getByte("repeticiones");
+				this. series = ejerciciosRutina.getByte("series");
+				this.eod = ejerciciosRutina.getString("estatico_o_dinamico");
+				*/
+				this.nombreEjercicio=ejerciciosRutina.getString("usuario");
+				ret+=nombreEjercicio;
+				//ret+= series+" series de "+repeticiones+" repeticiones de "+nombre+"\n";
+			
+		}
 		}
 		
 		UtilsDB.desconectarBD();
 		return fecha+"";
 
+	
 	}
-	/**
-		System.out.println("fuera");
-		System.out.println(rutinas);
-			for(byte i=0;i<rutinas.size();i++) {
-				Rutina rutina = rutinas.get(i);
-				System.out.println("Medio");
-			for (byte j = 0; j < rutina.getEjercicios().size(); j++) {
-				System.out.println("Dentro");
-				Ejercicio ej = rutina.getEjercicios().get(j);
-
-				ResultSet cursor = smt.executeQuery("select tipo from " + ej.getNombre());
-				while (cursor.next()) {
-					if (cursor.equals("dinamico")) {
-						ret = "dinamico";
-					}
-				}
-			}
+	public void pruebaQuery() throws SQLException {
+		Statement smt = UtilsDB.conectarBD();
+		ResultSet rutinasUsuario = smt.executeQuery("Select nombre from usuario;");
+		
+		while (rutinasUsuario.next()) {
 			
+			String nombre = rutinasUsuario.getString("nombre");
+			System.out.println(nombre);
+			
+			
+			ResultSet ejerciciosRutina = smt.executeQuery("Select usuario from rutina where usuario='"+nombre+"' ;");
+			
+			while (ejerciciosRutina.next()) {	
+				/**this.nombre = ejerciciosRutina.getString("nombre");
+				this.repeticiones = ejerciciosRutina.getByte("repeticiones");
+				this. series = ejerciciosRutina.getByte("series");
+				this.eod = ejerciciosRutina.getString("estatico_o_dinamico");
+				*/
+				this.nombreEjercicio=ejerciciosRutina.getString("usuario");
+				
+			}
 		}
-	*/
+	}
 }
