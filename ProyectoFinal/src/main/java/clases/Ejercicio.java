@@ -140,7 +140,13 @@ public class Ejercicio extends EntidadConDificultad {
 		while (devuelveDatos.next()) {
 			this.nombre = devuelveDatos.getString("nombre");
 			nombreEjercicio.add(this.nombre);
+			if(nombreEjercicio.size()==127) {
+				System.out.println(nombreEjercicio.size());
+				UtilsDB.desconectarBD();
+				return nombreEjercicio;
+			}
 		}
+		
 		UtilsDB.desconectarBD();
 		return nombreEjercicio;
 	}
@@ -154,6 +160,7 @@ public class Ejercicio extends EntidadConDificultad {
 			this.nombre = devuelveDatos.getString("nombre");
 			nombreEjercicio.add(this.nombre);
 		}
+		
 		UtilsDB.desconectarBD();
 		return nombreEjercicio;
 	}

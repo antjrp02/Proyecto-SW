@@ -22,10 +22,6 @@ estatico_o_dinamico VARCHAR(40),
 descripcion VARCHAR(200)not null,
 series numeric(2)not null
 );
-SET SQL_SAFE_UPDATES = 0;
-delete from ejercicios where series=8;
-select * from ejercicios;
--- Ejercicios dinamicos con dificultad principiante de tiron:
 insert into Ejercicios values("dominada prona con goma","principiante","dorsal","tiron",true,"dinamico"," dominada con las palmas de las manos hacia delante,haciendo un recorrido completo,usando una goma",0);
 insert into Ejercicios values("dominada neutra con goma","principiante","dorsal","tiron",true,"dinamico","dominada usando dos barras paralelas a la altura de los hombros, las palmas de las manos estan una frente a la otra,haciendo un recorrido completo,usando una goma",0);
 insert into Ejercicios values("dominada supina con goma ","principiante","biceps","tiron",true,"dinamico","dominada con las palmas de las manos hacia detras,haciendo un recorrido completo,usando una goma",0);
@@ -201,10 +197,10 @@ insert into Ejercicios values("Aguante de straddle en suelo con goma","principia
 insert into Ejercicios values("Aguante de full en suelo con goma","principiante","hombro","PLANCHA",true,"estatico","aguantar full en suelo con una goma en la cadera",0);
 
 
-insert into Ejercicios values("Aguante de tuck en suelos","principiante","hombro","PLANCHA",false,"estatico","aguantar con las dos manos agarrado a la barra y el cuerpo sin tocar el suelo",0);
-insert into Ejercicios values("Aguante de tuck advance en suelo","principiante","hombro","PLANCHA",false,"estatico","aguantar con las dos manos agarrado a la barra y el cuerpo sin tocar el suelo",0);
-insert into Ejercicios values("Aguante de straddle en suelo","principiante","hombro","PLANCHA",false,"estatico","aguantar con las dos manos agarrado a la barra y el cuerpo sin tocar el suelo",0);
-insert into Ejercicios values("Aguante de full en suelo","principiante","hombro","PLANCHA",false,"estatico","aguantar con las dos manos agarrado a la barra y el cuerpo sin tocar el suelo",0);
+insert into Ejercicios values("Aguante de tuck en suelo","principiante","hombro","PLANCHA",false,"estatico","aguantar tuck planche en suelo ",0);
+insert into Ejercicios values("Aguante de tuck advance en suelo","principiante","hombro","PLANCHA",false,"estatico","aguantar tuck advance en suelo",0);
+insert into Ejercicios values("Aguante de straddle en suelo","principiante","hombro","PLANCHA",false,"estatico","aguantar straddle en suelo",0);
+insert into Ejercicios values("Aguante de full en suelo","principiante","hombro","PLANCHA",false,"estatico","aguantar full en suelo ",0);
 
 
 
@@ -240,6 +236,83 @@ insert into Ejercicio_dinamico values("dominada en L",0);
 insert into Ejercicio_dinamico values("dominada en con palmada",0);
 insert into Ejercicio_dinamico values("negativa de muscle up",0);
 insert into Ejercicio_dinamico values("muscle up con goma",0);
+
+
+
+-- Ejercicio dinamico de front lever con dificultad principiante:
+insert into Ejercicio_dinamico values("dominada en tuck con goma",0);
+insert into Ejercicio_dinamico values("positiva en tuck",0);
+insert into Ejercicio_dinamico values("negativa en tuck",0);
+insert into Ejercicio_dinamico values("de L a tuck",0);
+insert into Ejercicio_dinamico values("de barbilla a tuck",0);
+insert into Ejercicio_dinamico values("dominada en tuck",0);
+insert into Ejercicio_dinamico values("press de tuck",0);
+
+-- Ejercicio dinamico de front lever con dificultad principiante_intermedia"
+insert into Ejercicio_dinamico values("dominada en tuck advance  con goma",0);
+insert into Ejercicio_dinamico values("positiva en tuck advance ",0);
+insert into Ejercicio_dinamico values("negativa en tuck advance ",0);
+insert into Ejercicio_dinamico values("de L a tuck advance",0);
+insert into Ejercicio_dinamico values("de barbilla a tuck advance",0);
+insert into Ejercicio_dinamico values("dominada en tuck advance",0);
+insert into Ejercicio_dinamico values("press de tuck advance",0);
+insert into Ejercicio_dinamico values("de tuck a tuck advance",0);
+
+-- Ejercicio dinamico de front lever con dificultad intermedia:
+insert into Ejercicio_dinamico values("dominada en half  con goma",0);
+insert into Ejercicio_dinamico values("positiva en half ",0);
+insert into Ejercicio_dinamico values("negativa en half ",0);
+insert into Ejercicio_dinamico values("de L a half",0);
+insert into Ejercicio_dinamico values("dominada en half",0);
+insert into Ejercicio_dinamico values("de barbilla a half",0);
+insert into Ejercicio_dinamico values("press de half",0);
+insert into Ejercicio_dinamico values("de half a front lever",0);
+
+-- Ejercicio dinamico de front lever con dificultad intermedia_avanzada:
+insert into Ejercicio_dinamico values("dominada en front lever con goma",0);
+insert into Ejercicio_dinamico values("positiva en front lever ",0);
+insert into Ejercicio_dinamico values("negativa en front lever ",0);
+insert into Ejercicio_dinamico values("de L a front lever",0);
+insert into Ejercicio_dinamico values("de barbilla a front lever",0);
+insert into Ejercicio_dinamico values("dominada en front lever",0);
+insert into Ejercicio_dinamico values("press de front lever",0);
+
+-- Ejercicio dinamico de plancha con dificultad principiante_intermedio
+insert into Ejercicio_dinamico values("Flexiones en lean planche",0);
+insert into Ejercicio_dinamico values("Flexiones tuck planche en paralelas",0);
+insert into Ejercicio_dinamico values("Flexiones tuck planche en suelo",0);
+insert into Ejercicio_dinamico values("Flexiones tuck planche en anillas",0);
+insert into Ejercicio_dinamico values("Positiva tuck a pino",0);
+insert into Ejercicio_dinamico values("negativa pino a tuck",0);
+insert into Ejercicio_dinamico values("press de tuck planche",0);
+insert into Ejercicio_dinamico values("Flexiones de pino en pared",0);
+
+-- Ejercicio dinamico de plancha con dificultad intermedio
+insert into Ejercicio_dinamico values("Flexiones en lean planche con rodillas",0);
+insert into Ejercicio_dinamico values("Flexiones tuck advance  en paralelas",0);
+insert into Ejercicio_dinamico values("Flexiones tuck advance  en suelo",0);
+insert into Ejercicio_dinamico values("Flexiones tuck advance  en anillas",0);
+insert into Ejercicio_dinamico values("Positiva tuck advance a pino",0);
+insert into Ejercicio_dinamico values("negativa pino advance a tuck",0);
+insert into Ejercicio_dinamico values("press de tuck advance planche",0);
+insert into Ejercicio_dinamico values("Flexiones de pino libre",0);
+
+-- Ejercicio dinamico de plancha con dificultad intermedio_avanzado
+insert into Ejercicio_dinamico values("Flexiones en straddle en paralelas",0);
+insert into Ejercicio_dinamico values("Flexiones en straddle en suelo",0);
+insert into Ejercicio_dinamico values("Flexiones en straddle en anillas",0);
+insert into Ejercicio_dinamico values("Positiva ten straddle a pino",0);
+insert into Ejercicio_dinamico values("negativa en straddle a tuck",0);
+insert into Ejercicio_dinamico values("press de straddle",0);
+insert into Ejercicio_dinamico values("Flexiones de pino libre a 90º",0);
+
+-- Ejercicio dinamico de plancha con dificultad avanzado
+insert into Ejercicio_dinamico values("Flexiones en full en paralelas",0);
+insert into Ejercicio_dinamico values("Flexiones en full en suelo",0);
+insert into Ejercicio_dinamico values("Flexiones en full en anillas",0);
+insert into Ejercicio_dinamico values("Positiva ten full a pino",0);
+insert into Ejercicio_dinamico values("negativa en full a tuck",0);
+insert into Ejercicio_dinamico values("press de full",0);
 
 -- Ejercicios dinamicos con dificultad intermedio_avanzado de tiron
 insert into Ejercicio_dinamico values("dominada explosiva",0);
@@ -282,7 +355,7 @@ select * from Rutina where usuario="1";
 select * from ejercicio_dinamico;
 select er.nombreEjercicio,e.series, ed.repeticiones 
 from ejercicios_rutina er,ejercicios e,ejercicio_Dinamico ed,rutina r  
-where  r.fecha="2022-06-12 01:34:29";
+where  r.fecha="2022-06-12 07:17:48" , er.nombreEjercicio = e.nombre and ed.nombre=er.nombreEjercicio;
 
 Select e.nombre,ed.repeticiones,e.series,e.estatico_o_dinamico from ejercicios e,rutina r,ejercicios_rutina er,ejercicio_dinamico ed where r.fecha ="2022-06-12 02:04:24" and ed.nombre=er.nombreEjercicio and ed.nombre=er.nombreEjercicio;
 select usuario from rutina;
@@ -298,7 +371,52 @@ create table ejercicio_estatico(
 nombre VARCHAR(60)primary key,
 aguanteSg numeric(2)not null
 );
+insert into Ejercicio_estatico values("Aguante en barra",0);
+insert into Ejercicio_estatico values("Aguante arriba en barra",0);
 
+insert into Ejercicio_estatico values("Aguante en paralelas",0);
+
+insert into Ejercicio_estatico values("Aguante en tuck con goma",0);
+insert into Ejercicio_estatico values("Aguante en tuck advance con goma",0);
+insert into Ejercicio_estatico values("Aguante en half con goma",0);
+insert into Ejercicio_estatico values("Aguante en front con goma",0);
+
+insert into Ejercicio_estatico values("Aguante en tuck",0);
+insert into Ejercicio_estatico values("Aguante en tuck advance",0);
+insert into Ejercicio_estatico values("Aguante en half",0);
+insert into Ejercicio_estatico values("Aguante en front",0);
+
+insert into Ejercicio_estatico values("Aguante en tuck touch con goma",0);
+insert into Ejercicio_estatico values("Aguante en tuck advance touch con goma",0);
+insert into Ejercicio_estatico values("Aguante en half touch con goma",0);
+insert into Ejercicio_estatico values("Aguante en front touch con goma",0);
+
+insert into Ejercicio_estatico values("Aguante en tuck touch",0);
+insert into Ejercicio_estatico values("Aguante en tuck advance touch",0);
+insert into Ejercicio_estatico values("Aguante en half touch",0);
+insert into Ejercicio_estatico values("Aguante en front touch",0);
+
+
+insert into Ejercicio_estatico values("Aguante de tuck en paralelas con goma",0);
+insert into Ejercicio_estatico values("Aguante de tuck advance en paralelas con goma",0);
+insert into Ejercicio_estatico values("Aguante de straddle en paralelas con goma",0);
+insert into Ejercicio_estatico values("Aguante de full en paralelas con goma",0);
+
+insert into Ejercicio_estatico values("Aguante de tuck en paralelas",0);
+insert into Ejercicio_estatico values("Aguante de tuck advance en paralelas",0);
+insert into Ejercicio_estatico values("Aguante de straddle en paralelas",0);
+insert into Ejercicio_estatico values("Aguante de full en paralelas",0);
+
+insert into Ejercicio_estatico values("Aguante de tuck en suelo con goma",0);
+insert into Ejercicio_estatico values("Aguante de tuck advance en suelo con goma",0);
+insert into Ejercicio_estatico values("Aguante de straddle en suelo con goma",0);
+insert into Ejercicio_estatico values("Aguante de full en suelo con goma",0);
+
+
+insert into Ejercicio_estatico values("Aguante de tuck en suelo",0);
+insert into Ejercicio_estatico values("Aguante de tuck advance en suelo",0);
+insert into Ejercicio_estatico values("Aguante de straddle en suelo",0);
+insert into Ejercicio_estatico values("Aguante de full en suelo",0);
 create table rutina(
 usuario varchar(40),
 descansoSg numeric(3),

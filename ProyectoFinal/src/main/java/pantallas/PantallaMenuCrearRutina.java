@@ -104,7 +104,7 @@ public class PantallaMenuCrearRutina extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Rutina rut = new Rutina();
-					rut.pruebaQuery();
+					rut.pruebaQuery(ventana.usuarioLogeado);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

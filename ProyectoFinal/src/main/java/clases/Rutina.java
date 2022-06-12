@@ -22,6 +22,8 @@ public class Rutina {
 	private LocalDateTime fecha;
 	private Usuario usuario;
 	private String nombreEjercicio;
+	private byte series;
+	private byte repeticiones;
 
 	public Rutina(ArrayList<Ejercicio> ejercicios, int descansoSg, LocalDateTime fecha, Usuario usuario)
 			throws SQLException {
@@ -165,27 +167,37 @@ public class Rutina {
 
 	
 	}
-	public void pruebaQuery() throws SQLException {
+	public String pruebaQuery(Usuario usu) throws SQLException {
+		String ret="";
 		Statement smt = UtilsDB.conectarBD();
-		ResultSet rutinasUsuario = smt.executeQuery("Select nombre from usuario;");
-		
+		ResultSet rutinasUsuario = smt.executeQuery("Select fecha from rutina where usuario ='"+usu.getNombre()+"';");
+		ArrayList<LocalDateTime> fechaEjercicio = new ArrayList<LocalDateTime>();
 		while (rutinasUsuario.next()) {
 			
-			String nombre = rutinasUsuario.getString("nombre");
-			System.out.println(nombre);
+			this.fecha= rutinasUsuario.getTimestamp("fecha").toLocalDateTime();
+			fechaEjercicio.add(fecha);
 			
-			
-			ResultSet ejerciciosRutina = smt.executeQuery("Select usuario from rutina where usuario='"+nombre+"' ;");
+		}
+		for(byte i=0;i<fechaEjercicio.size();i++) {
+			ResultSet ejerciciosRutina = smt.executeQuery("select er.nombreEjercicio,e.series, ed.repeticiones \r\n"
+					+ "from ejercicios_rutina er,ejercicios e,ejercicio_Dinamico ed,rutina r  \r\n"
+					+ "where  r.fecha='"+fechaEjercicio.get(i)+"' and er.nombreEjercicio = e.nombre and ed.nombre=er.nombreEjercicio;\r\n"
+					+ "");
 			
 			while (ejerciciosRutina.next()) {	
-				/**this.nombre = ejerciciosRutina.getString("nombre");
+				this.nombreEjercicio = ejerciciosRutina.getString("nombreEjercicio");
 				this.repeticiones = ejerciciosRutina.getByte("repeticiones");
-				this. series = ejerciciosRutina.getByte("series");
-				this.eod = ejerciciosRutina.getString("estatico_o_dinamico");
-				*/
-				this.nombreEjercicio=ejerciciosRutina.getString("usuario");
+				this.series = ejerciciosRutina.getByte("series");
+				
+				
+				ret+="Ejercicio: "+this.nombreEjercicio+" series: "+this.series+" repeticiones: "+this.repeticiones+"\n";
+				
 				
 			}
+		
 		}
+		System.out.println(ret);
+		return ret;
 	}
+	
 }
