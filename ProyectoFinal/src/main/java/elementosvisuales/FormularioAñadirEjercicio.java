@@ -103,10 +103,10 @@ public class FormularioAñadirEjercicio extends JPanel{
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EjercicioDinamico ejD = new EjercicioDinamico(nombre,series,repeticiones);
+				//EjercicioDinamico ejD = new EjercicioDinamico(nombre,series,repeticiones);
 				
-				ejercicios.add(ejD);
-				rutina.añadirEjercicio(ejD);
+				//ejercicios.add(ejD);
+				//rutina.añadirEjercicio(ejD);
 				
 				//Rutina r =new Rutina(rutina(ejercicios));
 				

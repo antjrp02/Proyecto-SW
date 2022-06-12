@@ -53,6 +53,8 @@ public class Ventana extends JFrame {
 		case "perfil":
 			this.pantallaActual = new PantallaPerfil(this);
 			break;
+		case "mostrarRutinas":
+			this.pantallaActual= new PantallaMostrarRutinas(this);
 		}
 		this.pantallaActual.setVisible(true);
 		this.setContentPane(pantallaActual);

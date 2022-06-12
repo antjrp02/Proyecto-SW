@@ -18,17 +18,20 @@ public class EjercicioDinamico extends Ejercicio {
 			TipoEjercicio tipoEjercicio, boolean usaGoma, boolean realizado, byte series, byte repeticiones) throws SQLException {
 		super(nombre, dificultad, gruposMusculares, tipoEjercicio, usaGoma, realizado, series);
 		this.repeticiones = repeticiones;
+		
+		
+	}
+	
+	public EjercicioDinamico(String nombre,  byte series, byte repeticiones) throws SQLException {
+		super(nombre,series);
 		Statement smt = UtilsDB.conectarBD();
 
 		smt.executeUpdate(
 				"Update ejercicio_dinamico set repeticiones = '" + repeticiones + "' where nombre = '" + nombre + "';");
-		UtilsDB.desconectarBD();
 		
-	}
-	
-	public EjercicioDinamico(String nombre,  byte series, byte repeticiones) {
-		super(nombre,series);
+		UtilsDB.desconectarBD();
 		this.nombreEjercicio=nombre;
+		
 		this.repeticiones = repeticiones;
 	}
 
@@ -45,20 +48,11 @@ public class EjercicioDinamico extends Ejercicio {
 		this.repeticiones = repeticiones;
 	}
 	
-	public ArrayList<String> nombreEjercicio() throws SQLException{
-		ArrayList<String> nombreEjercicio = new ArrayList<String>();
-		Statement smt = UtilsDB.conectarBD();
-		ResultSet devuelveDatos=smt.executeQuery("Select nombre from ejercicio_Dinamico ;");
-		while (devuelveDatos.next()) {
-			this.nombreEjercicio=devuelveDatos.getString("nombre");
-			nombreEjercicio.add(this.nombreEjercicio);
-		}
-		UtilsDB.desconectarBD();
-		return nombreEjercicio;
-	}
+	
+	
 	@Override
 	public String toString() {
-		return "EjercicioDinamico [repeticiones=" + repeticiones + ", nombreEjercicio=" + nombreEjercicio + "]";
+		return "Ejercicio: "+nombre+" series: " + series + " repeticiones:  " + repeticiones ;
 	}
 
 }

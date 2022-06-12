@@ -3,7 +3,7 @@ package superClases;
 import excepciones.UsuarioVacioException;
 
 public class EntidadConNombre {
-	private String nombre;
+	protected String nombre;
 
 	
 	
